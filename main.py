@@ -3,7 +3,7 @@ Universidad del Valle
 Sección 20
 Grupo - 08
 Josue Sagastume 18173
-Diego Solorzano 18 
+Diego Solorzano 18151
 Mario Perdomo 18029
 
 """
