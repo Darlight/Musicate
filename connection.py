@@ -14,6 +14,7 @@ try:
     cursor = db_connection.cursor()
 
     #call stored procedure
+    
 
 except (Exception, psycopg2.Error) as error :
     print ("Error while connecting to PostgreSQL", error)
