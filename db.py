@@ -130,8 +130,15 @@ while (opcion != 20):
         user = input("Ingrese el nombre del usuario: ")
         email = input("Ingrese el correo electronico: ")
         password = input("Ingrese la contrasena: ")
+
         role = input("Ingrese el rol del usuario: ")
-        cur.execute("INSERT INTO Users(UserID, Username, email, password, role) VALUES (%s, %s, %s, %s, %s)", (newid, user, email, password, role))
+        cur.execute("SELECT role.roleid FROM role WHERE role.name = %s ", (role,))
+        opcion1 = cur.fetchall()
+        roleid = 0
+        for r in opcion1:
+            roleid = r[0]
+
+        cur.execute("INSERT INTO Users(UserID, Username, email, password, roleid) VALUES (%s, %s, %s, %s, %s)", (newid, user, email, password, roleid))
         con.commit()
         print("Se ha registrado el usuario")
 
