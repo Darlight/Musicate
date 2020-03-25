@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
    Create Tables
 ********************************************************************************/
 DROP TABLE IF EXISTS Artist;
@@ -141,6 +141,26 @@ CREATE TABLE PlaylistTrack
     FOREIGN KEY (PlaylistId) REFERENCES Playlist (PlaylistId) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (TrackId) REFERENCES Track (TrackId) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+    userid INT NOT NULL,
+    name VARCHAR(75),
+    lastname VARCHAR(75),
+    email VARCHAR(100),
+    username VARCHAR(75),
+    password VARCHAR(75),
+    roleid INT,
+    UNIQUE(userid),
+    UNIQUE(username),
+    FOREIGN KEY(roleid) REFERENCES roles(id)
+);
+
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS permissions;
+
+
 
 
 
