@@ -35,6 +35,12 @@ addArtist = 'INSERT INTO Artist (ArtistId, Name) VALUES (parameter,parameter2)'
 
 
 #Queries para musica
+#Agregar cancion
+"INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,)", (trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice)
+#Agregar album
+"INSERT INTO album(albumid, title, artistid) VALUES (%s, %s, %s)", (albumid, title, artistid)
+#Agregar artista
+"INSERT INTO artist(artistid, name) VALUES (%s, %s,)", (artistid, name)
 
 getTracks = ''
 #Queries para album
