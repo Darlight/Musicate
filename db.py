@@ -11,13 +11,14 @@ con = psycopg2.connect(
 
 #create a cursor
 cur = con.cursor()
-menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Salir"
+menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Salir"
 
 print("BIENVENIDO A MUSICATE")
 print("Ingrese la opcion que desea buscar:")
 print(menu)
 opcion = int(input())
-while (opcion != 16):
+while (opcion != 17):
+    #Artistas con mas albumes publicados
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
         opcion1 = cur.fetchall()
@@ -26,6 +27,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Generos con mas canciones
     elif (opcion == 2):
         cur.execute("SELECT genre.name AS Genero, COUNT (genre.name) FROM Track INNER JOIN Genre ON Track.genreid = Genre.genreid GROUP BY Genre.name ORDER BY COUNT(Genre.name) DESC LIMIT 5")
         opcion1 = cur.fetchall()
@@ -34,6 +37,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Duracion de cada playlist
     elif (opcion == 3):
         cur.execute("SELECT p.name AS Playlist, SUM(t.milliseconds) AS Duration FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY p.name")
         opcion1 = cur.fetchall()
@@ -42,6 +47,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Canciones de mayor duracion con la informacion de sus artistas
     elif (opcion == 4):
         cur.execute("SELECT t.name AS Cancion, t.milliseconds AS Duracion_en_milisegundos, a.artistid, a.name FROM track t INNER JOIN Artist a ON t.composer = a.name ORDER BY t.milliseconds DESC LIMIT 5")
         opcion1 = cur.fetchall()
@@ -50,6 +57,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Artistas que han registrado mas canciones
     elif (opcion == 5):
         cur.execute("SELECT a.name AS Artista, COUNT(t.trackid) AS Canciones FROM Artist a INNER JOIN Track t ON a.name = t.composer GROUP BY a.name ORDER BY COUNT(t.trackid) DESC LIMIT 5")
         opcion1 = cur.fetchall()
@@ -58,6 +67,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Promedio de duracion de canciones por genero
     elif (opcion == 6):
         cur.execute("SELECT g.name AS Genero, AVG(t.milliseconds) AS Promedio_duracion_en_milisegundos FROM Track t INNER JOIN Genre g ON t.genreid = g.genreid GROUP BY g.name ORDER BY AVG(t.milliseconds) DESC")
         opcion1 = cur.fetchall()
@@ -66,6 +77,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Cantidad de artistas diferentes por playlist
     elif (opcion == 7):
         cur.execute("SELECT g.name, COUNT(g.name) FROM (SELECT p.name AS Name, COUNT(t.albumid) AS Artists FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY (p.name, t.albumid)) g GROUP BY g.name")
         opcion1 = cur.fetchall()
@@ -74,6 +87,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Artistas con mas diversidad de generos musicales
     elif (opcion == 8):
         cur.execute("SELECT a.name, COUNT(a.name) FROM (SELECT Artist.artistid as artist,track.genreid as genre FROM ARTIST JOIN Album ON Album.ArtistId=Artist.ArtistId JOIN TRACK ON Track.AlbumId=Album.AlbumId GROUP BY(artist.artistID,track.genreid)) G JOIN Artist a ON G.artist=a.artistid JOIN Genre ON G.genre=Genre.genreid GROUP BY (a.name) ORDER BY COUNT(a.name) DESC LIMIT 5")
         opcion1 = cur.fetchall()
@@ -82,6 +97,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Buscar cancion
     elif (opcion == 9):
         cancion = input("Ingrese el nombre de la cancion: ")
         cur.execute("SELECT t.name, t.composer FROM track t WHERE t.name = %s", (cancion,))
@@ -91,6 +108,8 @@ while (opcion != 16):
         
         print(menu)
         opcion = int(input())
+
+    #Buscar artista
     elif (opcion == 10):
         artista = input("Ingrese el nombre del artista: ")
         cur.execute("SELECT a.artistid, a.name FROM artist a WHERE a.name = %s", (artista,))
@@ -100,6 +119,8 @@ while (opcion != 16):
         
         print(menu)
         opcion = int(input())
+
+    #Agregar usuario
     elif (opcion == 11):
         cur.execute("SELECT MAX(userid) FROM users ")
         opcion1 = cur.fetchall()
@@ -116,6 +137,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Buscar usuario
     elif (opcion == 12):
         user = input("Ingrese el nombre del usuario: ")
         cur.execute("SELECT u.userid, u.username, u.email, u.password, u.role FROM Users u WHERE u.username = %s", (user,))
@@ -125,6 +148,8 @@ while (opcion != 16):
         
         print(menu)
         opcion = int(input())
+
+    #Agregar cancion
     elif (opcion == 13):
         cur.execute("SELECT MAX(trackid) FROM track ")
         opcion1 = cur.fetchall()
@@ -159,7 +184,7 @@ while (opcion != 16):
         composer = input("Ingrese el nombre del artista: ")
         milliseconds = input("Ingrese la duracion de la cancion en milisegundos: ")
         size = input("Ingrese el tamano de la cancion en bytes: ")
-        unitprice = input("Ingrese el valor de la cancion")
+        unitprice = input("Ingrese el valor de la cancion ($): ")
 
         cur.execute("INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, size, unitprice))
         con.commit()
@@ -167,6 +192,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Agregar album
     elif (opcion == 14):
         cur.execute("SELECT MAX(albumid) FROM album ")
         opcion1 = cur.fetchall()
@@ -189,6 +216,8 @@ while (opcion != 16):
 
         print(menu)
         opcion = int(input())
+
+    #Agregar artista
     elif (opcion == 15):
         cur.execute("SELECT MAX(artistid) FROM artist ")
         opcion1 = cur.fetchall()
@@ -202,6 +231,27 @@ while (opcion != 16):
         con.commit()
         print("Se ha guardado el artista")
 
+        print(menu)
+        opcion = int(input())
+
+    #Login con usuario existente
+    elif (opcion == 16):
+        username = input("Ingrese su usario: ")
+        password = input("Ingrese su contrasena: ")
+        
+        cur.execute("SELECT * FROM users u WHERE username = %s AND password = %s", (username, password,))
+        opcion1 = cur.fetchall()
+        uconfirm = ""
+        pconfirm = ""
+        for r in opcion1:
+            uconfirm = r[0]
+            pconfirm = r[1]
+
+        if ((uconfirm != "") and (pconfirm != "")):
+            print("Se ha iniciado sesion correctamente")
+        else:
+            print("Verifica que tu usuario y contrasena esten bien")
+        
         print(menu)
         opcion = int(input())
     else:
