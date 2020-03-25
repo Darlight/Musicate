@@ -292,9 +292,12 @@ while (opcion != 20):
         size = input("Ingrese el tamano de la cancion en bytes: ")
         unitprice = input("Ingrese el precio de la cancion: ")
 
-        cur.execute("UPDATE Track SET name = %s, albumid=%s, mediatypeid=%s, genreid=%s, composer=%s, milliseconds=%s, size=%s, unitprice=%s WHERE trackid=%s", (newname, albumid, mediatypeid, genreid, composer, milliseconds, size, unitprice, trackid,))
+        cur.execute("UPDATE Track SET name = %s, albumid=%s, mediatypeid=%s, genreid=%s, composer=%s, milliseconds=%s, bytes=%s, unitprice=%s WHERE trackid=%s", (newname, albumid, mediatypeid, genreid, composer, milliseconds, size, unitprice, trackid,))
         con.commit()
         print("Se ha actualizado la cancion en la base de datos")
+
+        print(menu)
+        opcion = int(input())
 
     #Modificar album
     elif (opcion == 18):
@@ -318,6 +321,9 @@ while (opcion != 20):
         con.commit()
         print("Se ha actualizado el album en la base de datos")
 
+        print(menu)
+        opcion = int(input())
+
     #Modificar artista
     elif (opcion == 19):
         name = input("Ingrese el nombre del artista que desea modificar: ")
@@ -329,9 +335,12 @@ while (opcion != 20):
 
         newname = input("Ingrese el nuevo nombre del artista: ")
 
-        cur.execute("UPDATE Artist SET name=%s, WHERE artistid=%s", (newname, artistid))
+        cur.execute("UPDATE Artist SET name=%s WHERE artistid=%s", (newname, artistid))
         con.commit()
         print("Se ha actualizado el artista en la base de datos")
+
+        print(menu)
+        opcion = int(input())
     else:
         print(menu)
         opcion = int(input())
