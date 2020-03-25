@@ -43,3 +43,44 @@ getAlbums= ''
 getGenres = ''
 #Queries para mediatype
 getMediaTypes =''
+
+
+'''
+RRR     EEEE    PPP      OOO    RRR     TTTTTTT     EEEE     SSS
+R  R    E       P  P    O   O   R  R       T        E       S
+RRR     EEEE    PPP     O   O   RRR        T        EEEE     SSS
+R  R    E       P       O   O   R  R       T        E           S
+R   R   EEEE    P        OOO    R   R      T        EEEE    SSSS
+'''
+
+#Reporte 1
+#Artistas con mas albumes publicados
+"SELECT artistid, COUNT (album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid ORDER BY COUNT(album.albumid) DESC LIMIT 5"
+
+#Reporte 2
+#Generos con mas canciones
+"SELECT genre.name AS Genero, COUNT (genre.name) FROM Track INNER JOIN Genre ON Track.genreid = Genre.genreid GROUP BY Genre.name ORDER BY COUNT(Genre.name) DESC LIMIT 5"
+
+#Reporte 3
+#Duracion de cada playlist
+"SELECT p.name AS Playlist, SUM(Track.milliseconds) AS Duration FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY p.name"
+
+#Reporte 4
+#Canciones de mayor duracion con la informacion de sus artistas
+"SELECT t.name AS Cancion, t.milliseconds AS Duracion_en_milisegundos, a.artistid, a.name FROM track t INNER JOIN Artist a ON t.composer = a.name ORDER BY t.milliseconds DESC LIMIT 5"
+
+#Reporte 5
+#Artistas que han registrado mas canciones
+"SELECT a.name AS Artista, COUNT(t.trackid) AS Canciones FROM Artist a INNER JOIN Track t ON a.name = t.composer GROUP BY a.name ORDER BY COUNT(t.trackid) DESC LIMIT 5"
+
+#Reporte 6
+#Promedio de duracion de canciones por genero
+"SELECT g.name AS Genero, AVG(t.milliseconds) AS Promedio_duracion_en_milisegundos FROM Track t INNER JOIN Genre g ON t.genreid = g.genreid GROUP BY g.name ORDER BY AVG(t.milliseconds) DESC"
+
+#Reporte 7
+#Cantidad de artistas diferentes por playlist
+"SELECT g.name, COUNT(g.name) FROM (SELECT p.name AS Name, COUNT(t.albumid) AS Artists FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY (p.name, t.albumid)) g GROUP BY g.name"
+
+#Reporte 8
+#Artistas con mas diversidad de generos musicales
+"todavia no esta"
