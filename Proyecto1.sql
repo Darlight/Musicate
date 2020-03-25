@@ -154,11 +154,65 @@ CREATE TABLE users
     roleid INT,
     UNIQUE(userid),
     UNIQUE(username),
-    FOREIGN KEY(roleid) REFERENCES roles(id)
+    FOREIGN KEY(roleid) REFERENCES roles(roleid)
 );
 
 DROP TABLE IF EXISTS roles;
+CREATE TABLE roles(
+    roleid INT NOT NULL PRIMARY KEY,
+    name VARCHAR(75)
+);
+
 DROP TABLE IF EXISTS permissions;
+CREATE TABLE permissions(
+    permissionid INT NOT NULL PRIMARY KEY,
+    add_artist VARCHAR(5),
+    add_track VARCHAR(5),
+    add_album VARCHAR(5),
+    inactivate_track VARCHAR(5),
+    update_track VARCHAR(5),
+    delete_track VARCHAR(5),
+    update_artist VARCHAR(5),
+    delete_artist VARCHAR(5),
+    delete_album VARCHAR(5),
+    update_album VARCHAR(5)
+);
+DROP TABLE IF EXISTS role_permission;
+CREATE TABLE role_permission(
+     role_permissionid INT NOT NULL PRIMARY KEY,
+     rolename VARCHAR(50),
+     permissionid INT,
+     roleid INT,
+     UNIQUE(rolename),
+     FOREIGN KEY(roleid) REFERENCES roles(roleid),
+     FOREIGN KEY(permissionid) REFERENCES roles(permissionid)
+);
+
+DROP TABLE IF EXISTS modify_Artist;
+CREATE TABLE modify_Artist(
+     userid INT NOT NULL,
+     artistid INT not NUll,
+     FOREIGN KEY(userid) REFERENCES users(userid),
+     FOREIGN KEY(artistid) REFERENCES Artist(ArtistId)
+);
+
+DROP TABLE IF EXISTS modify_Album;
+CREATE TABLE modify_Album(
+     userid INT NOT NULL,
+     albumid INT not NUll,
+     FOREIGN KEY(userid) REFERENCES users(userid),
+     FOREIGN KEY(albumid) REFERENCES Artist(AlbumId)
+);
+DROP TABLE IF EXISTS modify_Track;
+CREATE TABLE modify_Track(
+     userid INT NOT NULL,
+     trackid INT NOT NULL,
+     tractstate VARCHAR(5),
+     FOREIGN KEY(userid) REFERENCES users(userid),
+     FOREIGN KEY(albumid) REFERENCES TRACK(TrackId
+);
+
+
 
 
 
