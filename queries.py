@@ -55,7 +55,7 @@ R   R   EEEE    P        OOO    R   R      T        EEEE    SSSS
 
 #Reporte 1
 #Artistas con mas albumes publicados
-"SELECT artistid, COUNT (album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid ORDER BY COUNT(album.albumid) DESC LIMIT 5"
+"SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5"
 
 #Reporte 2
 #Generos con mas canciones
@@ -63,7 +63,7 @@ R   R   EEEE    P        OOO    R   R      T        EEEE    SSSS
 
 #Reporte 3
 #Duracion de cada playlist
-"SELECT p.name AS Playlist, SUM(Track.milliseconds) AS Duration FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY p.name"
+"SELECT p.name AS Playlist, SUM(t.milliseconds) AS Duration FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY p.name"
 
 #Reporte 4
 #Canciones de mayor duracion con la informacion de sus artistas
@@ -79,8 +79,9 @@ R   R   EEEE    P        OOO    R   R      T        EEEE    SSSS
 
 #Reporte 7
 #Cantidad de artistas diferentes por playlist
-"SELECT g.name, COUNT(g.name) FROM (SELECT p.name AS Name, COUNT(t.albumid) AS Artists FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY (p.name, t.albumid)) g GROUP BY g.name"
+"SELECT d.name, COUNT(d.name) FROM (SELECT p.name AS Name, COUNT(t.albumid) AS Artists FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY (p.name, t.albumid)) d GROUP BY d.name"
 
 #Reporte 8
 #Artistas con mas diversidad de generos musicales
-"todavia no esta"
+"SELECT a.name, COUNT(a.name) FROM (SELECT Artist.artistid as artist,track.genreid as genre FROM ARTIST JOIN Album ON Album.ArtistId=Artist.ArtistId JOIN TRACK ON Track.AlbumId=Album.AlbumId GROUP BY(artist.artistID,track.genreid)) G JOIN Artist a ON G.artist=a.artistid JOIN Genre ON G.genre=Genre.genreid GROUP BY (a.name) ORDER BY COUNT(a.name) DESC LIMIT 5"
+
