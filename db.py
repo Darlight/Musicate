@@ -161,7 +161,7 @@ while (opcion != 16):
         size = input("Ingrese el tamano de la cancion en bytes: ")
         unitprice = input("Ingrese el valor de la cancion")
 
-        cur.execute("INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,)", (trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, size, unitprice))
+        cur.execute("INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)", (trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, size, unitprice))
         con.commit()
         print("Se ha guardado la cancion")
 
@@ -198,7 +198,7 @@ while (opcion != 16):
 
         name = input("Ingrese el nombre del artista: ")
 
-        cur.execute("INSERT INTO artist(artistid, name) VALUES (%s, %s,)", (artistid, name))
+        cur.execute("INSERT INTO artist(artistid, name) VALUES (%s, %s)", (artistid, name))
         con.commit()
         print("Se ha guardado el artista")
 
