@@ -127,6 +127,8 @@ while (opcion != 23):
         newid = 0
         for r in opcion1:
             newid = r[0] + 1
+        name = input("Ingrese su nombre: ")
+        lastname = input("Ingrese su apellido: ")
         user = input("Ingrese el nombre del usuario: ")
         email = input("Ingrese el correo electronico: ")
         password = input("Ingrese la contrasena: ")
@@ -138,7 +140,7 @@ while (opcion != 23):
         for r in opcion1:
             roleid = r[0]
 
-        cur.execute("INSERT INTO Users(UserID, Username, email, password, roleid) VALUES (%s, %s, %s, %s, %s)", (newid, user, email, password, roleid))
+        cur.execute("INSERT INTO Users(userid, name, lastname, email, username, password, roleid) VALUES (%s, %s, %s, %s, %s, %s, %s)", (newid, name, lastname, email, user, password, roleid))
         con.commit()
         print("Se ha registrado el usuario")
 
@@ -336,7 +338,7 @@ while (opcion != 23):
         name = input("Ingrese el nombre del artista que desea modificar: ")
         cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (name,))
         opcion1 = cur.fetchall()
-        artistid = 0
+        artistid = ""
         for r in opcion1:
             artistid = r[0]
 
@@ -352,13 +354,8 @@ while (opcion != 23):
     #Eliminar cancion
     elif (opcion == 20):
         name = input("Ingrese el nombre de la cancion que desea eliminar: ")
-        cur.execute("SELECT track.trackid FROM track WHERE artist.name = %s ", (name,))
-        opcion1 = cur.fetchall()
-        trackid = 0
-        for r in opcion1:
-            trackid = r[0]
-
-        cur.execute("DELETE FROM track WHERE trackid=%s", (trackid))
+        
+        cur.execute("DELETE FROM track WHERE track.name=%s", (name, ))
         con.commit()
         print("Se ha eliminado la cancion de la base de datos")
 
@@ -368,13 +365,8 @@ while (opcion != 23):
     #Eliminar album
     elif (opcion == 21):
         title = input("Ingrese el nombre del album que desea eliminar: ")
-        cur.execute("SELECT album.albumid FROM album WHERE album.title = %s ", (title,))
-        opcion1 = cur.fetchall()
-        albumid = 0
-        for r in opcion1:
-            albumid = r[0]
-
-        cur.execute("DELETE FROM album WHERE albumid=%s", (albumid))
+        
+        cur.execute("DELETE FROM album WHERE title=%s", (title, ))
         con.commit()
         print("Se ha eliminado el album de la base de datos")
 
@@ -384,13 +376,8 @@ while (opcion != 23):
     #Eliminar artista
     elif (opcion == 22):
         name = input("Ingrese el nombre del artista que desea eliminar: ")
-        cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (name,))
-        opcion1 = cur.fetchall()
-        artistid = 0
-        for r in opcion1:
-            artistid = r[0]
-
-        cur.execute("DELETE FROM artist WHERE artistid=%s", (artistid))
+        
+        cur.execute("DELETE FROM artist WHERE name=%s", (name, ))
         con.commit()
         print("Se ha eliminado el artista de la base de datos")
 
