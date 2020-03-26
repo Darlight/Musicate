@@ -185,7 +185,7 @@ CREATE TABLE role_permission(
      permissionid INT,
      roleid INT,
      FOREIGN KEY(roleid) REFERENCES roles(roleid) ON DELETE CASCADE ON UPDATE CASCADE,
-     FOREIGN KEY(permissionid) REFERENCES permission(permissionid) ON DELETE CASCADE ON UPDATE CASCADE
+     FOREIGN KEY(permissionid) REFERENCES permissions (permissionid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS modify_artist;
@@ -209,7 +209,7 @@ CREATE TABLE modify_Track(
      trackid INT NOT NULL,
      trackstate VARCHAR(5),
      FOREIGN KEY(userid) REFERENCES users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
-     FOREIGN KEY(albumid) REFERENCES Track(TrackId) ON DELETE CASCADE ON UPDATE CASCADE
+     FOREIGN KEY(trackid) REFERENCES Track(TrackId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
