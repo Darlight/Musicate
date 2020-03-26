@@ -11,13 +11,13 @@ con = psycopg2.connect(
 
 #create a cursor
 cur = con.cursor()
-menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Modificar cancion\n\t18. Modificar album\n\t19.Modificar artista\n\t20. Salir"
+menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Modificar cancion\n\t18. Modificar album\n\t19.Modificar artista\n\t20. Eliminar cancion\n\t21. Eliminar album\n\t22. Eliminar artista\n\t23. Salir"
 
 print("BIENVENIDO A MUSICATE")
 print("Ingrese la opcion que desea buscar:")
 print(menu)
 opcion = int(input())
-while (opcion != 20):
+while (opcion != 23):
     #Artistas con mas albumes publicados
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
