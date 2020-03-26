@@ -11,13 +11,13 @@ con = psycopg2.connect(
 
 #create a cursor
 cur = con.cursor()
-menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Modificar cancion\n\t18. Modificar album\n\t19.Modificar artista\n\t20. Salir"
+menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Modificar cancion\n\t18. Modificar album\n\t19.Modificar artista\n\t20. Eliminar cancion\n\t21. Eliminar album\n\t22. Eliminar artista\n\t23. Salir"
 
 print("BIENVENIDO A MUSICATE")
 print("Ingrese la opcion que desea buscar:")
 print(menu)
 opcion = int(input())
-while (opcion != 20):
+while (opcion != 23):
     #Artistas con mas albumes publicados
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
@@ -345,6 +345,54 @@ while (opcion != 20):
         cur.execute("UPDATE Artist SET name=%s WHERE artistid=%s", (newname, artistid))
         con.commit()
         print("Se ha actualizado el artista en la base de datos")
+
+        print(menu)
+        opcion = int(input())
+
+    #Eliminar cancion
+    elif (opcion == 20):
+        name = input("Ingrese el nombre de la cancion que desea eliminar: ")
+        cur.execute("SELECT track.trackid FROM track WHERE artist.name = %s ", (name,))
+        opcion1 = cur.fetchall()
+        trackid = 0
+        for r in opcion1:
+            trackid = r[0]
+
+        cur.execute("DELETE FROM track WHERE trackid=%s", (trackid))
+        con.commit()
+        print("Se ha eliminado la cancion de la base de datos")
+
+        print(menu)
+        opcion = int(input())
+
+    #Eliminar album
+    elif (opcion == 21):
+        title = input("Ingrese el nombre del album que desea eliminar: ")
+        cur.execute("SELECT album.albumid FROM album WHERE album.title = %s ", (title,))
+        opcion1 = cur.fetchall()
+        albumid = 0
+        for r in opcion1:
+            albumid = r[0]
+
+        cur.execute("DELETE FROM album WHERE albumid=%s", (albumid))
+        con.commit()
+        print("Se ha eliminado el album de la base de datos")
+
+        print(menu)
+        opcion = int(input())
+
+    #Eliminar artista
+    elif (opcion == 22):
+        name = input("Ingrese el nombre del artista que desea eliminar: ")
+        cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (name,))
+        opcion1 = cur.fetchall()
+        artistid = 0
+        for r in opcion1:
+            artistid = r[0]
+
+        cur.execute("DELETE FROM artist WHERE artistid=%s", (artistid))
+        con.commit()
+        print("Se ha eliminado el artista de la base de datos")
 
         print(menu)
         opcion = int(input())
