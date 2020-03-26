@@ -348,6 +348,54 @@ while (opcion != 20):
 
         print(menu)
         opcion = int(input())
+
+    #Eliminar cancion
+    elif (opcion == 20):
+        name = input("Ingrese el nombre de la cancion que desea eliminar: ")
+        cur.execute("SELECT track.trackid FROM track WHERE artist.name = %s ", (name,))
+        opcion1 = cur.fetchall()
+        trackid = 0
+        for r in opcion1:
+            trackid = r[0]
+
+        cur.execute("DELETE FROM track WHERE trackid=%s", (trackid))
+        con.commit()
+        print("Se ha eliminado la cancion de la base de datos")
+
+        print(menu)
+        opcion = int(input())
+
+    #Eliminar album
+    elif (opcion == 21):
+        title = input("Ingrese el nombre del album que desea eliminar: ")
+        cur.execute("SELECT album.albumid FROM album WHERE album.title = %s ", (title,))
+        opcion1 = cur.fetchall()
+        albumid = 0
+        for r in opcion1:
+            albumid = r[0]
+
+        cur.execute("DELETE FROM album WHERE albumid=%s", (albumid))
+        con.commit()
+        print("Se ha eliminado el album de la base de datos")
+
+        print(menu)
+        opcion = int(input())
+
+    #Eliminar artista
+    elif (opcion == 22):
+        name = input("Ingrese el nombre del artista que desea eliminar: ")
+        cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (name,))
+        opcion1 = cur.fetchall()
+        artistid = 0
+        for r in opcion1:
+            artistid = r[0]
+
+        cur.execute("DELETE FROM artist WHERE artistid=%s", (artistid))
+        con.commit()
+        print("Se ha eliminado el artista de la base de datos")
+
+        print(menu)
+        opcion = int(input())
     else:
         print(menu)
         opcion = int(input())
