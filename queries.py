@@ -88,4 +88,5 @@ rep7 = "SELECT d.name, COUNT(d.name) FROM (SELECT p.name AS Name, COUNT(t.albumi
 
 #Reporte 8
 #Artistas con mas diversidad de generos musicales
+
 rep8 = "SELECT a.name, COUNT(a.name) FROM (SELECT Artist.artistid as artist,track.genreid as genre FROM ARTIST JOIN Album ON Album.ArtistId=Artist.ArtistId JOIN TRACK ON Track.AlbumId=Album.AlbumId GROUP BY(artist.artistID,track.genreid)) G JOIN Artist a ON G.artist=a.artistid JOIN Genre ON G.genre=Genre.genreid GROUP BY (a.name) ORDER BY COUNT(a.name) DESC LIMIT 5"
