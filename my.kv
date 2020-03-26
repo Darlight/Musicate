@@ -1,0 +1,1783 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+    ThirdWindow:
+    FourthWindow:
+    FifthWindow:
+    SixthWindow:
+    EigthWindow:
+    NinthWindow:
+    TenthWindow:
+
+
+<BoxLayout>
+    canvas.before:
+        BorderImage:
+            # BorderImage behaves like the CSS BorderImage
+            border: 10, 10, 10, 10
+            source: 'back3.jpg'
+            pos: self.pos
+            size: self.size
+
+<MainWindow>:
+    name: "log"
+
+    GridLayout:
+        cols: 1
+
+
+        Image:
+            size_hint_y: None
+            height: 400
+            source: "emp.png"
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 95
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                text: "Username"
+
+            TextInput:
+                multiline: False
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                text: "Password"
+
+            TextInput:
+                multiline: False
+
+            Label:
+                size_hint_y: None
+                height: 20
+
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'button1.jpg'
+                background_down: 'button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Log In"
+                on_release:
+                    app.root.current = 'home'
+                    root.manager.transition.direction = "left"
+
+        GridLayout:
+            cols: 2
+
+
+            Label:
+                size_hint_x: None
+                width: 350
+            Label:
+                size_hint_x: None
+                width: 170
+                text: "To log in as administrator"
+
+            Label:
+                size_hint_x: None
+                width: 470
+            Button:
+                background_normal: 'button1.jpg'
+                background_down: 'button2.jpg'
+                text: "Click here"
+                size_hint_x: None
+                width: 170
+                on_release:
+                    app.root.current = 'admin'
+                    root.manager.transition.direction = "left"
+        Label:
+            size_hint_y: None
+            height: 20
+
+<SecondWindow>:
+    name: "admin"
+
+    GridLayout:
+        cols: 1
+
+
+        Image:
+            size_hint_y: None
+            height: 400
+            source: "emp.png"
+
+        GridLayout:
+            cols: 3
+            size_hint_x: None
+            width: 670
+            size_hint_y: None
+            height: 95
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                text: "Username"
+
+            TextInput:
+                multiline: False
+
+            Label:
+                size_hint_x: None
+                width: 10
+
+            Label:
+                text: "Password"
+
+            TextInput:
+                multiline: False
+
+            Label:
+                size_hint_y: None
+                height: 20
+
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'button1.jpg'
+                background_down: 'button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Log In"
+                on_release:
+                    app.root.current = 'homeA'
+                    root.manager.transition.direction = "left"
+
+        GridLayout:
+            cols: 2
+
+
+            Label:
+                size_hint_x: None
+                width: 350
+            Label:
+                size_hint_x: None
+                width: 170
+                text: "To log in as a regular user"
+
+            Label:
+                size_hint_x: None
+                width: 470
+            Button:
+                background_normal: 'button1.jpg'
+                background_down: 'button2.jpg'
+                text: "Click here"
+                size_hint_x: None
+                width: 170
+                on_release:
+                    app.root.current = 'log'
+                    root.manager.transition.direction = "right"
+        Label:
+            size_hint_y: None
+            height: 20
+
+
+
+<ThirdWindow>
+    name: "home"
+    timee: current
+
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+                Button:
+                    text: "Search"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'search'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Playlists"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'playlists'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'stats'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        font_size: 20
+                        text: "     Welcome!"
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     Thank you for using the Empire Music streaming service"
+                        font_size: 17
+
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     To listen to a song, you can either search it by song name, artist or genre"
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     You can also listen to a song from your playlist by selecting the 'Playlists' page"
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     Click the 'Statistics' page to view a data report with interesting stats"
+
+
+
+
+        GridLayout:
+            cols: 1
+            Label:
+                font_size: 20
+                text: "Now Playing: Cancion - Artista"
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+                    background_normal: 'back.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'play.jpg'
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'next.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols: 2
+                Label:
+                    text: ""
+                    size_hint_x: None
+                    width: 250
+                ProgressBar:
+                    id: current
+                    value: 0
+                    min: 0
+                    max: 1
+                    size_hint_x: None
+                    width: 600
+                    pos_hint: {"x": 0.5}
+
+            BoxLayout:
+
+
+<FourthWindow>
+    name: "search"
+    currtime: current
+    songe: songe
+    resu:resu
+
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+                pos_hint: {"x": 0.5}
+
+            GridLayout:
+                cols:3
+                padding_y: [0, 30]
+
+
+                GridLayout:
+                    cols: 1
+                    size_hint_x: None
+                    width: 200
+
+                Button:
+                    size_hint_x: None
+                    width: 100
+                    size_hint_y: None
+                    height: 50
+                    font_size: 20
+                    text: "Search"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release: root.search()
+
+                TextInput:
+                    id: songe
+                    text: ""
+                    font_size: 18
+                    size_hint_x: None
+                    width: 500
+                    size_hint_y: None
+                    height: 50
+                    padding_x: [40, 50]
+                    padding_y: [13, 0]
+                    multiline:False
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'home'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Search"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+
+                Button:
+                    text: "Playlists"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'playlists'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'stats'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: 100
+
+                    Label:
+                        font_size: 40
+                        text: "Results"
+
+
+                    Label
+                        id: resu
+                        font_size: 25
+                        text: ''
+
+
+        GridLayout:
+            cols: 1
+            Label:
+                font_size: 20
+                text: ""
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+                    background_normal: 'back.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'play.jpg'
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'next.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols: 2
+                Label:
+                    text: ""
+                    size_hint_x: None
+                    width: 250
+                ProgressBar:
+                    id: current
+                    value: 0
+                    min: 0
+                    max: 1
+                    size_hint_x: None
+                    width: 600
+                    pos_hint: {"x": 0.5}
+
+            BoxLayout:
+
+
+
+<FifthWindow>
+    name: "playlists"
+    currtime: current
+    pl1: pl1
+    pl2: pl2
+    pl3: pl3
+    pl4: pl4
+    pl5: pl5
+    pl6: pl6
+    pl7: pl7
+    pl8: pl8
+    pl9: pl9
+    pl10: pl10
+    titl: titl
+
+
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+                pos_hint: {"x": 0.5}
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'home'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Search"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'search'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Playlists"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+                    on_release: root.back()
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'stats'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: 40
+
+                    Label:
+                        id: titl
+                        font_size: 20
+                        text: "Playlists (Page 1)"
+
+                ScrollView:
+                    size_hint: 1, .1
+                    bar_width: 20
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+                    GridLayout:
+
+                        cols: 1
+                        size_hint_y: None
+                        height: 260
+                        size_hint_x: None
+                        width: 880
+
+                        Button:
+                            id: pl1
+                            text: root.p1
+                            on_press: root.selected(1)
+
+                        Button:
+                            id: pl2
+                            text: root.p2
+                            on_press: root.selected(2)
+
+                        Button:
+                            id: pl3
+                            text: root.p3
+                            on_press: root.selected(3)
+
+                        Button
+                            id: pl4
+                            text: root.p4
+                            on_press: root.selected(4)
+
+                        Button:
+                            id: pl5
+                            text: root.p5
+                            on_press: root.selected(5)
+
+                        Button:
+                            id: pl6
+                            text: root.p6
+                            on_press: root.selected(6)
+
+                        Button:
+                            id: pl7
+                            text: root.p7
+                            on_press: root.selected(7)
+
+                        Button
+                            id: pl8
+                            text: root.p8
+                            on_press: root.selected(8)
+
+                        Button:
+                            id: pl9
+                            text: root.p9
+                            on_press: root.selected(9)
+
+                        Button:
+                            id: pl10
+                            text: root.p10
+                            on_press: root.selected(10)
+
+                Button:
+                    text: 'Change Page'
+                    size_hint_y: None
+                    height: 40
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_press: root.changePage()
+
+
+
+        GridLayout:
+            cols: 1
+            Label:
+                id: name1
+                font_size: 20
+                text: "Now Playing: Cancion - Artista"
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+                    background_normal: 'back.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'play.jpg'
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Button:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+                    background_normal: 'next.jpg'
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols: 2
+                Label:
+                    text: ""
+                    size_hint_x: None
+                    width: 250
+                ProgressBar:
+                    id: current
+                    value: 0
+                    min: 0
+                    max: 1
+                    size_hint_x: None
+                    width: 600
+                    pos_hint: {"x": 0.5}
+
+            BoxLayout:
+
+<SixthWindow>
+    name: "stats"
+    currtime: current
+    name1: name1
+    pl1: pl1
+    pl2: pl2
+    pl3: pl3
+    pl4: pl4
+    pl5: pl5
+    pl6: pl6
+    pl7: pl7
+    pl8: pl8
+    titl: titl
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+                pos_hint: {"x": 0.5}
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: 300
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'home'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Search"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'search'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Playlists"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'playlists'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                height: 300
+
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: 40
+
+                    Label:
+                        id: titl
+                        font_size: 20
+                        text: "Statistics Report"
+
+                ScrollView:
+                    size_hint_y: None
+                    height: 300
+                    size_hint_x: None
+                    width: 900
+                    bar_width: 30
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+
+                    GridLayout:
+
+                        cols: 2
+                        size_hint_y: None
+                        height: 4500
+                        size_hint_x: None
+                        width: 800
+
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists with most albums"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+
+                                id: pl1
+                                text: root.p1
+
+
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Most songs by genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl2
+                                text: root.p2
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Playlist length"
+                                font_size: 17
+
+
+                        AnchorLayout:
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl3
+                                text: root.p3
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Longest songs"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl4
+                                text: root.p4
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists with the most songs"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl5
+                                text: root.p5
+
+
+                        AnchorLayout:
+
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Average song length per genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl6
+                                text: root.p6
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists per playlist"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl7
+                                text: root.p7
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Most diverse artist per genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl8
+                                text: root.p8
+
+        GridLayout:
+            cols: 1
+            Label:
+                id: name1
+                font_size: 20
+                text: ""
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols: 2
+                Label:
+                    text: ""
+                    size_hint_x: None
+                    width: 250
+                Label:
+                    id: current
+                    value: 0
+                    size_hint_x: None
+                    width: 600
+                    pos_hint: {"x": 0.5}
+                    text: "Proyecto 1 - Grupo 8"
+
+            BoxLayout:
+
+
+#///////////////////////////////////////////////////////////////////////////////
+
+<EigthWindow>
+    name: "homeA"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+                Button:
+                    text: "Administrate"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'administrate'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'stats'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        font_size: 20
+                        text: "     Welcome!"
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     Thank you for using the Empire Music streaming service"
+                        font_size: 17
+
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     Click the 'Administrate' page to adjust the database"
+
+                AnchorLayout:
+
+                    anchor_x: "left"
+                    anchor_y: "top"
+
+                    Label:
+                        size_hint: (None, None)
+                        size: self.texture_size
+                        text: "     Click the 'Statistics' page to view a data report with interesting stats"
+
+
+        BoxLayout:
+
+<NinthWindow>
+    name: "administrate"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                Button:
+                    text: "Administrate"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+                    on_release:
+                        app.root.current = 'administrate'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:2
+
+                Button:
+                    text: "Add artist"
+
+                Button:
+                    text: "Add song"
+
+                Button:
+                    text: "Add album"
+
+                Button:
+                    text: "Eliminate artist"
+
+                Button:
+                    text: "Eliminate song"
+
+                Button:
+                    text: "Eliminate album"
+
+        BoxLayout:
+
+
+<TenthWindow>
+    name: "statsA"
+    currtime: current
+    name1: name1
+    pl1: pl1
+    pl2: pl2
+    pl3: pl3
+    pl4: pl4
+    pl5: pl5
+    pl6: pl6
+    pl7: pl7
+    pl8: pl8
+    titl: titl
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'emp.png'
+                pos_hint: {"x": 0.5}
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: 300
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'home'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Search"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'search'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'administrate'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'button2.jpg'
+                    background_down: 'button1.jpg'
+
+                Button:
+                    text: "Log Out"
+                    background_normal: 'button1.jpg'
+                    background_down: 'button2.jpg'
+                    on_release:
+                        app.root.current = 'log'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                height: 300
+
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: 40
+
+                    Label:
+                        id: titl
+                        font_size: 20
+                        text: "Statistics Report"
+
+                ScrollView:
+                    size_hint_y: None
+                    height: 300
+                    size_hint_x: None
+                    width: 900
+                    bar_width: 30
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+
+                    GridLayout:
+
+                        cols: 2
+                        size_hint_y: None
+                        height: 4500
+                        size_hint_x: None
+                        width: 800
+
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists with most albums"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+
+                                id: pl1
+                                text: root.p1
+
+
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Most songs by genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl2
+                                text: root.p2
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Playlist length"
+                                font_size: 17
+
+
+                        AnchorLayout:
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl3
+                                text: root.p3
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Longest songs"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl4
+                                text: root.p4
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists with the most songs"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl5
+                                text: root.p5
+
+
+                        AnchorLayout:
+
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Average song length per genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl6
+                                text: root.p6
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Artists per playlist"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+
+                                id: pl7
+                                text: root.p7
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint: (None, None)
+                                size: self.texture_size
+                                text: "     Most diverse artist per genre"
+                                font_size: 17
+
+                        AnchorLayout:
+
+                            anchor_x: "left"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                id: pl8
+                                text: root.p8
+
+        GridLayout:
+            cols: 1
+            Label:
+                id: name1
+                font_size: 20
+                text: ""
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols: 2
+                Label:
+                    text: ""
+                    size_hint_x: None
+                    width: 250
+                Label:
+                    id: current
+                    value: 0
+                    size_hint_x: None
+                    width: 600
+                    pos_hint: {"x": 0.5}
+                    text: "Proyecto 1 - Grupo 8"
+
+            BoxLayout:
