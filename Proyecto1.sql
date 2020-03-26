@@ -154,7 +154,7 @@ CREATE TABLE users
     roleid INT,
     UNIQUE(userid),
     UNIQUE(username),
-    FOREIGN KEY(roleid) REFERENCES roles(roleid)
+    FOREIGN KEY(roleid) REFERENCES roles(roleid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS roles;
@@ -180,42 +180,35 @@ CREATE TABLE permissions(
 DROP TABLE IF EXISTS role_permission;
 CREATE TABLE role_permission(
      role_permissionid INT NOT NULL PRIMARY KEY,
-     rolename VARCHAR(50),
      permissionid INT,
      roleid INT,
-     UNIQUE(rolename),
-     FOREIGN KEY(roleid) REFERENCES roles(roleid),
-     FOREIGN KEY(permissionid) REFERENCES roles(permissionid)
+     FOREIGN KEY(roleid) REFERENCES roles(roleid) ON DELETE CASCADE ON UPDATE CASCADE,
+     FOREIGN KEY(permissionid) REFERENCES roles(permissionid) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS modify_Artist;
+DROP TABLE IF EXISTS modify_artist;
 CREATE TABLE modify_Artist(
      userid INT NOT NULL,
-     artistid INT not NUll,
-     FOREIGN KEY(userid) REFERENCES users(userid),
-     FOREIGN KEY(artistid) REFERENCES Artist(ArtistId)
+     artistid INT NOT NULL,
+     FOREIGN KEY(userid) REFERENCES users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+     FOREIGN KEY(artistid) REFERENCES Artist(ArtistId) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS modify_Album;
+DROP TABLE IF EXISTS modify_album;
 CREATE TABLE modify_Album(
      userid INT NOT NULL,
-     albumid INT not NUll,
-     FOREIGN KEY(userid) REFERENCES users(userid),
-     FOREIGN KEY(albumid) REFERENCES Artist(AlbumId)
+     albumid INT NOT NULL,
+     FOREIGN KEY(userid) REFERENCES users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+     FOREIGN KEY(albumid) REFERENCES Artist(AlbumId) ON DELETE CASCADE ON UPDATE CASCADE
 );
-DROP TABLE IF EXISTS modify_Track;
+DROP TABLE IF EXISTS modify_track;
 CREATE TABLE modify_Track(
      userid INT NOT NULL,
      trackid INT NOT NULL,
-     tractstate VARCHAR(5),
-     FOREIGN KEY(userid) REFERENCES users(userid),
-     FOREIGN KEY(albumid) REFERENCES TRACK(TrackId
+     trackstate VARCHAR(5),
+     FOREIGN KEY(userid) REFERENCES users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+     FOREIGN KEY(albumid) REFERENCES TRACK(TrackId) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-
-
-
-
 
 
 /*******************************************************************************
@@ -245,6 +238,18 @@ CREATE INDEX IFK_TrackMediaTypeId ON Track (MediaTypeId);
 /*******************************************************************************
    Populate Tables
 ********************************************************************************/
+INSERT INTO users (userid, name, lastname, email, username, password, roleid) VALUES (1, 'Diego', 'Solorzano', 'dsol@empire.com','pepito123', 1);
+INSERT INTO roles (roleid, name) VALUES (1,'Administrador');
+INSERT INTO roles (roleid, name) VALUES (2,'Mantenimiento');
+INSERT INTO roles (roleid, name) VALUES (3,'Oyente');
+INSERT INTO permissions (permissionid, add_artist, add_track, add_album, inactivate_track, update_track, delete_track, update_artist, delete_artist, delete_album, update_album) VALUES(1,'true','true','true','true','true','true','true','true','true','true');
+INSERT INTO permissions (permissionid, add_artist, add_track, add_album, inactivate_track, update_track, delete_track, update_artist, delete_artist, delete_album, update_album) VALUES (2,'false','false','false','true','true','false','true','false','false','true');
+INSERT INTO permissions (permissionid, add_artist, add_track, add_album, inactivate_track, update_track, delete_track, update_artist, delete_artist, delete_album, update_album) VALUES (3,'false','false','false','false','false','false','false','false','false','false');
+INSERT INTO role_permission (role_permissionid, permissionid, roleid) VALUES (1,1,1);
+INSERT INTO modify_artist (userid, artistid) VALUES (1,1);
+INSERT INTO modify_track (userid, trackid) VALUES (1,1);
+INSERT INTO modify_album (userid, albumid) VALUES (1,1);
+
 INSERT INTO Genre (GenreId, Name) VALUES (1,'Rock');
 INSERT INTO Genre (GenreId, Name) VALUES (2,'Jazz');
 INSERT INTO Genre (GenreId, Name) VALUES (3,'Metal');
