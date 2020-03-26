@@ -238,7 +238,7 @@ CREATE INDEX IFK_TrackMediaTypeId ON Track (MediaTypeId);
 /*******************************************************************************
    Populate Tables
 ********************************************************************************/
-INSERT INTO users (userid, name, lastname, email, username, password, roleid) VALUES (1, 'Diego', 'Solorzano', 'dsol@empire.com','pepito123', 1);
+INSERT INTO users (userid, name, lastname, email, username, password, roleid) VALUES (1, 'Diego', 'Solorzano', 'dsol@empire.com','JDiegoS','pepito123', 1);
 INSERT INTO roles (roleid, name) VALUES (1,'Administrador');
 INSERT INTO roles (roleid, name) VALUES (2,'Mantenimiento');
 INSERT INTO roles (roleid, name) VALUES (3,'Oyente');
