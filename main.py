@@ -21,20 +21,53 @@ import psycopg2
 #connect to de database
 con = psycopg2.connect(
     host = "localhost",
-    database = "Proyecto",
+    database = "Proyecto2",
     user = "postgres",
-    password = "")
+    password = "Diego199")
 
 #create a cursor
 cur = con.cursor()
 
 
 class MainWindow(Screen):
-    pass
+    errM = ObjectProperty(None)
+
+    def userVer(self):
+        usern = self.ids.user_field.text
+        passw = self.ids.pass_field.text
+
+        if usern != '':
+            cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 3", (str(usern), str(passw)))
+            opcion1 = cur.fetchall()
+            s = str(opcion1)
+            if s != '[(0,)]':
+
+                self.errM.text = ''
+                self.manager.transition.direction = "left"
+                self.manager.current = 'home'
+            else:
+                self.errM.text = 'Invalid username or password'
 
 
 class SecondWindow(Screen):
-    pass
+    errM = ObjectProperty(None)
+
+    def userVer(self):
+        usern = self.ids.user_field.text
+        passw = self.ids.pass_field.text
+
+        if usern != '':
+            cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 1",
+                        (str(usern), str(passw)))
+            opcion1 = cur.fetchall()
+            s = str(opcion1)
+            if s != '[(0,)]':
+
+                self.errM.text = ''
+                self.manager.current = 'homeA'
+                self.manager.transition.direction = "left"
+            else:
+                self.errM.text = 'Invalid username or password'
 
 
 class ThirdWindow(Screen):
@@ -49,13 +82,10 @@ class FourthWindow(Screen):
     def search(self):
         cur.execute("SELECT t.name, t.composer FROM track t WHERE t.name = %s", (str(self.songe.text),))
         opcion1 = cur.fetchall()
-        print(str(opcion1))
         self.songe.text = ""
         if len(opcion1) == 0:
             cur.execute("SELECT a.artistid, a.name FROM artist a WHERE a.name = %s", (str(self.songe.text),))
             opcion2 = cur.fetchall()
-            print("art")
-            print(str(opcion2))
             if len(opcion2) == 0:
                 self.resu.text = "No results found"
         else:
@@ -101,7 +131,6 @@ class FifthWindow(Screen):
     pls = []
     for r in opcion1:
         pls.append(r[1])
-    print(opcion1)
 
     ides = []
     for r in opcion1:
@@ -199,7 +228,6 @@ class FifthWindow(Screen):
 
     def selected(self, indexe):
 
-        print(indexe)
         self.playlistID = indexe
         if self.state == 0:
             self.state = 1
@@ -225,9 +253,7 @@ class FifthWindow(Screen):
         s = s.replace(',', '')
         s = s.replace('(', '')
         s = s.replace(')', '')
-        print(s)
         self.songDur = (float(s)) / 1000
-        print(self.songDur)
         Clock.schedule_interval(self.playtime, 1)
 
     def back(self):
@@ -276,8 +302,6 @@ class SixthWindow(Screen):
     r = r.replace("'", "")
     r = r.replace(",", '\n')
     p2 = r
-    print(p2)
-    print("hola")
 
     cur.execute(rep3)
     opcion3 = cur.fetchall()
@@ -312,13 +336,11 @@ class SixthWindow(Screen):
         report5.append(f"{r[0]} with {r[1]} ")
 
     r = str(report5)
-    print(r)
     r = r.replace('[', "")
     r = r.replace(']', "")
     r = r.replace("'", "")
     r = r.replace(",", '\n')
     p5 = r
-    print(p5)
 
     cur.execute(rep6)
     opcion6 = cur.fetchall()
@@ -414,8 +436,6 @@ class TenthWindow(Screen):
     r = r.replace("'", "")
     r = r.replace(",", '\n')
     p2 = r
-    print(p2)
-    print("hola")
 
     cur.execute(rep3)
     opcion3 = cur.fetchall()
@@ -450,13 +470,11 @@ class TenthWindow(Screen):
         report5.append(f"{r[0]} with {r[1]} ")
 
     r = str(report5)
-    print(r)
     r = r.replace('[', "")
     r = r.replace(']', "")
     r = r.replace("'", "")
     r = r.replace(",", '\n')
     p5 = r
-    print(p5)
 
     cur.execute(rep6)
     opcion6 = cur.fetchall()
@@ -503,8 +521,114 @@ class TenthWindow(Screen):
     for r in opcion1:
         report1.append(f"{r[0]} with {r[1]} ")
 
-class EleventhhWindow(Screen):
+
+class EleventhWindow(Screen):
+    def addSong(self):
+        artist = self.ids.artisti.text
+        album = self.ids.albumi.text
+        song = self.ids.songi.text
+        duration = self.ids.duration.text
+        size = self.ids.sizei.text
+        genre = self.ids.genre.text
+        media = self.ids.media.text
+        price = self.ids.price.text
+
+        cur.execute("SELECT MAX(trackid) FROM track ")
+        opcion1 = cur.fetchall()
+        trackid = 0
+        for r in opcion1:
+            trackid = r[0] + 1
+
+        cur.execute("SELECT album.albumid FROM album WHERE album.title = %s ", (album,))
+        opcion1 = cur.fetchall()
+        albumid = 0
+        for r in opcion1:
+            albumid = r[0]
+
+        cur.execute("SELECT mediatype.mediatypeid FROM mediatype WHERE mediatype.name = %s ", (media,))
+        opcion1 = cur.fetchall()
+        mediatypeid = 0
+        for r in opcion1:
+            mediatypeid = r[0]
+
+        cur.execute("SELECT genre.genreid FROM genre WHERE genre.name = %s ", (genre,))
+        opcion1 = cur.fetchall()
+        genreid = 0
+        for r in opcion1:
+            genreid = r[0]
+
+        if song != '':
+            cur.execute(
+                "INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                (trackid, song, albumid, mediatypeid, genreid, artist, duration, size, price))
+            con.commit()
+
+
+
+class TwelveWindow(Screen):
+    def addArt(self):
+        name = self.ids.fname.text
+
+        cur.execute("SELECT MAX(artistid) FROM artist ")
+        opcion1 = cur.fetchall()
+        artistid = 0
+        for r in opcion1:
+            artistid = r[0] + 1
+
+
+        if name != '':
+            cur.execute("INSERT INTO artist(artistid, name) VALUES (%s, %s)", (artistid, name))
+            con.commit()
+
+
+class ThirteenWindow(Screen):
+    def addAlbum(self):
+        artist = self.ids.artisti.text
+        album = self.ids.albumi.text
+
+        cur.execute("SELECT MAX(albumid) FROM album ")
+        opcion1 = cur.fetchall()
+        albumid = 0
+        for r in opcion1:
+            albumid = r[0] + 1
+
+        cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (artist,))
+        opcion1 = cur.fetchall()
+        artistid = 0
+        for r in opcion1:
+            artistid = r[0]
+
+        if album != '':
+            cur.execute("INSERT INTO album(albumid, title, artistid) VALUES (%s, %s, %s)", (albumid, album, artistid))
+            con.commit()
+
+
+
+class FourteenWindow(Screen):
+    def elimi(self, indexe):
+        songi = self.ids.songI.text
+        arti = self.ids.artistI.text
+        albumi = self.ids.albumI.text
+
+        if indexe == 1:
+            cur.execute("DELETE FROM track WHERE track.name=%s", (songi,))
+            con.commit()
+            print("Se ha eliminado la cancion de la base de datos")
+
+        elif indexe == 2:
+            cur.execute("DELETE FROM album WHERE title=%s", (albumi, ))
+            con.commit()
+            print("Se ha eliminado la album de la base de datos")
+
+        elif indexe == 3:
+            cur.execute("DELETE FROM artist WHERE name=%s", (arti, ))
+            con.commit()
+            print("Se ha eliminado la artista de la base de datos")
+
+
+class FifteenWindow(Screen):
     pass
+
 
 class WindowManager(ScreenManager):
     pass

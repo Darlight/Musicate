@@ -8,6 +8,11 @@ WindowManager:
     EigthWindow:
     NinthWindow:
     TenthWindow:
+    EleventhWindow:
+    TwelveWindow:
+    ThirteenWindow:
+    FourteenWindow:
+    FifteenWindow:
 
 
 <BoxLayout>
@@ -15,12 +20,13 @@ WindowManager:
         BorderImage:
             # BorderImage behaves like the CSS BorderImage
             border: 10, 10, 10, 10
-            source: 'back3.jpg'
+            source: 'Images/back3.jpg'
             pos: self.pos
             size: self.size
 
 <MainWindow>:
     name: "log"
+    errM: errM
 
     GridLayout:
         cols: 1
@@ -29,14 +35,14 @@ WindowManager:
         Image:
             size_hint_y: None
             height: 400
-            source: "emp.png"
+            source: "Images/emp.png"
 
         GridLayout:
             cols: 3
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 95
+            height: 115
 
             Label:
                 size_hint_x: None
@@ -46,21 +52,37 @@ WindowManager:
                 text: "Username"
 
             TextInput:
+                id: user_field
                 multiline: False
+                focus: True
 
             Label:
                 size_hint_x: None
                 width: 10
 
             Label:
+
                 text: "Password"
 
             TextInput:
+                id: pass_field
                 multiline: False
 
             Label:
                 size_hint_y: None
-                height: 20
+                height: 5
+            Label:
+                text: ""
+
+            Label:
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
+
+
 
 
 
@@ -75,21 +97,22 @@ WindowManager:
 
                 text: ""
             Button:
-                background_normal: 'button1.jpg'
-                background_down: 'button2.jpg'
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
                 size_hint_x: None
                 width: 200
 
                 text: "Log In"
                 on_release:
-                    app.root.current = 'home'
-                    root.manager.transition.direction = "left"
+                    root.userVer()
+
 
         GridLayout:
             cols: 2
 
 
             Label:
+
                 size_hint_x: None
                 width: 350
             Label:
@@ -101,8 +124,8 @@ WindowManager:
                 size_hint_x: None
                 width: 470
             Button:
-                background_normal: 'button1.jpg'
-                background_down: 'button2.jpg'
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
                 text: "Click here"
                 size_hint_x: None
                 width: 170
@@ -115,6 +138,7 @@ WindowManager:
 
 <SecondWindow>:
     name: "admin"
+    errM: errM
 
     GridLayout:
         cols: 1
@@ -123,14 +147,14 @@ WindowManager:
         Image:
             size_hint_y: None
             height: 400
-            source: "emp.png"
+            source: "Images/emp.png"
 
         GridLayout:
             cols: 3
             size_hint_x: None
             width: 670
             size_hint_y: None
-            height: 95
+            height: 115
 
             Label:
                 size_hint_x: None
@@ -140,7 +164,9 @@ WindowManager:
                 text: "Username"
 
             TextInput:
+                id: user_field
                 multiline: False
+                text: ""
 
             Label:
                 size_hint_x: None
@@ -150,11 +176,24 @@ WindowManager:
                 text: "Password"
 
             TextInput:
+                id: pass_field
                 multiline: False
+                text: ""
 
             Label:
                 size_hint_y: None
-                height: 20
+                height: 5
+
+            Label:
+                text: ""
+
+            Label:
+                id: errM
+                text: ""
+
+            Label:
+                size_hint_y: None
+                height: 5
 
 
 
@@ -169,15 +208,15 @@ WindowManager:
 
                 text: ""
             Button:
-                background_normal: 'button1.jpg'
-                background_down: 'button2.jpg'
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
                 size_hint_x: None
                 width: 200
 
                 text: "Log In"
                 on_release:
-                    app.root.current = 'homeA'
-                    root.manager.transition.direction = "left"
+                    root.userVer()
+
 
         GridLayout:
             cols: 2
@@ -195,8 +234,8 @@ WindowManager:
                 size_hint_x: None
                 width: 470
             Button:
-                background_normal: 'button1.jpg'
-                background_down: 'button2.jpg'
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
                 text: "Click here"
                 size_hint_x: None
                 width: 170
@@ -230,7 +269,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
 
 
 
@@ -249,33 +288,33 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
                 Button:
                     text: "Search"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'search'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Playlists"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'playlists'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Statistics"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'stats'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'log'
                         root.manager.transition.direction = "right"
@@ -363,7 +402,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 65
-                    background_normal: 'back.jpg'
+                    background_normal: 'Images/back.jpg'
                     pos_hint: {"x": 0.5}
 
                 Button:
@@ -371,7 +410,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'play.jpg'
+                    background_normal: 'Images/play.jpg'
                     pos_hint: {"x": 0.5, "y":0.5}
 
                 Button:
@@ -379,7 +418,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'next.jpg'
+                    background_normal: 'Images/next.jpg'
                     pos_hint: {"x": 0.5}
 
                 Label:
@@ -432,7 +471,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
                 pos_hint: {"x": 0.5}
 
             GridLayout:
@@ -452,8 +491,8 @@ WindowManager:
                     height: 50
                     font_size: 20
                     text: "Search"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release: root.search()
 
                 TextInput:
@@ -483,35 +522,35 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'home'
                         root.manager.transition.direction = "right"
                 Button:
                     text: "Search"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
 
                 Button:
                     text: "Playlists"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'playlists'
                         root.manager.transition.direction = "left"
 
                 Button:
                     text: "Statistics"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'stats'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'log'
                         root.manager.transition.direction = "right"
@@ -560,7 +599,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 65
-                    background_normal: 'back.jpg'
+                    background_normal: 'Images/back.jpg'
                     pos_hint: {"x": 0.5}
 
                 Button:
@@ -568,7 +607,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'play.jpg'
+                    background_normal: 'Images/play.jpg'
                     pos_hint: {"x": 0.5, "y":0.5}
 
                 Button:
@@ -576,7 +615,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'next.jpg'
+                    background_normal: 'Images/next.jpg'
                     pos_hint: {"x": 0.5}
 
                 Label:
@@ -640,7 +679,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
                 pos_hint: {"x": 0.5}
 
 
@@ -659,35 +698,35 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'home'
                         root.manager.transition.direction = "right"
                 Button:
                     text: "Search"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'search'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Playlists"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
                     on_release: root.back()
 
                 Button:
                     text: "Statistics"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'stats'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'log'
                         root.manager.transition.direction = "right"
@@ -773,8 +812,8 @@ WindowManager:
                     text: 'Change Page'
                     size_hint_y: None
                     height: 40
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_press: root.changePage()
 
 
@@ -805,7 +844,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 65
-                    background_normal: 'back.jpg'
+                    background_normal: 'Images/back.jpg'
                     pos_hint: {"x": 0.5}
 
                 Button:
@@ -813,7 +852,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'play.jpg'
+                    background_normal: 'Images/play.jpg'
                     pos_hint: {"x": 0.5, "y":0.5}
 
                 Button:
@@ -821,7 +860,7 @@ WindowManager:
                     width: 60
                     size_hint_y: None
                     height: 63
-                    background_normal: 'next.jpg'
+                    background_normal: 'Images/next.jpg'
                     pos_hint: {"x": 0.5}
 
                 Label:
@@ -879,7 +918,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
                 pos_hint: {"x": 0.5}
 
 
@@ -900,35 +939,35 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'home'
                         root.manager.transition.direction = "right"
                 Button:
                     text: "Search"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'search'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Playlists"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'playlists'
                         root.manager.transition.direction = "left"
 
                 Button:
                     text: "Statistics"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
 
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'log'
                         root.manager.transition.direction = "right"
@@ -1237,7 +1276,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
 
             GridLayout:
                 cols: 1
@@ -1257,28 +1296,28 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
                 Button:
                     text: "Administrate"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'administrate'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Statistics"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'stats'
+                        app.root.current = 'statsA'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'log'
+                        app.root.current = 'admin'
                         root.manager.transition.direction = "right"
 
             GridLayout:
@@ -1345,11 +1384,11 @@ WindowManager:
 
                 Label:
                     font_size: 33
-                    text: "Empire Music"
+                    text: "Images/Empire Music"
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
 
             GridLayout:
                 cols: 1
@@ -1369,50 +1408,63 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
                 Button:
                     text: "Administrate"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
-                    on_release:
-                        app.root.current = 'administrate'
-                        root.manager.transition.direction = "left"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
                 Button:
                     text: "Statistics"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'statsA'
                         root.manager.transition.direction = "left"
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'log'
+                        app.root.current = 'admin'
                         root.manager.transition.direction = "right"
 
             GridLayout:
                 cols:2
 
                 Button:
-                    text: "Add artist"
+                    text: "Add Artist"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'addArtist'
 
                 Button:
-                    text: "Add song"
+                    text: "Add Song"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'addSong'
 
                 Button:
-                    text: "Add album"
+                    text: "Add Album"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'addAlbum'
 
                 Button:
-                    text: "Eliminate artist"
+                    text: "Eliminate Artist"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'eliminate'
 
-                Button:
-                    text: "Eliminate song"
 
-                Button:
-                    text: "Eliminate album"
 
         BoxLayout:
 
@@ -1446,7 +1498,7 @@ WindowManager:
 
 
             Image:
-                source: 'emp.png'
+                source: 'Images/emp.png'
                 pos_hint: {"x": 0.5}
 
 
@@ -1467,37 +1519,31 @@ WindowManager:
 
                 Button:
                     text: "Home"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'home'
+                        app.root.current = 'homeA'
                         root.manager.transition.direction = "right"
-                Button:
-                    text: "Search"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
-                    on_release:
-                        app.root.current = 'search'
-                        root.manager.transition.direction = "left"
+
                 Button:
                     text: "Administrate"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
                         app.root.current = 'administrate'
                         root.manager.transition.direction = "left"
 
                 Button:
                     text: "Statistics"
-                    background_normal: 'button2.jpg'
-                    background_down: 'button1.jpg'
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
 
                 Button:
                     text: "Log Out"
-                    background_normal: 'button1.jpg'
-                    background_down: 'button2.jpg'
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'log'
+                        app.root.current = 'admin'
                         root.manager.transition.direction = "right"
 
             GridLayout:
@@ -1781,3 +1827,998 @@ WindowManager:
                     text: "Proyecto 1 - Grupo 8"
 
             BoxLayout:
+
+<EleventhWindow>
+    name: "addSong"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Add Song"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+                        GridLayout:
+                            cols: 3
+                            size_hint_x: None
+                            width: 670
+                            size_hint_y: None
+                            height: 400
+
+                            Label:
+                                size_hint_x: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Song"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: songi
+                                multiline: False
+                                focus: True
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+                            Label:
+
+                                text: "Album"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: albumi
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Mediatype"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: media
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Genre"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: genre
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: artisti
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Duration (ms)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: duration
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Size (bytes)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: sizei
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Price ($)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: price
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+                    root.addSong()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+
+<TwelveWindow>
+    name: "addArtist"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Add Artist"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+                        GridLayout:
+                            cols: 3
+                            size_hint_x: None
+                            width: 670
+                            size_hint_y: None
+                            height: 400
+
+                            Label:
+                                size_hint_x: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Full Name"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: fname
+                                multiline: False
+                                focus: True
+                                size_hint_y: None
+                                height: 33
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+                    root.addArt()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+
+<ThirteenWindow>
+    name: "addAlbum"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Add Album"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+                        GridLayout:
+                            cols: 3
+                            size_hint_x: None
+                            width: 670
+                            size_hint_y: None
+                            height: 400
+
+                            Label:
+                                size_hint_x: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Album"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: albumi
+                                multiline: False
+                                focus: True
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+                            Label:
+
+                                text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: artisti
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+                    root.addAlbum()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+
+<FourteenWindow>
+    name: "eliminate"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Eliminate"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+                        GridLayout:
+                            cols: 3
+                            size_hint_x: None
+                            width: 670
+                            size_hint_y: None
+                            height: 400
+
+                            Label:
+                                text: "Song"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: songI
+                                multiline: False
+                                focus: True
+                                size_hint_y: None
+                                height: 33
+
+                            Button:
+                                background_normal: 'Images/button1.jpg'
+                                background_down: 'Images/button2.jpg'
+                                size_hint_x: None
+                                width: 150
+                                size_hint_y: None
+                                height: 45
+
+                                text: "Submit"
+                                on_release:
+                                    root.elimi(1)
+
+                            Label:
+
+                                text: "Album"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: albumI
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Button:
+                                background_normal: 'Images/button1.jpg'
+                                background_down: 'Images/button2.jpg'
+                                size_hint_x: None
+                                width: 150
+                                size_hint_y: None
+                                height: 45
+
+                                text: "Submit"
+                                on_release:
+                                    root.elimi(2)
+
+                            Label:
+                                text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: artistI
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Button:
+                                background_normal: 'Images/button1.jpg'
+                                background_down: 'Images/button2.jpg'
+                                size_hint_x: None
+                                width: 150
+                                size_hint_y: None
+                                height: 45
+
+                                text: "Submit"
+                                on_release:
+                                    root.elimi(3)
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+
+<FifteenWindow>
+    name: "addSong"
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Add Song"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+                        GridLayout:
+                            cols: 3
+                            size_hint_x: None
+                            width: 670
+                            size_hint_y: None
+                            height: 400
+
+                            Label:
+                                size_hint_x: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Song"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: user_field
+                                multiline: False
+                                focus: True
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+                            Label:
+
+                                text: "Album"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+                                text: "Mediatype"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: errM
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Genre"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Duration (ms)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Size (bytes)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+                            Label:
+                                size_hint_y: None
+                                size_hint_y: None
+                                height: 40
+
+                            Label:
+
+                                text: "Price ($)"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: pass_field
+                                multiline: False
+                                size_hint_y: None
+                                height: 33
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+                    root.userVer()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
