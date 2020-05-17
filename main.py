@@ -23,7 +23,7 @@ con = psycopg2.connect(
     host = "localhost",
     database = "Proyecto2",
     user = "postgres",
-    password = "Diego199")
+    password = "")
 
 #create a cursor
 cur = con.cursor()

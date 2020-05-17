@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80701b96-783d-4e51-87a3-2d508ad5323f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/back.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Images/back.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/back3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button1.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Images/button1.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/button2.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Images/button2.JPG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my.kv" beforeDir="false" afterPath="$PROJECT_DIR$/my.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/Images/next.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Images/play.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test2.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,8 +37,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+            <state relative-caret-position="425">
+              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+              <folding>
+                <element signature="e#1#12#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,9 +84,9 @@
       <list>
         <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/my.kv" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/test2.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -132,6 +126,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/Proyecto1BD" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -194,12 +189,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589698715489</updated>
-      <workItem from="1589698717372" duration="17020000" />
+      <workItem from="1589698717372" duration="17478000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17020000" />
+    <option name="totallyTimeSpent" value="17478000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="553" y="53" width="974" height="1047" extended-state="0" />
@@ -267,8 +262,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="40" lean-forward="true" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+        <state relative-caret-position="425">
+          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+          <folding>
+            <element signature="e#1#12#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
