@@ -1,16 +1,17 @@
 # EmpireMusic
 A streaming service utilising SQL and Python with kivy
 Instalacion de postgres con python:
+
 En la cmd instalar lo siguiente:
 pip install psycogp2
 
-Luego, para conectarse a una base de datos de postgresSQL se deber· modificar la variable con los siguientes parametros:
+Luego, para conectarse a una base de datos de postgresSQL se deber√° modificar la variable con los siguientes parametros:
 
 con = psycopg2.connect(
 	host = "localhost" (Generalmente es localhost),
 	database = "nombre de la base de datos",
 	user = "username del superusuario" (Generalmente es postgres),
-	password = "contraseÒa del superusuario"
+	password = "contrase√±a del superusuario"
 )
 
 Instalacion de Kivy
