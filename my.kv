@@ -55,6 +55,7 @@ WindowManager:
                 id: user_field
                 multiline: False
                 focus: True
+                text: "JPaiz"
 
             Label:
                 size_hint_x: None
@@ -67,6 +68,7 @@ WindowManager:
             TextInput:
                 id: pass_field
                 multiline: False
+                text: "123"
 
             Label:
                 size_hint_y: None
@@ -166,7 +168,7 @@ WindowManager:
             TextInput:
                 id: user_field
                 multiline: False
-                text: ""
+                text: "JDiego"
 
             Label:
                 size_hint_x: None
@@ -178,7 +180,7 @@ WindowManager:
             TextInput:
                 id: pass_field
                 multiline: False
-                text: ""
+                text: "123"
 
             Label:
                 size_hint_y: None
@@ -453,6 +455,7 @@ WindowManager:
     currtime: current
     songe: songe
     resu:resu
+    sinp: sinp
 
 
     GridLayout:
@@ -561,7 +564,7 @@ WindowManager:
                 GridLayout:
                     cols: 1
                     size_hint_y: None
-                    height: 100
+                    height: 250
 
                     Label:
                         font_size: 40
@@ -571,8 +574,39 @@ WindowManager:
                     Label
                         id: resu
                         font_size: 25
-                        text: ''
+                        text: 'Results are displayed here'
+                        size_hint_y: None
+                        height: 85
 
+                    GridLayout:
+                        cols: 2
+
+                        Label
+
+                            size_hint_x: None
+                            width: 200
+
+                        TextInput:
+                            id: sinp
+                            text: ""
+                            font_size: 18
+                            size_hint_x: None
+                            width: 500
+                            size_hint_y: None
+                            height: 50
+                            padding_x: [40, 50]
+                            padding_y: [13, 0]
+                            multiline:False
+
+                    Button:
+                        text: "Add to Playlist"
+                        background_normal: 'Images/button1.jpg'
+                        background_down: 'Images/button2.jpg'
+
+                        size_hint_y: None
+                        height: 70
+                        on_release:
+                            root.addPla()
 
         GridLayout:
             cols: 1
@@ -660,6 +694,7 @@ WindowManager:
     pl9: pl9
     pl10: pl10
     titl: titl
+    name1: name1
 
 
 
@@ -735,7 +770,7 @@ WindowManager:
                 cols:1
 
                 GridLayout:
-                    cols: 1
+                    cols: 2
                     size_hint_y: None
                     height: 40
 
@@ -743,6 +778,16 @@ WindowManager:
                         id: titl
                         font_size: 20
                         text: "Playlists (Page 1)"
+
+                    Button:
+                        text: "Create"
+                        size_hint_x: None
+                        width: 70
+                        background_normal: 'Images/button1.jpg'
+                        background_down: 'Images/button2.jpg'
+                        on_release:
+                            app.root.current = 'createPlaylist'
+                            root.manager.transition.direction = "right"
 
                 ScrollView:
                     size_hint: 1, .1
@@ -752,9 +797,9 @@ WindowManager:
                     scroll_type: ['bars']
                     GridLayout:
 
-                        cols: 1
+                        cols: 2
                         size_hint_y: None
-                        height: 260
+                        height: 420
                         size_hint_x: None
                         width: 880
 
@@ -762,51 +807,212 @@ WindowManager:
                             id: pl1
                             text: root.p1
                             on_press: root.selected(1)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
+
 
                         Button:
                             id: pl2
                             text: root.p2
                             on_press: root.selected(2)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl3
                             text: root.p3
                             on_press: root.selected(3)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button
                             id: pl4
                             text: root.p4
                             on_press: root.selected(4)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl5
                             text: root.p5
                             on_press: root.selected(5)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl6
                             text: root.p6
                             on_press: root.selected(6)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl7
                             text: root.p7
                             on_press: root.selected(7)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button
                             id: pl8
                             text: root.p8
                             on_press: root.selected(8)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl9
                             text: root.p9
                             on_press: root.selected(9)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                         Button:
                             id: pl10
                             text: root.p10
                             on_press: root.selected(10)
+                            size_hint_x: None
+                            width: 820
+                            size_hint_y: None
+                            height: 40
+
+                        Button:
+                            text: "Add"
+                            size_hint_x: None
+                            width: 60
+                            size_hint_y: None
+                            height: 42
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                app.root.current = 'addPlaylist'
+                                root.manager.transition.direction = "right"
 
                 Button:
                     text: 'Change Page'
@@ -820,6 +1026,7 @@ WindowManager:
 
         GridLayout:
             cols: 1
+
             Label:
                 id: name1
                 font_size: 20
@@ -999,9 +1206,9 @@ WindowManager:
 
                     GridLayout:
 
-                        cols: 2
+                        cols: 3
                         size_hint_y: None
-                        height: 4500
+                        height: 2000
                         size_hint_x: None
                         width: 800
 
@@ -1012,40 +1219,73 @@ WindowManager:
                             anchor_y: "top"
 
                             Label:
+                                id: repo1
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists with most albums"
                                 font_size: 17
 
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 300
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
+
+                            AnchorLayout:
+
+                                anchor_x: "right"
+                                anchor_y: "top"
+
+                                Label:
+                                    size_hint_y: None
+                                    height: 100
+                                    size_hint_x: None
+                                    width: 200
+
+
+                                    id: pl1
+                                    text: root.p1
+
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(1)
+
+
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
+                            size_hint_x: None
+                            width: 250
 
                             Label:
-                                size_hint_y: None
-                                height: 100
-
-                                id: pl1
-                                text: root.p1
-
-
-
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
-
-                            Label:
+                                id: repo2
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Most songs by genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 300
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -1053,42 +1293,79 @@ WindowManager:
                                 id: pl2
                                 text: root.p2
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(2)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo3
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Playlist length"
                                 font_size: 17
 
 
-                        AnchorLayout:
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
+                                size_hint_y: None
+                                height: 300
 
                                 id: pl3
                                 text: root.p3
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(3)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo4
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Longest songs"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -1096,21 +1373,38 @@ WindowManager:
                                 id: pl4
                                 text: root.p4
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(4)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo5
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists with the most songs"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -1119,70 +1413,132 @@ WindowManager:
                                 text: root.p5
 
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(5)
+
                         AnchorLayout:
-
-
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
 
+                                id: repo6
                                 size_hint: (None, None)
+                                width: 100
                                 size: self.texture_size
                                 text: "     Average song length per genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
 
                                 id: pl6
                                 text: root.p6
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(6)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo7
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists per playlist"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
-
+                                size_hint_y: None
+                                height: 300
                                 id: pl7
                                 text: root.p7
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(7)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo8
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Most diverse artist per genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
                                 height: 100
                                 id: pl8
                                 text: root.p8
+
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(8)
 
         GridLayout:
             cols: 1
@@ -1458,7 +1814,7 @@ WindowManager:
                         app.root.current = 'addAlbum'
 
                 Button:
-                    text: "Eliminate Artist"
+                    text: "Eliminate"
                     background_normal: 'Images/button1.jpg'
                     background_down: 'Images/button2.jpg'
                     on_release:
@@ -2569,7 +2925,7 @@ WindowManager:
             height: 60
 
 <FifteenWindow>
-    name: "addSong"
+    name: "createPlaylist"
 
     GridLayout:
         cols:1
@@ -2610,26 +2966,34 @@ WindowManager:
                     background_normal: 'Images/button1.jpg'
                     background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'homeA'
+                        app.root.current = 'home'
                         root.manager.transition.direction = "right"
                 Button:
-                    text: "Administrate"
-                    background_normal: 'Images/button2.jpg'
-                    background_down: 'Images/button1.jpg'
-
-                Button:
-                    text: "Statistics"
+                    text: "Search"
                     background_normal: 'Images/button1.jpg'
                     background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'statsA'
+                        app.root.current = 'search'
                         root.manager.transition.direction = "left"
+                Button:
+                    text: "Playlists"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'playlists'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
                 Button:
                     text: "Log Out"
                     background_normal: 'Images/button1.jpg'
                     background_down: 'Images/button2.jpg'
                     on_release:
-                        app.root.current = 'admin'
+                        app.root.current = 'log'
                         root.manager.transition.direction = "right"
 
             GridLayout:
@@ -2646,7 +3010,7 @@ WindowManager:
                     Label:
 
                         font_size: 20
-                        text: "Add Song"
+                        text: "Create Playlist"
 
                     ScrollView:
                         size_hint_y: None
@@ -2671,131 +3035,14 @@ WindowManager:
                                 height: 40
 
                             Label:
-                                text: "Song"
+                                text: "Playlist Name"
                                 size_hint_y: None
                                 height: 33
 
                             TextInput:
-                                id: user_field
+                                id: pname
                                 multiline: False
                                 focus: True
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-                            Label:
-
-                                text: "Album"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-                                text: "Mediatype"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: errM
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-
-                                text: "Genre"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-
-                                text: "Artist"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-
-                                text: "Duration (ms)"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-
-                                text: "Size (bytes)"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
-                                size_hint_y: None
-                                height: 33
-
-                            Label:
-                                size_hint_y: None
-                                size_hint_y: None
-                                height: 40
-
-                            Label:
-
-                                text: "Price ($)"
-                                size_hint_y: None
-                                height: 33
-
-                            TextInput:
-                                id: pass_field
-                                multiline: False
                                 size_hint_y: None
                                 height: 33
 
@@ -2817,7 +3064,7 @@ WindowManager:
 
                 text: "Submit"
                 on_release:
-                    root.userVer()
+                    root.addPl()
 
         BoxLayout:
             size_hint_y: None
