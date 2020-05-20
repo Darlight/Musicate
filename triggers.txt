@@ -1,0 +1,45 @@
+/*CREATE OR REPLACE FUNCTION registro_bitacora()
+RETURNS trigger as
+$BODY$
+begin
+    INSERT INTO bitacora(fechita, horita, usuario)
+    VALUES(current_date, current_time, NEW.modify);
+	RETURN NEW;
+END;
+$BODY$
+LANGUAGE 'plpgsql';
+
+*/
+/*
+CREATE TRIGGER registrar
+AFTER INSERT OR UPDATE OR DELETE
+ON users
+FOR EACH ROW
+EXECUTE PROCEDURE registro_bitacora();
+*/
+/*
+CREATE TRIGGER registrar
+AFTER INSERT or UPDATE OR DELETE
+ON track
+FOR EACH ROW
+EXECUTE PROCEDURE registro_bitacora();
+
+
+CREATE TRIGGER registrar
+AFTER INSERT or UPDATE OR DELETE
+ON artist
+FOR EACH ROW
+EXECUTE PROCEDURE registro_bitacora();
+
+CREATE TRIGGER registrar
+AFTER INSERT or UPDATE OR DELETE
+ON album
+FOR EACH ROW
+EXECUTE PROCEDURE registro_bitacora();
+
+CREATE TRIGGER registrar
+AFTER INSERT or UPDATE OR DELETE
+ON playlist
+FOR EACH ROW
+EXECUTE PROCEDURE registro_bitacora();
+*/
