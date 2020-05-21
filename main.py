@@ -1119,7 +1119,7 @@ class SeventeenWindow(Screen):
         cur.execute("SELECT invoiceid, customerid, total FROM invoice WHERE invoicedate BETWEEN %s AND %s", (indate1, indate2 ))
         opcion1 = cur.fetchall()
         print(opcion1)
-        datei = "from" + indate1 + " to " + indate2
+        datei = "from " + indate1 + " to " + indate2
         mylist = []
         for r in opcion1:
             inid = int(r[0])

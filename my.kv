@@ -58,7 +58,7 @@ WindowManager:
                 id: user_field
                 multiline: False
                 focus: True
-                text: "JPaiz"
+                text: ""
 
             Label:
                 size_hint_x: None
@@ -71,7 +71,7 @@ WindowManager:
             TextInput:
                 id: pass_field
                 multiline: False
-                text: "123"
+                text: ""
 
             Label:
                 size_hint_y: None
@@ -171,7 +171,7 @@ WindowManager:
             TextInput:
                 id: user_field
                 multiline: False
-                text: "JDiego"
+                text: ""
 
             Label:
                 size_hint_x: None
@@ -183,7 +183,7 @@ WindowManager:
             TextInput:
                 id: pass_field
                 multiline: False
-                text: "123"
+                text: ""
 
             Label:
                 size_hint_y: None
@@ -588,6 +588,7 @@ WindowManager:
 
                             size_hint_x: None
                             width: 200
+                            text: "Playlist Name"
 
                         TextInput:
                             id: sinp
@@ -3328,7 +3329,7 @@ WindowManager:
 
                         cols: 3
                         size_hint_y: None
-                        height: 300
+                        height: 400
                         size_hint_x: None
                         width: 800
 
@@ -3483,6 +3484,8 @@ WindowManager:
                     on_release:
                         app.root.current = 'mongodb'
                         root.manager.transition.direction = "left"
+
+
 
             BoxLayout:
 
