@@ -13,6 +13,9 @@ WindowManager:
     ThirteenWindow:
     FourteenWindow:
     FifteenWindow:
+    SixteenWindow:
+    SeventeenWindow:
+
 
 
 <BoxLayout>
@@ -383,7 +386,7 @@ WindowManager:
             cols: 1
             Label:
                 font_size: 20
-                text: "Now Playing: Cancion - Artista"
+                text: "Now Playing:"
 
 
             GridLayout:
@@ -1827,7 +1830,6 @@ WindowManager:
 
 <TenthWindow>
     name: "statsA"
-    currtime: current
     name1: name1
     pl1: pl1
     pl2: pl2
@@ -1929,9 +1931,9 @@ WindowManager:
 
                     GridLayout:
 
-                        cols: 2
+                        cols: 3
                         size_hint_y: None
-                        height: 4500
+                        height: 2000
                         size_hint_x: None
                         width: 800
 
@@ -1942,40 +1944,73 @@ WindowManager:
                             anchor_y: "top"
 
                             Label:
+                                id: repo1
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists with most albums"
                                 font_size: 17
 
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 300
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
+
+                            AnchorLayout:
+
+                                anchor_x: "right"
+                                anchor_y: "top"
+
+                                Label:
+                                    size_hint_y: None
+                                    height: 100
+                                    size_hint_x: None
+                                    width: 200
+
+
+                                    id: pl1
+                                    text: root.p1
+
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(1)
+
+
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
+                            size_hint_x: None
+                            width: 250
 
                             Label:
-                                size_hint_y: None
-                                height: 100
-
-                                id: pl1
-                                text: root.p1
-
-
-
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
-
-                            Label:
+                                id: repo2
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Most songs by genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 300
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -1983,42 +2018,79 @@ WindowManager:
                                 id: pl2
                                 text: root.p2
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(2)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo3
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Playlist length"
                                 font_size: 17
 
 
-                        AnchorLayout:
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
+                                size_hint_y: None
+                                height: 300
 
                                 id: pl3
                                 text: root.p3
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(3)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo4
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Longest songs"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -2026,21 +2098,38 @@ WindowManager:
                                 id: pl4
                                 text: root.p4
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(4)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo5
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists with the most songs"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
@@ -2049,70 +2138,132 @@ WindowManager:
                                 text: root.p5
 
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(5)
+
                         AnchorLayout:
-
-
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
 
+                                id: repo6
                                 size_hint: (None, None)
+                                width: 100
                                 size: self.texture_size
                                 text: "     Average song length per genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
 
                                 id: pl6
                                 text: root.p6
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(6)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo7
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Artists per playlist"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
-
+                                size_hint_y: None
+                                height: 300
                                 id: pl7
                                 text: root.p7
 
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(7)
+
                         AnchorLayout:
 
                             anchor_x: "left"
                             anchor_y: "top"
 
                             Label:
+                                id: repo8
                                 size_hint: (None, None)
                                 size: self.texture_size
                                 text: "     Most diverse artist per genre"
                                 font_size: 17
 
-                        AnchorLayout:
-
-                            anchor_x: "left"
-                            anchor_y: "top"
+                        ScrollView:
+                            size_hint_y: None
+                            height: 200
+                            size_hint_x: None
+                            width: 500
+                            bar_width: 30
+                            bar_color: 5, 10, 15, .8
+                            bar_inactive_color: 5, 20, 10, .5
+                            scroll_type: ['bars']
 
                             Label:
                                 size_hint_y: None
                                 height: 100
                                 id: pl8
                                 text: root.p8
+
+                        Button:
+                            text: "Export to csv"
+                            size_hint_y: None
+                            height: 60
+                            size_hint_x: None
+                            width: 150
+                            background_normal: 'Images/button1.jpg'
+                            background_down: 'Images/button2.jpg'
+                            on_release:
+                                root.exportRep(8)
 
         GridLayout:
             cols: 1
@@ -2169,18 +2320,25 @@ WindowManager:
 
 
             GridLayout:
-                cols: 2
+                cols:2
+                size_hint_x: None
+                width: 660
+                size_hint_y: None
+                height: 60
+
                 Label:
+
                     text: ""
+                Button:
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
                     size_hint_x: None
-                    width: 250
-                Label:
-                    id: current
-                    value: 0
-                    size_hint_x: None
-                    width: 600
-                    pos_hint: {"x": 0.5}
-                    text: "Proyecto 1 - Grupo 8"
+                    width: 200
+
+                    text: "Bitacora"
+                    on_release:
+                        app.root.current = 'bitacora'
+                        root.manager.transition.direction = "left"
 
             BoxLayout:
 
@@ -2917,7 +3075,7 @@ WindowManager:
                 width: 200
 
                 text: "Submit"
-                on_release:
+
 
 
         BoxLayout:
@@ -3065,6 +3223,517 @@ WindowManager:
                 text: "Submit"
                 on_release:
                     root.addPl()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+
+<SixteenWindow>
+    name: "bitacora"
+    name1: name1
+    pl1: pl1
+    pl2: pl2
+    pl3: pl3
+    titl: titl
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+                pos_hint: {"x": 0.5}
+
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: 300
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'administrate'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+                cols:1
+                size_hint_y: None
+                height: 300
+
+                GridLayout:
+                    cols: 1
+                    size_hint_y: None
+                    height: 40
+
+                    Label:
+                        id: titl
+                        font_size: 20
+                        text: "Bitacora"
+
+                ScrollView:
+                    size_hint_y: None
+                    height: 300
+                    size_hint_x: None
+                    width: 900
+                    bar_width: 30
+                    bar_color: 5, 10, 15, .8
+                    bar_inactive_color: 5, 20, 10, .5
+                    scroll_type: ['bars']
+
+                    GridLayout:
+
+                        cols: 3
+                        size_hint_y: None
+                        height: 300
+                        size_hint_x: None
+                        width: 800
+
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+
+                                text: "Date"
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+                                text: "Time"
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+                                text: "User"
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+                                id: pl1
+                                text: root.p1
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+                                id: pl2
+                                text: root.p2
+
+                        AnchorLayout:
+
+                            anchor_x: "right"
+                            anchor_y: "top"
+
+                            Label:
+                                size_hint_y: None
+                                height: 100
+                                size_hint_x: None
+                                width: 200
+                                id: pl3
+                                text: root.p3
+
+        GridLayout:
+            cols: 1
+            Label:
+                id: name1
+                font_size: 20
+                text: ""
+
+
+            GridLayout:
+                cols: 9
+                size_hint_y: None
+                height: 30
+
+                Label:
+                    text: ""
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 65
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5, "y":0.5}
+
+                Label:
+                    size_hint_x: None
+                    width: 60
+                    size_hint_y: None
+                    height: 63
+
+                    pos_hint: {"x": 0.5}
+
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+                Label:
+                    text: ""
+
+
+
+            GridLayout:
+                cols:2
+                size_hint_x: None
+                width: 660
+                size_hint_y: None
+                height: 60
+
+                Label:
+
+                    text: ""
+                Button:
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    size_hint_x: None
+                    width: 200
+
+                    text: "MongoDB"
+                    on_release:
+                        app.root.current = 'mongodb'
+                        root.manager.transition.direction = "left"
+
+            BoxLayout:
+
+<SeventeenWindow>
+    name: "mongodb"
+    year: year
+    month: month
+    day: day
+    year2: year2
+    month2: month2
+    day2: day2
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Mongo DB"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+
+                        GridLayout:
+
+                            cols: 1
+                            size_hint_y: None
+                            height: 700
+                            Label:
+
+                                text: "From"
+                                size_hint_y: None
+                                height: 33
+
+                            GridLayout:
+                                cols: 3
+                                size_hint_x: None
+                                width: 670
+                                size_hint_y: None
+                                height: 400
+
+                                Label:
+                                    size_hint_x: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+                                    text: "Year"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: year
+                                    multiline: False
+                                    focus: True
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+                                Label:
+
+                                    text: "Month"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: month
+                                    multiline: False
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+
+                                    text: "Day"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: day
+                                    multiline: False
+                                    size_hint_y: None
+                                    height: 33
+
+                            Label:
+
+                                text: "To"
+                                size_hint_y: None
+                                height: 33
+
+                            GridLayout:
+                                cols: 3
+                                size_hint_x: None
+                                width: 670
+                                size_hint_y: None
+                                height: 400
+
+                                Label:
+                                    size_hint_x: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+                                    text: "Year"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: year2
+                                    multiline: False
+                                    focus: True
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+                                Label:
+
+                                    text: "Month"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: month2
+                                    multiline: False
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+
+                                    text: "Day"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: day2
+                                    multiline: False
+                                    size_hint_y: None
+                                    height: 33
+
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Submit"
+                on_release:
+                    root.insertMongo()
 
         BoxLayout:
             size_hint_y: None

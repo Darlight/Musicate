@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="80701b96-783d-4e51-87a3-2d508ad5323f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my.kv" beforeDir="false" afterPath="$PROJECT_DIR$/my.kv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reporteTest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/reporteTest.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+            <state relative-caret-position="571">
+              <caret line="1121" column="35" selection-start-line="1121" selection-start-column="35" selection-end-line="1121" selection-end-column="35" />
               <folding>
                 <element signature="e#1#12#0" expanded="true" />
               </folding>
@@ -29,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my.kv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="182" column="26" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
+            <state relative-caret-position="251">
+              <caret line="3585" column="35" lean-forward="true" selection-start-line="3585" selection-start-column="35" selection-end-line="3585" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -38,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reporteTest.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="442">
+              <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -47,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-77">
-              <caret line="103" column="90" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="90" />
+            <state relative-caret-position="418">
+              <caret line="407" selection-start-line="407" selection-end-line="407" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -77,8 +79,6 @@
       <find>name1</find>
       <find>ides</find>
       <find>firstP</find>
-      <find>playl</find>
-      <find>on_</find>
       <find>playlistID</find>
       <find>selected</find>
       <find>selecte</find>
@@ -88,8 +88,19 @@
       <find>plpage</find>
       <find>songe</find>
       <find>eliminate</find>
-      <find>songpage</find>
       <find>usern</find>
+      <find>songpage</find>
+      <find>cancin</find>
+      <find>insert</find>
+      <find>export</find>
+      <find>currtime</find>
+      <find>stats</find>
+      <find>bita</find>
+      <find>album</find>
+      <find>playl</find>
+      <find>estado</find>
+      <find>on_</find>
+      <find>addal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -98,9 +109,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/test2.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/my.kv" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
@@ -117,7 +128,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="887" />
+    <option name="x" value="865" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -205,15 +216,15 @@
       <option name="presentableId" value="Default" />
       <updated>1589698715489</updated>
       <workItem from="1589698717372" duration="17589000" />
-      <workItem from="1589850679143" duration="26479000" />
+      <workItem from="1589850679143" duration="45371000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44068000" />
+    <option name="totallyTimeSpent" value="62960000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="887" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="865" y="0" width="974" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2549234" />
@@ -230,8 +241,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32932165" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32932165" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -243,18 +254,11 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Musicate$main.coverage" NAME="main Coverage Results" MODIFIED="1589896119617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Musicate$main.coverage" NAME="main Coverage Results" MODIFIED="1590021393045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test2.py" />
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/reporteTest.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/queries.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="942">
@@ -264,8 +268,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-77">
-          <caret line="103" column="90" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="90" />
+        <state relative-caret-position="418">
+          <caret line="407" selection-start-line="407" selection-end-line="407" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -274,15 +278,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my.kv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="182" column="26" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
+        <state relative-caret-position="251">
+          <caret line="3585" column="35" lean-forward="true" selection-start-line="3585" selection-start-column="35" selection-end-line="3585" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reporteTest.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+        <state relative-caret-position="571">
+          <caret line="1121" column="35" selection-start-line="1121" selection-start-column="35" selection-end-line="1121" selection-end-column="35" />
           <folding>
             <element signature="e#1#12#0" expanded="true" />
           </folding>

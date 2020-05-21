@@ -13,6 +13,7 @@ from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 from functools import partial
 from queries import *
+import datetime
 
 Window.size = (1100, 700)
 
@@ -22,29 +23,40 @@ import csv
 #connect to de database
 con = psycopg2.connect(
     host = "localhost",
-    database = "Proyecto2",
+    database = "Musicate",
     user = "postgres",
-    password = "")
+    password = "Diego199")
 
 #create a cursor
 cur = con.cursor()
+
+#MongoDB
+import pymongo
+from pymongo import MongoClient
+from datetime import datetime
+
+cluster = MongoClient("mongodb+srv://JDiegoSolorzano:Diego199@cluster0-5fvcd.mongodb.net/test?retryWrites=true&w=majority")
+db = cluster["proyectiFinal"]
+collection = db["compras"]
 
 
 class MainWindow(Screen):
     errM = ObjectProperty(None)
 
+
     def userVer(self):
         usern = self.ids.user_field.text
         passw = self.ids.pass_field.text
-
-
+        EleventhWindow.userActual = usern
+        TwelveWindow.userActual = usern
+        ThirteenWindow.userActual = usern
+        FifteenWindow.userActual = usern
 
         if usern != '':
             cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 3", (str(usern), str(passw)))
             opcion1 = cur.fetchall()
             s = str(opcion1)
             if s != '[(0,)]':
-
                 self.errM.text = ''
                 self.manager.transition.direction = "left"
                 self.manager.current = 'home'
@@ -58,6 +70,10 @@ class SecondWindow(Screen):
     def userVer(self):
         usern = self.ids.user_field.text
         passw = self.ids.pass_field.text
+        EleventhWindow.userActual = usern
+        TwelveWindow.userActual = usern
+        ThirteenWindow.userActual = usern
+        FifteenWindow.userActual = usern
 
         if usern != '':
             cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 1",
@@ -637,7 +653,6 @@ class NinthWindow(Screen):
     pass
 
 class TenthWindow(Screen):
-    currtime = ObjectProperty(None)
     name1 = ObjectProperty(None)
     titl = ObjectProperty(None)
     pl1 = ObjectProperty(None)
@@ -650,6 +665,74 @@ class TenthWindow(Screen):
     pl8 = ObjectProperty(None)
     pl9 = ObjectProperty(None)
     pl10 = ObjectProperty(None)
+    estado = False
+
+    def exportRep(self, indexe):
+        if self.estado == True:
+            mode = 'a'
+        else:
+            mode = 'w'
+            self.estado = True
+        with open('reporteTest.csv', mode, newline='') as file:
+            writer = csv.writer(file)
+
+            if indexe == 1:
+                headin = str(self.ids.repo1.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion1:
+                    writer.writerow(line)
+
+            elif indexe == 2:
+                headin = str(self.ids.repo2.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion2:
+                    writer.writerow(line)
+            elif indexe == 3:
+                headin = str(self.ids.repo3.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion3:
+                    writer.writerow(line)
+            elif indexe == 4:
+                headin = str(self.ids.repo4.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion4:
+                    writer.writerow(line)
+            elif indexe == 5:
+                headin = str(self.ids.repo5.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion5:
+                    writer.writerow(line)
+            elif indexe == 6:
+                headin = str(self.ids.repo6.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion6:
+                    writer.writerow(line)
+            elif indexe == 7:
+                headin = str(self.ids.repo7.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion7:
+                    writer.writerow(line)
+            elif indexe == 8:
+                headin = str(self.ids.repo8.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Albums"])
+                for line in self.opcion8:
+                    writer.writerow(line)
 
     cur.execute(rep1)
     opcion1 = cur.fetchall()
@@ -763,6 +846,8 @@ class TenthWindow(Screen):
 
 
 class EleventhWindow(Screen):
+    userActual = ""
+
     def addSong(self):
         artist = self.ids.artisti.text
         album = self.ids.albumi.text
@@ -799,15 +884,17 @@ class EleventhWindow(Screen):
 
         if song != '':
             cur.execute(
-                "INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                (trackid, song, albumid, mediatypeid, genreid, artist, duration, size, price))
+                "INSERT INTO track(trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice, modify) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s, %s)",
+                (trackid, song, albumid, mediatypeid, genreid, artist, duration, size, price, self.userActual))
             con.commit()
 
 
 
 class TwelveWindow(Screen):
+    userActual = ""
     def addArt(self):
         name = self.ids.fname.text
+        print(self.userActual)
 
         cur.execute("SELECT MAX(artistid) FROM artist ")
         opcion1 = cur.fetchall()
@@ -817,11 +904,13 @@ class TwelveWindow(Screen):
 
 
         if name != '':
-            cur.execute("INSERT INTO artist(artistid, name) VALUES (%s, %s)", (artistid, name))
+            cur.execute("INSERT INTO artist(artistid, name, modify) VALUES (%s, %s, %s)", (artistid, name, self.userActual))
             con.commit()
 
 
 class ThirteenWindow(Screen):
+    userActual = ""
+
     def addAlbum(self):
         artist = self.ids.artisti.text
         album = self.ids.albumi.text
@@ -839,12 +928,13 @@ class ThirteenWindow(Screen):
             artistid = r[0]
 
         if album != '':
-            cur.execute("INSERT INTO album(albumid, title, artistid) VALUES (%s, %s, %s)", (albumid, album, artistid))
+            cur.execute("INSERT INTO album(albumid, title, artistid, modify) VALUES (%s, %s, %s, %s)", (albumid, album, artistid, self.userActual))
             con.commit()
 
 
 
 class FourteenWindow(Screen):
+
     def elimi(self, indexe):
         songi = self.ids.songI.text
         arti = self.ids.artistI.text
@@ -860,8 +950,6 @@ class FourteenWindow(Screen):
             self.elimArt(arti)
 
     def elimTrack(self, name):
-
-
         cur.execute("SELECT trackid FROM track WHERE name = %s", (name,))
         opcion1 = cur.fetchall()
 
@@ -871,11 +959,8 @@ class FourteenWindow(Screen):
 
             sonNames.append(t)
 
-        print(sonNames[0])
         for r in sonNames:
             trackid = int(r)
-            print(trackid)
-
             cur.execute("DELETE FROM invoiceline WHERE trackid= %s", (trackid,))
             con.commit()
             cur.execute("DELETE FROM playlisttrack WHERE trackid = %s", (trackid,))
@@ -896,20 +981,16 @@ class FourteenWindow(Screen):
         s = s.replace('[', '')
         s = s.replace(']', '')
         s = s.replace("'", '')
-        print(s)
         albumid = int(s)
 
         cur.execute("SELECT name FROM track WHERE albumid = %s", (albumid,))
         opcion1 = cur.fetchall()
-        print(opcion1)
 
         sonNames = []
         for r in opcion1:
             t = str(r[0])
 
             sonNames.append(t)
-
-        print(sonNames[0])
         for r in sonNames:
             songName = str(r)
             print(songName)
@@ -928,12 +1009,10 @@ class FourteenWindow(Screen):
         s = s.replace('[', '')
         s = s.replace(']', '')
         s = s.replace("'", '')
-        print(s)
         artistid = int(s)
 
         cur.execute("SELECT title FROM album WHERE artistid = %s", (artistid,))
         opcion1 = cur.fetchall()
-        print(opcion1)
 
         sonNames = []
         for r in opcion1:
@@ -943,7 +1022,6 @@ class FourteenWindow(Screen):
         print(sonNames[0])
         for r in sonNames:
             albumName = str(r)
-            print("albumn" + albumName)
             self.elimAlbum(albumName)
 
         cur.execute("DELETE FROM artist WHERE name= %s", (name,))
@@ -951,6 +1029,7 @@ class FourteenWindow(Screen):
         print("Se ha eliminado la artista de la base de datos")
 
 class FifteenWindow(Screen):
+    userActual = ""
     def addPl(self):
         name = self.ids.pname.text
 
@@ -961,27 +1040,98 @@ class FifteenWindow(Screen):
             plid = r[0] + 1
 
         if name != '':
-            cur.execute("INSERT INTO playlist(playlistid, name) VALUES (%s, %s)", (plid, name))
+            cur.execute("INSERT INTO playlist(playlistid, name, modify) VALUES (%s, %s, %s)", (plid, name, self.userActual))
             con.commit()
 
 class SixteenWindow(Screen):
-    def addPl(self):
-        name = self.ids.pname.text
 
-        cur.execute("SELECT playlistid FROM playlist WHERE name = %s ", (name,))
-        opcion1 = cur.fetchall()
-        plid = 0
+    cur.execute("SELECT fechita FROM bitacora")
+    opcion5 = cur.fetchall()
+    print(opcion5[0])
+    report1 = []
+    for r in opcion5:
+        report1.append(r)
 
-        cur.execute("SELECT MAX(playlistid) FROM playlist ")
+    r = str(report1)
+    print(report1)
+    r = r.replace('datetime.date', "")
+    r = r.replace(",), ", '\n')
+    r = r.replace(",)", '')
+    r = r.replace('[', "")
+    r = r.replace(']', "")
+    r = r.replace('(', "")
+    r = r.replace(')', "")
+    r = r.replace("'", "")
+    r = r.replace(", ", '/')
+    p1 = r
+
+    cur.execute("SELECT horita FROM bitacora")
+    opcion5 = cur.fetchall()
+    print(opcion5)
+    report2 = []
+    for r in opcion5:
+        report2.append(r)
+
+    r = str(report2)
+    print(report2)
+    r = r.replace('datetime.time', "")
+    r = r.replace('tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-360, name=None', "")
+    r = r.replace(",), ", '\n')
+    r = r.replace(",)", '')
+    r = r.replace('[', "")
+    r = r.replace(']', "")
+    r = r.replace('(', "")
+    r = r.replace(')', "")
+    r = r.replace("'", "")
+    r = r.replace(", ", ':')
+    p2 = r
+
+    cur.execute("SELECT usuario FROM bitacora")
+    opcion5 = cur.fetchall()
+    print(opcion5)
+    report3 = []
+    for r in opcion5:
+        report3.append(r)
+
+    r = str(report3)
+    print(report3)
+    r = r.replace('[', "")
+    r = r.replace(']', "")
+    r = r.replace('(', "")
+    r = r.replace(')', "")
+    r = r.replace("'", "")
+    r = r.replace(", ", '\n')
+    r = r.replace(',', "")
+    p3 = r
+
+class SeventeenWindow(Screen):
+    def insertMongo(self):
+        year = self.ids.year.text
+        month = self.ids.month.text
+        day = self.ids.day.text
+        year2 = self.ids.year2.text
+        month2 = self.ids.month2.text
+        day2 = self.ids.day2.text
+
+        indate1 = year + "-" + month + "-" + day + " 00:00:00"
+        indate2 = year2 + "-" + month2 + "-" + day2 + " 00:00:00"
+
+        cur.execute("SELECT invoiceid, customerid, total FROM invoice WHERE invoicedate BETWEEN %s AND %s", (indate1, indate2 ))
         opcion1 = cur.fetchall()
-        plid = 0
+        print(opcion1)
+        datei = "from" + indate1 + " to " + indate2
+        mylist = []
         for r in opcion1:
-            plid = r[0] + 1
-
-        if name != '':
-            cur.execute("INSERT INTO playlist(playlistid, name) VALUES (%s, %s)", (plid, name))
-            con.commit()
-
+            inid = int(r[0])
+            cusid = int(r[1])
+            total = float(r[2])
+            res = {"invoiceid": inid, "customerid": cusid, "date": datei, "total": total}
+            mylist.append(res)
+        print(mylist)
+        if len(mylist) == 1:
+            collection.insert_one(mylist)
+        elif len(mylist) > 1:
+            collection.insert_many(mylist)
 
 class WindowManager(ScreenManager):
     pass
