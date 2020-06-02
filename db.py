@@ -5,19 +5,50 @@ import sys
 #connect to de database
 con = psycopg2.connect(
     host = "localhost", 
-    database = "Proyecto", 
+    database = "Proyecto2", 
     user = "postgres", 
     password = "Soymuyguapo")
 
 #create a cursor
 cur = con.cursor()
-menu = "\n\t1. Artistas con más álbumes publicados\n\t2. Generos con más canciones\n\t3. Duración de cada playlist\n\t4. Canciones de mayor duracion con la informacion de sus artistas\n\t5. Artistas que han registrado mas canciones\n\t6. Promedio de duracion de canciones por genero\n\t7. Cantidad de artistas diferentes por playlist\n\t8. Artistas con mas diversidad de generos musicales\n\t9. Buscar cancion\n\t10. Buscar artista\n\t11. Agregar usuario\n\t12. Buscar usuario\n\t13. Agregar cancion\n\t14. Agregar album\n\t15. Agregar artista\n\t16. Login con usuario existente\n\t17. Modificar cancion\n\t18. Modificar album\n\t19.Modificar artista\n\t20. Eliminar cancion\n\t21. Eliminar album\n\t22. Eliminar artista\n\t23. Buscar album\n\t24. Salir"
+menu = ("\n\t1. Artistas con más álbumes publicados",
+"\t2. Generos con más canciones",
+"\t3. Duración de cada playlist",
+"\t4. Canciones de mayor duracion con la informacion de sus artistas",
+"\t5. Artistas que han registrado mas canciones",
+"\t6. Promedio de duracion de canciones por genero",
+"\t7. Cantidad de artistas diferentes por playlist",
+"\t8. Artistas con mas diversidad de generos musicales",
+"\t9. Total de ventas por semana dado un rango de fechas",
+"\t10. Los N artistas con las mayores ventas para un rango de fechas",
+"\t    (La fecha y N artistas deben ser ingresados por el usuario)",
+"\t11. Total de ventas por genero para un rango de fechas",
+'\t12. Las N canciones con mas reproducciones para un artista',
+"\t13. Buscar cancion",
+"\t14. Buscar artista",
+"\t15. Agregar usuario",
+"\t16. Buscar usuario",
+"\t17. Agregar cancion",
+"\t18. Agregar album",
+"\t19. Agregar artista",
+"\t20. Login con usuario existente",
+"\t21. Modificar cancion",
+"\t22. Modificar album",
+"\t23. Modificar artista",
+"\t24. Eliminar cancion",
+"\t25. Eliminar album",
+"\t26. Eliminar artista",
+"\t27. Buscar album",
+"\t28. Salir")
 
 print("BIENVENIDO A MUSICATE")
 print("Ingrese la opcion que desea buscar:")
-print(menu)
+for i in menu:
+    print(i)
 opcion = int(input())
-while (opcion != 24):
+
+
+while (opcion != 28):
     #Artistas con mas albumes publicados
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
@@ -25,7 +56,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Generos con mas canciones
@@ -35,7 +67,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Duracion de cada playlist
@@ -45,7 +78,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Canciones de mayor duracion con la informacion de sus artistas
@@ -55,7 +89,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t\t{r[1]} \t{r[2]} \t{r[3]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Artistas que han registrado mas canciones
@@ -65,7 +100,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Promedio de duracion de canciones por genero
@@ -75,7 +111,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Cantidad de artistas diferentes por playlist
@@ -85,7 +122,8 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t\t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Artistas con mas diversidad de generos musicales
@@ -95,33 +133,98 @@ while (opcion != 24):
         for r in opcion1:
             print(f"{r[0]} \t{r[1]}")
 
-        print(menu)
+        for i in menu:
+            print(i)
+        opcion = int(input())
+
+    #Total de ventas por semana dado un rango de fechas
+    elif (opcion == 9):
+        fecha1 = input("Ingrese la fecha de inicio: ")
+        fecha2 = input("Ingrese la fecha final:")
+        cur.execute("CREATE OR REPLACE VIEW weeksales AS SELECT invoice.invoiceid, invoicedate, invoicelineid, trackid, unitprice, quantity, EXTRACT(WEEK FROM invoicedate) as week, EXTRACT(YEAR FROM invoicedate) as year FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid")
+        con.commit()
+        cur.execute("SELECT sum(unitprice), year, week FROM weeksales WHERE invoicedate < %s AND invoicedate > %s GROUP BY year, week ORDER BY year, week", (fecha2, fecha1,))
+        opcion1 = cur.fetchall()
+        print("\nVentas\tAño\tSemana")
+        for r in opcion1:
+            print(f"{r[0]} \t{r[1]} \t{r[2]}")
+
+        for i in menu:
+            print(i)
+        opcion = int(input())
+
+    #Los N artistas con las mayores ventas para un rango de fechas
+    #(La fecha y N artistas deben ser ingresados por el usuario)
+    elif (opcion == 10):
+        cur.execute("CREATE OR REPLACE VIEW mostSoldArtist AS SELECT artist.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN album ON album.albumid = track.albumid INNER JOIN artist ON artist.artistid = album.artistid")
+        con.commit()
+        N = input("Ingrese la cantidad de artistas que desea ver: ")
+        fecha1 = input("Ingrese la fecha de inicio: ")
+        fecha2 = input("Ingrese la fecha final: ")
+
+        cur.execute("SELECT name, count(*) FROM mostSoldArtist WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC LIMIT %s", (fecha2, fecha1, N,))
+        opcion1 = cur.fetchall()
+        print("\n\tNombre\t\tCantidad de ventas")
+        contador = 0
+        for r in opcion1:
+            contador += 1
+            print(str(contador) + ".\t", f"{r[0]} \t{r[1]}")
+        
+        for i in menu:
+            print(i)
+        opcion = int(input())
+
+    #Total de ventas por genero para un rango de fechas
+    elif (opcion == 11):
+        cur.execute("CREATE OR REPLACE VIEW mostSoldGenres AS SELECT genre.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN genre ON track.genreid = genre.genreid")
+        con.commit()
+
+        fecha1 = input("Ingrese la fecha de inicio: ")
+        fecha2 = input("Ingrese la fecha final: ")
+        cur.execute("SELECT name, count(*) FROM mostSoldGenres WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC", (fecha2, fecha1,))
+        opcion1 = cur.fetchall()
+
+        print("\nGenero\tTotal de ventas")
+        for r in opcion1:
+            print(f"{r[0]}\t{r[1]}")
+
+        for i in menu:
+            print(i)
+        opcion = int(input())
+
+    #Las N canciones con mas reproducciones para un artista
+    elif (opcion == 12):
+        print("Todavia no esta listo")
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Buscar cancion
-    elif (opcion == 9):
+    elif (opcion == 13):
         cancion = input("Ingrese el nombre de la cancion: ")
         cur.execute("SELECT t.name, t.composer FROM track t WHERE t.name ILIKE %s LIMIT 10", (cancion,))
         opcion1 = cur.fetchall()
         for r in opcion1:
             print(f"{r[0]}  {r[1]}")
         
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Buscar artista
-    elif (opcion == 10):
+    elif (opcion == 14):
         artista = input("Ingrese el nombre del artista: ")
         cur.execute("SELECT a.artistid, a.name FROM artist a WHERE a.name ILIKE %s LIMIT 10", (artista,))
         opcion1 = cur.fetchall()
         for r in opcion1:
             print(f"{r[0]}  {r[1]}")
         
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Agregar usuario
-    elif (opcion == 11):
+    elif (opcion == 15):
         cur.execute("SELECT MAX(userid) FROM users ")
         opcion1 = cur.fetchall()
         newid = 0
@@ -144,22 +247,24 @@ while (opcion != 24):
         con.commit()
         print("Se ha registrado el usuario")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Buscar usuario
-    elif (opcion == 12):
+    elif (opcion == 16):
         user = input("Ingrese el nombre del usuario: ")
         cur.execute("SELECT u.userid, u.username, u.email, u.password, u.role FROM Users u WHERE u.username = %s", (user,))
         opcion1 = cur.fetchall()
         for r in opcion1:
             print(f"{r[0]}  {r[1]}  {r[2]}  {r[3]}  {r[4]}")
         
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Agregar cancion
-    elif (opcion == 13):
+    elif (opcion == 17):
         cur.execute("SELECT MAX(trackid) FROM track ")
         opcion1 = cur.fetchall()
         trackid = 0
@@ -199,11 +304,12 @@ while (opcion != 24):
         con.commit()
         print("Se ha guardado la cancion")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Agregar album
-    elif (opcion == 14):
+    elif (opcion == 18):
         cur.execute("SELECT MAX(albumid) FROM album ")
         opcion1 = cur.fetchall()
         albumid = 0
@@ -223,11 +329,12 @@ while (opcion != 24):
         con.commit()
         print("Se ha guardado el album")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Agregar artista
-    elif (opcion == 15):
+    elif (opcion == 19):
         cur.execute("SELECT MAX(artistid) FROM artist ")
         opcion1 = cur.fetchall()
         artistid = 0
@@ -240,11 +347,12 @@ while (opcion != 24):
         con.commit()
         print("Se ha guardado el artista")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Login con usuario existente
-    elif (opcion == 16):
+    elif (opcion == 20):
         username = input("Ingrese su usario: ")
         password = input("Ingrese su contrasena: ")
         
@@ -261,11 +369,12 @@ while (opcion != 24):
         else:
             print("Verifica que tu usuario y contrasena esten bien")
         
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Modificar la informacion de una cancion
-    if (opcion == 17):
+    if (opcion == 21):
         name1 = input("Ingrese el nombre de la cancion que desea modificar: ")
         cur.execute("SELECT track.trackid FROM track WHERE track.name = %s ", (name1,))
         opcion1 = cur.fetchall()
@@ -305,11 +414,12 @@ while (opcion != 24):
         con.commit()
         print("Se ha actualizado la cancion en la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Modificar album
-    elif (opcion == 18):
+    elif (opcion == 22):
         title = input("Ingrese el nombre del album que desea modificar: ")
         cur.execute("SELECT album.albumid FROM album WHERE album.title = %s ", (title,))
         opcion1 = cur.fetchall()
@@ -330,11 +440,12 @@ while (opcion != 24):
         con.commit()
         print("Se ha actualizado el album en la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Modificar artista
-    elif (opcion == 19):
+    elif (opcion == 23):
         name = input("Ingrese el nombre del artista que desea modificar: ")
         cur.execute("SELECT artist.artistid FROM artist WHERE artist.name = %s ", (name,))
         opcion1 = cur.fetchall()
@@ -348,54 +459,60 @@ while (opcion != 24):
         con.commit()
         print("Se ha actualizado el artista en la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Eliminar cancion
-    elif (opcion == 20):
+    elif (opcion == 24):
         name = input("Ingrese el nombre de la cancion que desea eliminar: ")
         
         cur.execute("DELETE FROM track WHERE track.name=%s", (name, ))
         con.commit()
         print("Se ha eliminado la cancion de la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Eliminar album
-    elif (opcion == 21):
+    elif (opcion == 25):
         title = input("Ingrese el nombre del album que desea eliminar: ")
         
         cur.execute("DELETE FROM album WHERE title=%s", (title, ))
         con.commit()
         print("Se ha eliminado el album de la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Eliminar artista
-    elif (opcion == 22):
+    elif (opcion == 26):
         name = input("Ingrese el nombre del artista que desea eliminar: ")
         
         cur.execute("DELETE FROM artist WHERE name=%s", (name, ))
         con.commit()
         print("Se ha eliminado el artista de la base de datos")
 
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
 
     #Buscar album
-    elif (opcion == 23):
+    elif (opcion == 27):
         album = input("Ingrese el nombre del album: ")
         cur.execute("SELECT a.albumid, a.title FROM album a WHERE a.title ILIKE %s LIMIT 10", (album,))
         opcion1 = cur.fetchall()
         for r in opcion1:
             print(f"{r[0]}  {r[1]}")
         
-        print(menu)
+        for i in menu:
+            print(i)
         opcion = int(input())
-    else:
-        print(menu)
+    elif (opcion == 28):
+        for i in menu:
+            print(i)
         opcion = int(input())
 
 #close the cursor
