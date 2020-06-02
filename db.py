@@ -1,6 +1,7 @@
 import psycopg2 
 import fprint
 import sys
+import pandas as pd
 
 #connect to de database
 con = psycopg2.connect(
@@ -53,8 +54,15 @@ while (opcion != 28):
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
         opcion1 = cur.fetchall()
+        artist = []
+        albums = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            artist.append(r[0])
+            albums.append(r[1])
+        
+        data = {'Artista':artist, 'Albumes': albums}
+        print(pd.DataFrame(data))
+            #print(f"{r[0]} \t{r[1]}")
 
         for i in menu:
             print(i)
@@ -64,8 +72,16 @@ while (opcion != 28):
     elif (opcion == 2):
         cur.execute("SELECT genre.name AS Genero, COUNT (genre.name) FROM Track INNER JOIN Genre ON Track.genreid = Genre.genreid GROUP BY Genre.name ORDER BY COUNT(Genre.name) DESC LIMIT 5")
         opcion1 = cur.fetchall()
+        genre = []
+        songs = []
+
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            genre.append(r[0])
+            songs.append(r[1])
+            #print(f"{r[0]} \t{r[1]}")
+
+        data = {"Genero":genre, "Canciones":songs}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -75,8 +91,15 @@ while (opcion != 28):
     elif (opcion == 3):
         cur.execute("SELECT p.name AS Playlist, SUM(t.milliseconds) AS Duration FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY p.name")
         opcion1 = cur.fetchall()
+        playlist = []
+        time = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            playlist.append(r[0])
+            time.append("{:.2f}".format(r[1]/60000))
+            #print(f"{r[0]} \t{r[1]}")
+
+        data = {"Playlist": playlist, "Duracion(min)":time}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -86,8 +109,19 @@ while (opcion != 28):
     elif (opcion == 4):
         cur.execute("SELECT t.name AS Cancion, t.milliseconds AS Duracion_en_milisegundos, a.artistid, a.name FROM track t INNER JOIN Artist a ON t.composer = a.name ORDER BY t.milliseconds DESC LIMIT 5")
         opcion1 = cur.fetchall()
+        songs = []
+        time = []
+        artistid = []
+        artist = []
         for r in opcion1:
-            print(f"{r[0]} \t\t{r[1]} \t{r[2]} \t{r[3]}")
+            songs.append(r[0])
+            time.append("{:.2f}".format(r[1]/60000))
+            artistid.append(r[2])
+            artist.append(r[3])
+            #print(f"{r[0]} \t\t{r[1]} \t{r[2]} \t{r[3]}")
+
+        data = {"Cancion":songs, "Duracion(min)":time, "Id":artistid, "Artista":artist}
+        print(pd.DataFrame(data, columns=['Id', 'Artista', 'Cancion', 'Duracion(min)']))
 
         for i in menu:
             print(i)
@@ -97,8 +131,15 @@ while (opcion != 28):
     elif (opcion == 5):
         cur.execute("SELECT a.name AS Artista, COUNT(t.trackid) AS Canciones FROM Artist a INNER JOIN Track t ON a.name = t.composer GROUP BY a.name ORDER BY COUNT(t.trackid) DESC LIMIT 5")
         opcion1 = cur.fetchall()
+        artist = []
+        songs = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            artist.append(r[0])
+            songs.append(r[1])
+            #print(f"{r[0]} \t{r[1]}")
+
+        data = {"Artista":artist, "Canciones":songs}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -108,8 +149,15 @@ while (opcion != 28):
     elif (opcion == 6):
         cur.execute("SELECT g.name AS Genero, AVG(t.milliseconds) AS Promedio_duracion_en_milisegundos FROM Track t INNER JOIN Genre g ON t.genreid = g.genreid GROUP BY g.name ORDER BY AVG(t.milliseconds) DESC")
         opcion1 = cur.fetchall()
+        genre = []
+        average = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            genre.append(r[0])
+            average.append("{:.2f}".format(r[1]/60000))
+            #print(f"{r[0]} \t{r[1]}")
+
+        data = {"Genero":genre, "Promedio(min)":average}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -119,8 +167,15 @@ while (opcion != 28):
     elif (opcion == 7):
         cur.execute("SELECT g.name, COUNT(g.name) FROM (SELECT p.name AS Name, COUNT(t.albumid) AS Artists FROM PlaylistTrack pt INNER JOIN Playlist p ON pt.playlistid = p.playlistid INNER JOIN Track t ON pt.trackid = t.trackid GROUP BY (p.name, t.albumid)) g GROUP BY g.name")
         opcion1 = cur.fetchall()
+        name = []
+        artists = []
         for r in opcion1:
-            print(f"{r[0]} \t\t{r[1]}")
+            name.append(r[0])
+            artists.append(r[1])
+            #print(f"{r[0]} \t\t{r[1]}")
+
+        data = {"Playlist":name, "Artistas":artists}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -130,8 +185,15 @@ while (opcion != 28):
     elif (opcion == 8):
         cur.execute("SELECT a.name, COUNT(a.name) FROM (SELECT Artist.artistid as artist,track.genreid as genre FROM ARTIST JOIN Album ON Album.ArtistId=Artist.ArtistId JOIN TRACK ON Track.AlbumId=Album.AlbumId GROUP BY(artist.artistID,track.genreid)) G JOIN Artist a ON G.artist=a.artistid JOIN Genre ON G.genre=Genre.genreid GROUP BY (a.name) ORDER BY COUNT(a.name) DESC LIMIT 5")
         opcion1 = cur.fetchall()
+        artist = []
+        genre = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]}")
+            artist.append(r[0])
+            genre.append(r[1])
+            #print(f"{r[0]} \t{r[1]}")
+
+        data = {"Artista":artist, "Generos":genre}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
@@ -145,9 +207,17 @@ while (opcion != 28):
         con.commit()
         cur.execute("SELECT sum(unitprice), year, week FROM weeksales WHERE invoicedate < %s AND invoicedate > %s GROUP BY year, week ORDER BY year, week", (fecha2, fecha1,))
         opcion1 = cur.fetchall()
-        print("\nVentas\tAño\tSemana")
+        price = []
+        year = []
+        week = []
         for r in opcion1:
-            print(f"{r[0]} \t{r[1]} \t{r[2]}")
+            price.append(r[0])
+            year.append(r[1])
+            week.append(r[2])
+            #print(f"{r[0]} \t{r[1]} \t{r[2]}")
+
+        data = {"Ventas":price, "Año":year, "Semana":week}
+        print(pd.DataFrame(data, columns = ['Año', 'Semana', 'Ventas']))
 
         for i in menu:
             print(i)
@@ -164,12 +234,16 @@ while (opcion != 28):
 
         cur.execute("SELECT name, count(*) FROM mostSoldArtist WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC LIMIT %s", (fecha2, fecha1, N,))
         opcion1 = cur.fetchall()
-        print("\n\tNombre\t\tCantidad de ventas")
-        contador = 0
+        name = []
+        sales = []
         for r in opcion1:
-            contador += 1
-            print(str(contador) + ".\t", f"{r[0]} \t{r[1]}")
+            name.append(r[0])
+            sales.append(r[1])
+            #print(f"{r[0]} \t{r[1]}")
         
+        data = {"Artista":name, "Ventas":sales}
+        print(pd.DataFrame(data))
+
         for i in menu:
             print(i)
         opcion = int(input())
@@ -183,10 +257,15 @@ while (opcion != 28):
         fecha2 = input("Ingrese la fecha final: ")
         cur.execute("SELECT name, count(*) FROM mostSoldGenres WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC", (fecha2, fecha1,))
         opcion1 = cur.fetchall()
-
-        print("\nGenero\tTotal de ventas")
+        genre = []
+        sales = []
         for r in opcion1:
-            print(f"{r[0]}\t{r[1]}")
+            genre.append(r[0])
+            sales.append(r[1])
+            #print(f"{r[0]}\t{r[1]}")
+
+        data = {"Genero":genre, "Ventas":sales}
+        print(pd.DataFrame(data))
 
         for i in menu:
             print(i)
