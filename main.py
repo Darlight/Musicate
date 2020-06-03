@@ -14,6 +14,10 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from functools import partial
 from queries import *
 import datetime
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
 
 Window.size = (1100, 700)
 
@@ -33,7 +37,6 @@ cur = con.cursor()
 #MongoDB
 import pymongo
 from pymongo import MongoClient
-from datetime import datetime
 
 cluster = MongoClient("mongodb+srv://JDiegoSolorzano:Diego199@cluster0-5fvcd.mongodb.net/test?retryWrites=true&w=majority")
 db = cluster["proyectiFinal"]
@@ -51,6 +54,8 @@ class MainWindow(Screen):
         TwelveWindow.userActual = usern
         ThirteenWindow.userActual = usern
         FifteenWindow.userActual = usern
+        FourteenWindow.userActual = usern
+        NineteenWindow.userActual = usern
 
         if usern != '':
             cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 3", (str(usern), str(passw)))
@@ -74,6 +79,9 @@ class SecondWindow(Screen):
         TwelveWindow.userActual = usern
         ThirteenWindow.userActual = usern
         FifteenWindow.userActual = usern
+        FourteenWindow.userActual = usern
+        NineteenWindow.userActual = usern
+        TwentyWindow.userActual = usern
 
         if usern != '':
             cur.execute("SELECT COUNT(*) FROM users WHERE username = %s AND password = %s AND roleid = 1",
@@ -92,47 +100,11 @@ class SecondWindow(Screen):
 class ThirdWindow(Screen):
     pass
 
-
-class FourthWindow(Screen):
-    songe = ObjectProperty(None)
-    name1 = ObjectProperty(None)
-    resu = ObjectProperty(None)
+class AddPlWindow(Screen):
     sinp = ObjectProperty(None)
-
-    songsel = ""
-    def search(self):
-        self.songsel = self.songe.text
-        print(str(self.songe.text) + "pol")
-        print(self.songsel)
-        cur.execute("SELECT t.name, t.composer FROM track t WHERE t.name = %s LIMIT 1", (str(self.songe.text),))
-        opcion1 = cur.fetchall()
-        self.songe.text = ""
-        if len(opcion1) == 0:
-            cur.execute("SELECT t.name, t.composer FROM track t WHERE t.name LIKE '%" + self.songsel + "%' LIMIT 1")
-            opcion1 = cur.fetchall()
-            if len(opcion1) == 0:
-                self.resu.text = "No results found"
-            else:
-                s = str(opcion1)
-                s = s.replace(',', ' by ')
-                s = s.replace('(', '')
-                s = s.replace(')', '')
-                s = s.replace('[', '')
-                s = s.replace(']', '')
-                s = s.replace("'", '')
-                self.resu.text = s
-        else:
-            s = str(opcion1)
-            s = s.replace(',', ' by ')
-            s = s.replace('(', '')
-            s = s.replace(')', '')
-            s = s.replace('[', '')
-            s = s.replace(']', '')
-            s = s.replace("'", '')
-            self.resu.text = s
-
+    songsele = ""
+    seco = ""
     def addPla(self):
-        print(self.songsel)
         if self.sinp.text != "":
             cur.execute("SELECT playlistid FROM playlist WHERE name LIKE '%" + self.sinp.text + "%' LIMIT 1")
             opcion1 = cur.fetchall()
@@ -144,10 +116,12 @@ class FourthWindow(Screen):
             s = s.replace(']', '')
             s = s.replace("'", '')
             playid = int(s)
-            print(s)
-            print(self.songsel)
-            cur.execute("SELECT t.trackid FROM track t WHERE t.name LIKE '%" + self.songsel + "%' LIMIT 1")
+            cur.execute("SELECT t.trackid FROM track t WHERE t.name = '" + self.songsele + "' LIMIT 1")
             opcion1 = cur.fetchall()
+            if len(opcion1) == 0:
+                cur.execute("SELECT t.trackid FROM track t WHERE t.name = '" + self.seco + "' LIMIT 1")
+                opcion1 = cur.fetchall()
+            print(opcion1)
             s = str(opcion1)
             s = s.replace(',', '')
             s = s.replace('(', '')
@@ -155,12 +129,616 @@ class FourthWindow(Screen):
             s = s.replace('[', '')
             s = s.replace(']', '')
             s = s.replace("'", '')
-
             print(s)
             trackid = int(s)
 
             cur.execute("INSERT INTO playlisttrack VALUES(%s, %s)", (playid, trackid))
             con.commit()
+
+class FourthWindow(Screen):
+    songe = ObjectProperty(None)
+    name1 = ObjectProperty(None)
+    resu = ObjectProperty(None)
+
+    pl1 = ObjectProperty(None)
+    pl2 = ObjectProperty(None)
+    pl3 = ObjectProperty(None)
+    pl4 = ObjectProperty(None)
+    pl5 = ObjectProperty(None)
+    pl6 = ObjectProperty(None)
+    pl7 = ObjectProperty(None)
+    pl8 = ObjectProperty(None)
+    pl9 = ObjectProperty(None)
+    pl10 = ObjectProperty(None)
+    songDur = 0
+    songCur = 0
+    currtime = ObjectProperty(None)
+    name1 = ObjectProperty(None)
+    opcion1 = []
+
+    songsel = ""
+    segund = []
+    def search(self):
+        canciones = []
+        self.songsel = self.songe.text
+        arti = ""
+        self.songe.text = ""
+        cur.execute(
+            "SELECT track.name, artist.name FROM track INNER JOIN album on album.albumid = track.albumid INNER JOIN artist on artist.artistid = album.artistid WHERE track.name LIKE '%" + self.songsel + "%' LIMIT 10")
+        self.opcion1 = cur.fetchall()
+        print(self.opcion1)
+        if len(self.opcion1) == 0:
+            cur.execute("SELECT track.name, artist.name FROM track INNER JOIN album on album.albumid = track.albumid INNER JOIN artist on artist.artistid = album.artistid WHERE artist.name LIKE '%" + self.songsel + "%' LIMIT 10")
+            self.opcion1 = cur.fetchall()
+            if len(self.opcion1) == 0:
+                cur.execute(
+                    "SELECT track.name, artist.name FROM track INNER JOIN album on album.albumid = track.albumid INNER JOIN artist on artist.artistid = album.artistid WHERE album.title LIKE '%" + self.songsel + "%' LIMIT 10")
+                self.opcion1 = cur.fetchall()
+                if len(self.opcion1) == 0:
+
+                    self.pl1.text = "No results found"
+                    self.pl2.text = ""
+                    self.pl3.text = ""
+                    self.pl4.text = ""
+                    self.pl5.text = ""
+                    self.pl6.text = ""
+                    self.pl7.text = ""
+                    self.pl8.text = ""
+                    self.pl9.text = ""
+                    self.pl10.text = ""
+                else:
+
+                    for s in self.opcion1:
+                        s = str(s)
+                        s = s.replace("', ", ' by ')
+                        s = s.replace('", ', ' by ')
+                        s = s.replace(',', '')
+                        s = s.replace('(', '')
+                        s = s.replace(')', '')
+                        s = s.replace('[', '')
+                        s = s.replace(']', '')
+                        s = s.replace("'", '')
+                        s = s.replace('"', '')
+                        canciones.append(s)
+            else:
+
+                for s in self.opcion1:
+                    s = str(s)
+                    s = s.replace("', ", ' by ')
+                    s = s.replace('", ', ' by ')
+                    s = s.replace(',', '')
+                    s = s.replace('(', '')
+                    s = s.replace(')', '')
+                    s = s.replace('[', '')
+                    s = s.replace(']', '')
+                    s = s.replace("'", '')
+                    s = s.replace('"', '')
+                    canciones.append(s)
+
+        else:
+            for s in self.opcion1:
+                s = str(s)
+                s = s.replace("', ", ' by ')
+                s = s.replace('", ', ' by ')
+                s = s.replace(',', '')
+                s = s.replace('(', '')
+                s = s.replace(')', '')
+                s = s.replace('[', '')
+                s = s.replace(']', '')
+                s = s.replace("'", '')
+                s = s.replace('"', '')
+                canciones.append(s)
+
+        if len(canciones) > 0:
+            self.pl1.text = canciones[0]
+            self.pl2.text = ""
+            self.pl3.text = ""
+            self.pl4.text = ""
+            self.pl5.text = ""
+            self.pl6.text = ""
+            self.pl7.text = ""
+            self.pl8.text = ""
+            self.pl9.text = ""
+            self.pl10.text = ""
+            if len(canciones) > 1:
+                self.pl2.text = canciones[1]
+                if len(canciones) > 2:
+                    self.pl3.text = canciones[2]
+                    if len(canciones) > 3:
+                        self.pl4.text = canciones[3]
+                        if len(canciones) > 4:
+                            self.pl5.text = canciones[4]
+                            if len(canciones) > 5:
+                                self.pl6.text = canciones[5]
+                                if len(canciones) > 6:
+                                    self.pl7.text = canciones[6]
+                                    if len(canciones) > 7:
+                                        self.pl8.text = canciones[7]
+                                        if len(canciones) > 8:
+                                            self.pl9.text = canciones[8]
+                                            if len(canciones) > 8:
+                                                self.pl10.text = canciones[9]
+        print(canciones)
+
+
+        print(self.opcion1)
+        for s in self.opcion1:
+            s = str(s)
+            s = s.replace('", ', ' by ')
+            s = s.replace("', ", ' by ')
+            s = s.replace(',', '')
+            s = s.replace("'", "''")
+            s = s.replace('(', '')
+            s = s.replace(')', '')
+            s = s.replace('[', '')
+            s = s.replace(']', '')
+            s = s.replace('"', '')
+            self.segund.append(s)
+    def addPla(self, indexe):
+        if indexe == 1:
+            names = self.pl1.text
+            seco = self.segund[0]
+        elif indexe == 2:
+            names = self.pl2.text
+            seco = self.segund[1]
+        elif indexe == 3:
+            names = self.pl3.text
+            seco = self.segund[2]
+        elif indexe == 4:
+            names = self.pl4.text
+            seco = self.segund[3]
+        elif indexe == 5:
+            names = self.pl5.text
+            seco = self.segund[4]
+        elif indexe == 6:
+            names = self.pl6.text
+            seco = self.segund[5]
+        elif indexe == 7:
+            names = self.pl7.text
+            seco = self.segund[6]
+        elif indexe == 8:
+            names = self.pl8.text
+            seco = self.segund[7]
+        elif indexe == 9:
+            names = self.pl9.text
+            seco = self.segund[8]
+        elif indexe == 10:
+            names = self.pl10.text
+            seco = self.segund[9]
+        if str(names) != "":
+            titl = names.split(" by", 1)
+            print(titl)
+            second = seco.split(" by", 1)
+            print(seco)
+            AddPlWindow.songsele = titl[0]
+            AddPlWindow.seco = second[0]
+            self.manager.current = 'addPlaylist'
+    def selected(self, indexe):
+        self.playbtn(indexe)
+
+    def playtime(self, interval):
+        if self.songCur != self.songDur:
+            self.songCur = self.songCur + 1
+            self.currtime.value = self.songCur / self.songDur
+
+        else:
+            self.songCur = 0
+            self.currtime.value = 0
+
+    def playbtn(self, indexe):
+        print('DESDE')
+        print(self.segund)
+        print(indexe)
+        if indexe == 1:
+            names = self.pl1.text
+            seco = self.segund[0]
+        elif indexe == 2:
+            names = self.pl2.text
+            seco = self.segund[1]
+        elif indexe == 3:
+            names = self.pl3.text
+            seco = self.segund[2]
+        elif indexe == 4:
+            names = self.pl4.text
+            seco = self.segund[3]
+        elif indexe == 5:
+            names = self.pl5.text
+            seco = self.segund[4]
+        elif indexe == 6:
+            names = self.pl6.text
+            seco = self.segund[5]
+        elif indexe == 7:
+            names = self.pl7.text
+            seco = self.segund[6]
+        elif indexe == 8:
+            names = self.pl8.text
+            seco = self.segund[7]
+        elif indexe == 9:
+            names = self.pl9.text
+            seco = self.segund[8]
+        elif indexe == 10:
+            names = self.pl10.text
+            seco = self.segund[9]
+        if str(names) != "":
+            titl = names.split(" by", 1)
+            print(titl)
+            second = seco.split(" by", 1)
+            print(seco)
+            names = titl[0]
+            Clock.unschedule(self.playtime)
+            self.songCur = 0
+            cur.execute(
+                "SELECT milliseconds FROM track WHERE name = %s LIMIT 1", (str(names),))
+            opcion3 = cur.fetchall()
+            print(second[0])
+            if len(opcion3) == 0:
+                cur.execute(
+                "SELECT milliseconds FROM track WHERE name = '" + second[0] + "' LIMIT 1")
+                opcion3 = cur.fetchall()
+            s = str(opcion3[0])
+            s = s.replace(',', '')
+            s = s.replace('(', '')
+            s = s.replace(')', '')
+            self.songDur = (float(s)) / 1000
+            cur.execute(
+                "SELECT composer FROM track WHERE name = %s LIMIT 1", (str(names),))
+            opcion3 = cur.fetchall()
+            if len(opcion3) == 0:
+                cur.execute(
+                "SELECT composer FROM track WHERE name = '" + second[0] + "' LIMIT 1")
+                opcion3 = cur.fetchall()
+            s = str(opcion3[0])
+            s = s.replace(',', '')
+            s = s.replace('(', '')
+            s = s.replace(')', '')
+            if s == "None":
+                s = "Anonymous"
+            self.name1.text = "Now Playing: " + str(names) + " by " + s
+            Clock.schedule_interval(self.playtime, 1)
+
+    def buy(self, indexe):
+        if indexe == 1:
+            names = self.pl1.text
+            seco = self.segund[0]
+        elif indexe == 2:
+            names = self.pl2.text
+            seco = self.segund[1]
+        elif indexe == 3:
+            names = self.pl3.text
+            seco = self.segund[2]
+        elif indexe == 4:
+            names = self.pl4.text
+            seco = self.segund[3]
+        elif indexe == 5:
+            names = self.pl5.text
+            seco = self.segund[4]
+        elif indexe == 6:
+            names = self.pl6.text
+            seco = self.segund[5]
+        elif indexe == 7:
+            names = self.pl7.text
+            seco = self.segund[6]
+        elif indexe == 8:
+            names = self.pl8.text
+            seco = self.segund[7]
+        elif indexe == 9:
+            names = self.pl9.text
+            seco = self.segund[8]
+        elif indexe == 10:
+            names = self.pl10.text
+            seco = self.segund[9]
+        if str(names) != "":
+            NineteenWindow.songsele = names
+            NineteenWindow.seco = seco
+            self.manager.transition.direction = "left"
+            self.manager.current = 'cart'
+
+
+class NineteenWindow(Screen):
+    songsele = ""
+    seco = ""
+    userActual = ""
+
+    pl1 = ObjectProperty(None)
+    pl2 = ObjectProperty(None)
+    pl3 = ObjectProperty(None)
+    pl4 = ObjectProperty(None)
+    pl5 = ObjectProperty(None)
+    pl6 = ObjectProperty(None)
+    pl7 = ObjectProperty(None)
+    pl8 = ObjectProperty(None)
+    pl9 = ObjectProperty(None)
+    pl10 = ObjectProperty(None)
+
+    avail = []
+    invoicelineid = ""
+    invoiceid = ""
+    idss = 0
+    price = 0
+    totalprice = 0
+    country = ""
+    state = ""
+    city = ""
+    postal = ""
+    address = ""
+    cusid = 0
+
+    def on_enter(self, *args):
+        self.addSel()
+    def addSel(self):
+        if len(self.avail) < 10:
+            if self.songsele not in self.avail:
+                self.avail.append(self.songsele)
+                self.setS()
+
+
+    def setS(self):
+        if len(self.avail) <= 10:
+            self.pl1.text = ""
+            self.pl2.text = ""
+            self.pl3.text = ""
+            self.pl4.text = ""
+            self.pl5.text = ""
+            self.pl6.text = ""
+            self.pl7.text = ""
+            self.pl8.text = ""
+            self.pl9.text = ""
+            self.pl10.text = ""
+            if len(self.avail) > 0 and self.avail[0]:
+                self.pl1.text = self.avail[0]
+                if len(self.avail) > 1:
+                    self.pl2.text = self.avail[1]
+                    if len(self.avail) > 2:
+                        self.pl3.text = self.avail[2]
+                        if len(self.avail) > 3:
+                            self.pl4.text = self.avail[3]
+                            if len(self.avail) > 4:
+                                self.pl5.text = self.avail[4]
+                                if len(self.avail) > 5:
+                                    self.pl6.text = self.avail[5]
+                                    if len(self.avail) > 6:
+                                        self.pl7.text = self.avail[6]
+                                        if len(self.avail) > 7:
+                                            self.pl8.text = self.avail[7]
+                                            if len(self.avail) > 8:
+                                                self.pl9.text = self.avail[8]
+                                                if len(self.avail) > 8:
+                                                    self.pl10.text = self.avai[9]
+
+    def removes(self, indexe):
+        print(self.avail[indexe - 1])
+        self.avail.remove(self.avail[indexe - 1])
+        self.setS()
+
+    found = True
+    def checkout(self):
+        if len(self.avail) > 0:
+            cur.execute(
+                "SELECT MAX(invoicelineid) + 1 FROM invoiceline")
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", "")
+            print(r)
+            print(opcion3)
+            self.invoicelineid = int(r)
+
+            cur.execute(
+                "SELECT MAX(invoiceid) + 1 FROM invoiceline")
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            print(opcion3)
+            self.invoiceid = int(r)
+
+            cur.execute(
+                "SELECT customer.customerid FROM customer INNER JOIN users on customer.customerid = users.customerid WHERE users.username = '" + str(self.userActual) + "'")
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            print(opcion3)
+            self.cusid = int(r)
+
+            today = datetime.datetime.now()
+            d1 = today.strftime("%Y-%m-%d %H:%M:%S")
+
+            cur.execute(
+                "SELECT address FROM customer WHERE customerid = " + str(self.cusid))
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            print(opcion3)
+            self.address = str(r)
+
+            cur.execute(
+                "SELECT city FROM customer WHERE customerid = " + str(self.cusid))
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            print(opcion3)
+            self.city = str(r)
+
+            cur.execute(
+                "SELECT state FROM customer WHERE customerid = " + str(self.cusid))
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            print(opcion3)
+            self.state = str(r)
+
+            cur.execute(
+                "SELECT country FROM customer WHERE customerid = " + str(self.cusid))
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            self.country = str(r)
+
+            cur.execute(
+                "SELECT postalcode FROM customer WHERE customerid = " + str(self.cusid))
+            opcion3 = cur.fetchall()
+            r = str(opcion3)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(",", '')
+            self.postal = str(r)
+
+            i = 0
+            for r in self.avail:
+
+                titl = r.split(" by", 1)
+                print(titl)
+                cur.execute(
+                    "SELECT trackid FROM track WHERE name = '" + str((titl[0])) + "' LIMIT 1")
+                opcion3 = cur.fetchall()
+                r = str(opcion3)
+                r = r.replace('[', "")
+                r = r.replace(']', "")
+                r = r.replace('(', "")
+                r = r.replace(')', "")
+                r = r.replace("'", "")
+                r = r.replace('"', "")
+                r = r.replace(",", '')
+                print(opcion3)
+                if len(opcion3):
+                    self.idss = 3
+                    self.found = False
+                else:
+
+                    self.idss = int(r)
+
+                cur.execute(
+                    "SELECT unitprice FROM track WHERE trackid = " + str(self.idss))
+                opcion3 = cur.fetchall()
+                r = str(opcion3)
+                r = r.replace('[', "")
+                r = r.replace(']', "")
+                r = r.replace('(', "")
+                r = r.replace(')', "")
+                r = r.replace('Decimal', "")
+                r = r.replace("'", "")
+                r = r.replace('"', "")
+                r = r.replace(",", '')
+                print(opcion3)
+                self.price = float(r)
+
+                if self.found == True:
+                    cur.execute(
+                        "INSERT INTO invoiceline VALUES("+ str((self.invoicelineid + i))+", "+str(self.invoiceid) +", "+ str(self.idss) +", "+ str(self.price) +", 1)")
+                    con.commit()
+
+                self.totalprice += self.price
+                i += 1
+
+            if self.found == True:
+                cur.execute("INSERT INTO invoice VALUES(" + str(self.invoiceid) + ", " + str(self.cusid) + ", '" + str(
+                    d1) + "', '" + self.address + "', '" + self.city + "', '" + self.state + "', '" + self.country + "', '" + str(
+                    self.postal) + "', " + str(self.totalprice) + ")")
+                con.commit()
+        TwentyWindow.totalp = self.totalprice
+        TwentyWindow.country = self.country
+        TwentyWindow.address = self.address
+        TwentyWindow.titles = self.avail
+        self.dpdf()
+
+    def dpdf(self):
+        textLines = []
+        userp = "Username: " + self.userActual
+        billinga = "Billing address: " + self.address + ", " + self.country
+        totalpd = "Total: " + str(self.totalprice)
+        textLines.append(userp)
+        textLines.append(billinga)
+        textLines.append(totalpd)
+        pdf = canvas.Canvas('Receipt.pdf')
+        pdf.setTitle("Empire Receipt")
+        pdf.setFont('Helvetica', 36)
+        pdf.drawCentredString(300, 750, "Empire Music")
+        pdf.setFont('Helvetica', 25)
+        pdf.drawInlineImage("Images/emp.png", 100, 380)
+        pdf.drawCentredString(290, 240, "Purchase Receipt")
+        pdf.line(30, 230, 550, 230)
+        text = pdf.beginText(40, 180)
+        text.setFont("Helvetica", 18)
+        for line in textLines:
+            text.textLine((line))
+
+        pdf.drawText(text)
+        pdf.line(30, 130, 550, 130)
+        pdf.save()
+
+class TwentyWindow(Screen):
+
+    totalp = 0
+    userActual = ""
+    country = ""
+    address = ""
+    titles = []
+
+    def dpdf(self):
+        textLines = []
+        userp = "Username: " + self.userActual
+        billinga = "Billing address: " + self.address + ", " + self.country
+        totalpd = "Total: " + self.totalpd
+        textLines.append(userp)
+        textLines.append(billinga)
+        textLines.append(totalpd)
+        pdf = canvas.Canvas('Receipt.pdf')
+        pdf.drawCentredString(300, 770, "Empire Music")
+        pdf.setFont('Helvetica', 36)
+        pdf.drawInlineImage("Imges/emp.png", 130, 720)
+        pdf.drawCentredString(290, 670, "Purchase Receipt")
+        pdf.line(30, 710, 550, 660)
+        text = pdf.beginText(40, 680)
+        text.setFont("Helvetica", 18)
+        for line in textLines:
+            text.textLine((line))
+
+        pdf.drawText(text)
+        pdf.save()
 
 
 class FifthWindow(Screen):
@@ -322,6 +900,7 @@ class FifthWindow(Screen):
             self.sngs.append(r[0])
 
         if len(self.sngs) > 0:
+            self.state = 1
             self.maxPage = int(len(self.sngs) / 10)
             self.rema = len(self.sngs) % 10
             if self.rema > 0:
@@ -392,7 +971,7 @@ class FifthWindow(Screen):
 
         self.playlistID = indexe + (10 * (self.plPage - 1))
         if self.state == 0:
-            self.state = 1
+
             self.selectedPl()
         else:
             self.playbtn(indexe)
@@ -428,6 +1007,7 @@ class FifthWindow(Screen):
         elif indexe == 10:
             names = self.pl10.text
         if str(names) != "":
+            Clock.unschedule(self.playtime)
             self.songCur = 0
             cur.execute(
                 "SELECT milliseconds FROM track WHERE name = %s LIMIT 1", (str(names),))
@@ -467,7 +1047,121 @@ class SixthWindow(Screen):
     pl8 = ObjectProperty(None)
     pl9 = ObjectProperty(None)
     pl10 = ObjectProperty(None)
+    pl11 = ObjectProperty(None)
+    pl12 = ObjectProperty(None)
     estado = False
+    datei = ObjectProperty(None)
+    datef = ObjectProperty(None)
+    datei2 = ObjectProperty(None)
+    datef2 = ObjectProperty(None)
+    datei3 = ObjectProperty(None)
+    datef3 = ObjectProperty(None)
+
+    p9 = ""
+    p10 = ""
+    p11 = ""
+    p12 = ""
+    opcion9 = []
+
+    def reporte9(self):
+        fecha1 = self.datei.text
+        fecha2 = self.datef.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW weeksales AS SELECT invoice.invoiceid, invoicedate, invoicelineid, trackid, unitprice, quantity, EXTRACT(WEEK FROM invoicedate) as week, EXTRACT(YEAR FROM invoicedate) as year FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid")
+        con.commit()
+        cur.execute(
+            "SELECT sum(unitprice), year, week FROM weeksales WHERE invoicedate < %s AND invoicedate > %s GROUP BY year, week ORDER BY year, week",
+            (fecha2, fecha1,))
+        self.opcion9 = cur.fetchall()
+        price = []
+        year = []
+        week = []
+        for r in self.opcion9:
+            price.append(r[0])
+            year.append(r[1])
+            week.append(r[2])
+
+        rep9 = [("Year  Week  Sales")]
+
+        i = 0
+        for r in price:
+            rep9.append(str(int(year[i])) + '    ' + str(int(week[i])) + '      ' + str(float(r)))
+            i += 1
+        for r in rep9:
+            r = str(rep9)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace(", ", '\n')
+        self.pl9.text = r
+
+    opcion10 = []
+
+    def reporte10(self):
+        fecha1 = self.datei2.text
+        fecha2 = self.datef2.text
+        N = self.nart.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW mostSoldArtist AS SELECT artist.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN album ON album.albumid = track.albumid INNER JOIN artist ON artist.artistid = album.artistid")
+        con.commit()
+        cur.execute(
+            "SELECT name, count(*) FROM mostSoldArtist WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC LIMIT %s",
+            (fecha2, fecha1, N,))
+        self.opcion10 = cur.fetchall()
+        name = []
+        sales = []
+        for r in self.opcion10:
+            name.append(r[0])
+            sales.append(r[1])
+
+        rep10 = [("Artist                                                Sales")]
+
+        i = 0
+        for r in name:
+            rep10.append(str(name[i]) + '                        ' + str(float(sales[i])))
+            i += 1
+        for r in rep10:
+            r = str(rep10)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(", ", '\n')
+        self.pl10.text = r
+
+    opcion11 = []
+
+    def reporte11(self):
+        fecha1 = self.datei3.text
+        fecha2 = self.datef3.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW mostSoldGenres AS SELECT genre.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN genre ON track.genreid = genre.genreid")
+        con.commit()
+        cur.execute(
+            "SELECT name, count(*) FROM mostSoldGenres WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC",
+            (fecha2, fecha1,))
+        self.opcion11 = cur.fetchall()
+        genre = []
+        sales = []
+        for r in self.opcion11:
+            genre.append(r[0])
+            sales.append(r[1])
+            # print(f"{r[0]}\t{r[1]}")
+
+        rep11 = [("Genre                        Sales")]
+
+        i = 0
+        for r in genre:
+            rep11.append(str(genre[i]) + '                        ' + str(float(sales[i])))
+            i += 1
+        for r in rep11:
+            r = str(rep11)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(", ", '\n')
+        self.pl11.text = r
 
     def exportRep(self, indexe):
         if self.estado == True:
@@ -534,6 +1228,28 @@ class SixthWindow(Screen):
                 writer.writerow([headin])
                 writer.writerow(["Artist", "Albums"])
                 for line in self.opcion8:
+                    writer.writerow(line)
+
+            elif indexe == 9:
+                headin = str(self.ids.repo9.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Sales", "Year", "Week"])
+                for line in self.opcion9:
+                    writer.writerow(line)
+            elif indexe == 10:
+                headin = str(self.ids.repo10.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Sales"])
+                for line in self.opcion10:
+                    writer.writerow(line)
+            elif indexe == 11:
+                headin = str(self.ids.repo11.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Genre", "Sales"])
+                for line in self.opcion11:
                     writer.writerow(line)
     cur.execute(rep1)
     opcion1 = cur.fetchall()
@@ -665,7 +1381,118 @@ class TenthWindow(Screen):
     pl8 = ObjectProperty(None)
     pl9 = ObjectProperty(None)
     pl10 = ObjectProperty(None)
+    pl11 = ObjectProperty(None)
+    pl12 = ObjectProperty(None)
     estado = False
+    datei = ObjectProperty(None)
+    datef = ObjectProperty(None)
+    datei2 = ObjectProperty(None)
+    datef2 = ObjectProperty(None)
+    datei3 = ObjectProperty(None)
+    datef3 = ObjectProperty(None)
+
+    p9 = ""
+    p10 = ""
+    p11 = ""
+    p12 = ""
+    opcion9 = []
+    def reporte9(self):
+        fecha1 = self.datei.text
+        fecha2 = self.datef.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW weeksales AS SELECT invoice.invoiceid, invoicedate, invoicelineid, trackid, unitprice, quantity, EXTRACT(WEEK FROM invoicedate) as week, EXTRACT(YEAR FROM invoicedate) as year FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid")
+        con.commit()
+        cur.execute(
+            "SELECT sum(unitprice), year, week FROM weeksales WHERE invoicedate < %s AND invoicedate > %s GROUP BY year, week ORDER BY year, week",
+            (fecha2, fecha1,))
+        self.opcion9 = cur.fetchall()
+        price = []
+        year = []
+        week = []
+        for r in self.opcion9:
+            price.append(r[0])
+            year.append(r[1])
+            week.append(r[2])
+
+        rep9 = [("Year  Week  Sales")]
+
+        i = 0
+        for r in price:
+            rep9.append(str(int(year[i])) + '    ' + str(int(week[i])) + '      ' + str(float(r)))
+            i += 1
+        for r in rep9:
+            r = str(rep9)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace(", ", '\n')
+        self.pl9.text = r
+
+    opcion10 = []
+    def reporte10(self):
+        fecha1 = self.datei2.text
+        fecha2 = self.datef2.text
+        N = self.nart.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW mostSoldArtist AS SELECT artist.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN album ON album.albumid = track.albumid INNER JOIN artist ON artist.artistid = album.artistid")
+        con.commit()
+        cur.execute(
+            "SELECT name, count(*) FROM mostSoldArtist WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC LIMIT %s",
+            (fecha2, fecha1, N,))
+        self.opcion10 = cur.fetchall()
+        name = []
+        sales = []
+        for r in self.opcion10:
+            name.append(r[0])
+            sales.append(r[1])
+
+        rep10 = [("Artist                                                Sales")]
+
+        i = 0
+        for r in name:
+            rep10.append(str(name[i]) + '                        ' + str(float(sales[i])))
+            i += 1
+        for r in rep10:
+            r = str(rep10)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(", ", '\n')
+        self.pl10.text = r
+
+    opcion11 = []
+    def reporte11(self):
+        fecha1 = self.datei3.text
+        fecha2 = self.datef3.text
+        cur.execute(
+            "CREATE OR REPLACE VIEW mostSoldGenres AS SELECT genre.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN genre ON track.genreid = genre.genreid")
+        con.commit()
+        cur.execute(
+            "SELECT name, count(*) FROM mostSoldGenres WHERE invoicedate < %s AND invoicedate > %s GROUP BY name ORDER BY count(*) DESC",
+            (fecha2, fecha1,))
+        self.opcion11 = cur.fetchall()
+        genre = []
+        sales = []
+        for r in self.opcion11:
+            genre.append(r[0])
+            sales.append(r[1])
+            # print(f"{r[0]}\t{r[1]}")
+
+        rep11 = [("Genre                        Sales")]
+
+        i = 0
+        for r in genre:
+            rep11.append(str(genre[i]) + '                        ' + str(float(sales[i])))
+            i += 1
+        for r in rep11:
+            r = str(rep11)
+            r = r.replace('[', "")
+            r = r.replace(']', "")
+            r = r.replace("'", "")
+            r = r.replace('"', "")
+            r = r.replace(", ", '\n')
+        self.pl11.text = r
 
     def exportRep(self, indexe):
         if self.estado == True:
@@ -734,6 +1561,27 @@ class TenthWindow(Screen):
                 for line in self.opcion8:
                     writer.writerow(line)
 
+            elif indexe == 9:
+                headin = str(self.ids.repo9.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Sales", "Year", "Week"])
+                for line in self.opcion9:
+                    writer.writerow(line)
+            elif indexe == 10:
+                headin = str(self.ids.repo10.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Artist", "Sales"])
+                for line in self.opcion10:
+                    writer.writerow(line)
+            elif indexe == 11:
+                headin = str(self.ids.repo11.text)
+                print(headin)
+                writer.writerow([headin])
+                writer.writerow(["Genre", "Sales"])
+                for line in self.opcion11:
+                    writer.writerow(line)
     cur.execute(rep1)
     opcion1 = cur.fetchall()
     report1 = []
@@ -935,6 +1783,7 @@ class ThirteenWindow(Screen):
 
 class FourteenWindow(Screen):
 
+    userActual = ""
     def elimi(self, indexe):
         songi = self.ids.songI.text
         arti = self.ids.artistI.text
@@ -952,7 +1801,10 @@ class FourteenWindow(Screen):
     def elimTrack(self, name):
         cur.execute("SELECT trackid FROM track WHERE name = %s", (name,))
         opcion1 = cur.fetchall()
-
+        today = ""
+        today = datetime.datetime.now()
+        d1 = today.strftime("%Y-%m-%d")
+        d2 = today.strftime("%H:%M:%S")
         sonNames = []
         for r in opcion1:
             t = str(r[0])
@@ -967,11 +1819,16 @@ class FourteenWindow(Screen):
             con.commit()
             cur.execute("DELETE FROM track WHERE trackid = %s", (trackid,))
             con.commit()
+            cur.execute("INSERT INTO bitacora VALUES(%s, %s, %s) ", (d1, d2, self.userActual,))
+            con.commit()
             print("Se ha eliminado la cancion de la base de datos")
 
     def elimAlbum(self, name):
 
-
+        today = ""
+        today = datetime.datetime.now()
+        d1 = today.strftime("%Y-%m-%d")
+        d2 = today.strftime("%H:%M:%S")
         cur.execute("SELECT albumid FROM album WHERE title = %s", (name,))
         opcion1 = cur.fetchall()
         s = str(opcion1)
@@ -996,6 +1853,8 @@ class FourteenWindow(Screen):
             print(songName)
             self.elimTrack(songName)
         cur.execute("DELETE FROM album WHERE title= %s", (name, ))
+        con.commit()
+        cur.execute("INSERT INTO bitacora VALUES(%s, %s, %s) ", (d1, d2, self.userActual,))
         con.commit()
         print("Se ha eliminado la album de la base de datos")
 
@@ -1024,7 +1883,13 @@ class FourteenWindow(Screen):
             albumName = str(r)
             self.elimAlbum(albumName)
 
+        today = ""
+        today = datetime.datetime.now()
+        d1 = today.strftime("%Y-%m-%d")
+        d2 = today.strftime("%H:%M:%S")
         cur.execute("DELETE FROM artist WHERE name= %s", (name,))
+        con.commit()
+        cur.execute("INSERT INTO bitacora VALUES(%s, %s, %s) ", (d1, d2, self.userActual,))
         con.commit()
         print("Se ha eliminado la artista de la base de datos")
 
@@ -1044,65 +1909,72 @@ class FifteenWindow(Screen):
             con.commit()
 
 class SixteenWindow(Screen):
+    pl1 = ObjectProperty(None)
+    pl2 = ObjectProperty(None)
+    pl3 = ObjectProperty(None)
+    p1 = ""
+    p2 = ""
+    p3 = ""
+    def resBit(self):
+        cur.execute("SELECT fechita FROM bitacora")
+        opcion5 = cur.fetchall()
+        print(opcion5[0])
+        report1 = []
+        for r in opcion5:
+            report1.append(r)
 
-    cur.execute("SELECT fechita FROM bitacora")
-    opcion5 = cur.fetchall()
-    print(opcion5[0])
-    report1 = []
-    for r in opcion5:
-        report1.append(r)
+        r = str(report1)
+        print(report1)
+        r = r.replace('datetime.date', "")
+        r = r.replace(",), ", '\n')
+        r = r.replace(",)", '')
+        r = r.replace('[', "")
+        r = r.replace(']', "")
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace("'", "")
+        r = r.replace(", ", '/')
+        self.pl1.text = r
 
-    r = str(report1)
-    print(report1)
-    r = r.replace('datetime.date', "")
-    r = r.replace(",), ", '\n')
-    r = r.replace(",)", '')
-    r = r.replace('[', "")
-    r = r.replace(']', "")
-    r = r.replace('(', "")
-    r = r.replace(')', "")
-    r = r.replace("'", "")
-    r = r.replace(", ", '/')
-    p1 = r
+        cur.execute("SELECT horita FROM bitacora")
+        opcion5 = cur.fetchall()
+        print(opcion5)
+        report2 = []
+        for r in opcion5:
+            report2.append(r)
 
-    cur.execute("SELECT horita FROM bitacora")
-    opcion5 = cur.fetchall()
-    print(opcion5)
-    report2 = []
-    for r in opcion5:
-        report2.append(r)
+        r = str(report2)
+        print(report2)
+        r = r.replace('datetime.time', "")
+        r = r.replace('tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-360, name=None', "")
+        r = r.replace(",), ", '\n')
+        r = r.replace(",)", '')
+        r = r.replace('[', "")
+        r = r.replace(']', "")
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace("'", "")
+        r = r.replace(", ", ':')
+        self.pl2.text = r
 
-    r = str(report2)
-    print(report2)
-    r = r.replace('datetime.time', "")
-    r = r.replace('tzinfo=psycopg2.tz.FixedOffsetTimezone(offset=-360, name=None', "")
-    r = r.replace(",), ", '\n')
-    r = r.replace(",)", '')
-    r = r.replace('[', "")
-    r = r.replace(']', "")
-    r = r.replace('(', "")
-    r = r.replace(')', "")
-    r = r.replace("'", "")
-    r = r.replace(", ", ':')
-    p2 = r
+        cur.execute("SELECT usuario FROM bitacora")
+        opcion5 = cur.fetchall()
+        print(opcion5)
+        report3 = []
+        for r in opcion5:
+            report3.append(r)
 
-    cur.execute("SELECT usuario FROM bitacora")
-    opcion5 = cur.fetchall()
-    print(opcion5)
-    report3 = []
-    for r in opcion5:
-        report3.append(r)
+        r = str(report3)
+        print(report3)
+        r = r.replace('[', "")
+        r = r.replace(']', "")
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace("'", "")
+        r = r.replace(", ", '\n')
+        r = r.replace(',', "")
+        self.pl3.text = r
 
-    r = str(report3)
-    print(report3)
-    r = r.replace('[', "")
-    r = r.replace(']', "")
-    r = r.replace('(', "")
-    r = r.replace(')', "")
-    r = r.replace("'", "")
-    r = r.replace(", ", '\n')
-    r = r.replace(',', "")
-    p3 = r
 
 class SeventeenWindow(Screen):
     def insertMongo(self):
@@ -1132,6 +2004,92 @@ class SeventeenWindow(Screen):
             collection.insert_one(mylist)
         elif len(mylist) > 1:
             collection.insert_many(mylist)
+
+#Recomendaciones a 10 clientes
+class EightteenWindow(Screen):
+
+    cur.execute("SELECT genreid FROM track WHERE trackid > (SELECT MAX(trackid) - 100 FROM track) ORDER by trackid DESC")
+    opcion5 = cur.fetchall()
+    paso1 = []
+    for r in opcion5:
+        r = str(r)
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace(",", '')
+        r = r.replace("'", '')
+        r = int(r)
+        if r not in paso1:
+            paso1.append(r)
+
+    print(paso1)
+    paso2 = []
+    for i in paso1:
+        cur.execute(
+            "SELECT invoiceid FROM invoiceline INNER JOIN track on invoiceline.trackid = track.trackid WHERE track.genreid = " + str(i) + " GROUP by invoiceid ORDER by invoiceid DESC LIMIT 2")
+        opcion5 = cur.fetchall()
+        report2 = []
+        for r in opcion5:
+            r = str(r)
+            r = r.replace('(', "")
+            r = r.replace(')', "")
+            r = r.replace(",", '')
+            r = r.replace("'", '')
+            r = int(r)
+            if r not in report2 and len(paso2) < 10:
+                paso2.append(r)
+
+    paso3 = []
+    for i in paso2:
+        cur.execute(
+            "SELECT firstname, lastname FROM customer WHERE customerid = (SELECT customerid FROM invoice WHERE invoiceid = " + str(i) +")")
+        opcion5 = cur.fetchall()
+        report3 = []
+        for r in opcion5:
+            paso3.append(r)
+
+    r = str(paso3)
+    r = r.replace('), ', "\n")
+    r = r.replace('(', "")
+    r = r.replace(')', "")
+    r = r.replace(",", '')
+    r = r.replace("'", '')
+    r = r.replace('[', "")
+    r = r.replace(']', "")
+    p1 = r
+    print(p1)
+
+    el = 0
+    canc = []
+    secn = []
+    for i in paso1[0:5]:
+        cur.execute(
+            "SELECT name, composer FROM track WHERE genreid = " + str(i) + " ORDER by trackid DESC LIMIT 5")
+        opcion5 = cur.fetchall()
+        for r in opcion5:
+            if el == 4:
+                secn.append(r)
+                canc.append(secn)
+                canc.append(secn)
+                secn = []
+                el = 0
+            else:
+                secn.append(r)
+                el += 1
+    print(canc)
+
+    r = str(canc)
+    r = r.replace(')], ', "\n")
+    r = r.replace('), ', ", ")
+    r = r.replace("', '", " by ")
+    r = r.replace(', None', "")
+    r = r.replace('(', "")
+    r = r.replace(')', "")
+    r = r.replace("'", '')
+    r = r.replace('[', "")
+    r = r.replace(']', "")
+    p2 = r
+    print(p2)
+
 
 class WindowManager(ScreenManager):
     pass
