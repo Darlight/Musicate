@@ -616,9 +616,13 @@ while (opcion != 29):
             'noplaylist' : True,        
             'progress_hooks': [my_hook],  
         }
+
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        os.rename(file_name, file_name+'.mp3')
+        try:
+            os.rename(file_name, file_name+'.mp3')
+        except:
+            print("")
         os.system("start "+file_name+'.mp3')
 
         for i in menu:
