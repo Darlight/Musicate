@@ -1,7 +1,14 @@
+from __future__ import unicode_literals
 import psycopg2 
 import fprint
 import sys
 import pandas as pd
+from youtube_search import YoutubeSearch
+import ast
+import youtube_dl
+from enum import Enum
+import os
+import winsound
 
 #connect to de database
 con = psycopg2.connect(
@@ -40,7 +47,8 @@ menu = ("\n\t1. Artistas con más álbumes publicados",
 "\t25. Eliminar album",
 "\t26. Eliminar artista",
 "\t27. Buscar album",
-"\t28. Salir")
+"\t28. Reproducir cancion",
+"\t29. Salir")
 
 print("BIENVENIDO A MUSICATE")
 print("Ingrese la opcion que desea buscar:")
@@ -49,7 +57,7 @@ for i in menu:
 opcion = int(input())
 
 
-while (opcion != 28):
+while (opcion != 29):
     #Artistas con mas albumes publicados
     if (opcion == 1):
         cur.execute("SELECT artist.name, COUNT(album.albumid) FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.name ORDER BY COUNT(album.albumid) DESC LIMIT 5")
@@ -590,6 +598,33 @@ while (opcion != 28):
             print(i)
         opcion = int(input())
     elif (opcion == 28):
+        cancion = input("Ingrese el nombre de la cancion: ")
+        result = YoutubeSearch(cancion, max_results=1).to_json()
+        resultado = ast.literal_eval(result)
+        valor = list(resultado.values())
+        values = list(valor[0][0].values())
+        
+        url = 'https://www.youtube.com'+str(values[1])
+        file1 = values[1].split('=')
+        file_name = file1[1]
+
+        def my_hook(d):
+            if d['status'] == 'finished':
+                print('Done downloading, now converting ...')
+
+        ydl_opts = {
+            'format': 'bestaudio/best',       
+            'outtmpl': '%(id)s',        
+            'noplaylist' : True,        
+            'progress_hooks': [my_hook],  
+        }
+
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+        
+        os.rename(file_name, file_name+'.mp3')
+        os.system("start "+file_name+'.mp3')
+
         for i in menu:
             print(i)
         opcion = int(input())
