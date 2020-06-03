@@ -622,32 +622,33 @@ while (opcion != 29):
         result = YoutubeSearch(cancion, max_results=1).to_json()
         resultado = ast.literal_eval(result)
         valor = list(resultado.values())
-        values = list(valor[0][0].values())
-
-        url = 'https://www.youtube.com' + str(values[1])
-        file1 = values[1].split('=')
-        file_name = file1[1]
-
-
-        def my_hook(d):
-            if d['status'] == 'finished':
-                print('Done downloading, now converting ...')
-
-
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': '%(id)s',
-            'noplaylist': True,
-            'progress_hooks': [my_hook],
-        }
-
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
         try:
-            os.rename(file_name, file_name + '.mp3')
+            values = list(valor[0][0].values())
+            url = 'https://www.youtube.com' + str(values[1])
+            file1 = values[1].split('=')
+            file_name = file1[1]
+
+            def my_hook(d):
+                if d['status'] == 'finished':
+                    print('Done downloading, now converting ...')
+
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'outtmpl': '%(id)s',
+                'noplaylist': True,
+                'progress_hooks': [my_hook],
+            }
+
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            try:
+                os.rename(file_name, file_name + '.mp3')
+            except:
+                print("")
+            os.system("start " + file_name + '.mp3')
         except:
-            print("")
-        os.system("start " + file_name + '.mp3')
+            print("Esta cancion no se encuentra disponible en este momento")
+            print("Intente de nuevo en un momento")
 
         for i in menu:
             print(i)
