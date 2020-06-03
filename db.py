@@ -6,9 +6,7 @@ import pandas as pd
 from youtube_search import YoutubeSearch
 import ast
 import youtube_dl
-from enum import Enum
 import os
-import winsound
 
 #connect to de database
 con = psycopg2.connect(
@@ -618,10 +616,8 @@ while (opcion != 29):
             'noplaylist' : True,        
             'progress_hooks': [my_hook],  
         }
-
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
-        
         os.rename(file_name, file_name+'.mp3')
         os.system("start "+file_name+'.mp3')
 
