@@ -269,8 +269,7 @@ while (opcion != 29):
 
     # Total de ventas por genero para un rango de fechas
     elif (opcion == 11):
-        cur.execute(
-            "CREATE OR REPLACE VIEW mostSoldGenres AS SELECT genre.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN genre ON track.genreid = genre.genreid")
+        cur.execute("CREATE OR REPLACE VIEW mostSoldGenres AS SELECT genre.name, invoice.invoicedate FROM invoice INNER JOIN invoiceline ON invoice.invoiceid = invoiceline.invoiceid INNER JOIN track ON track.trackid = invoiceline.trackid INNER JOIN genre ON track.genreid = genre.genreid")
         con.commit()
 
         fecha1 = input("Ingrese la fecha de inicio: ")
@@ -295,7 +294,25 @@ while (opcion != 29):
 
     # Las N canciones con mas reproducciones para un artista
     elif (opcion == 12):
-        print("Todavia no esta listo")
+        cur.execute("CREATE OR REPLACE VIEW songsReproduced AS SELECT artist.name as artist, track.name as track, track.views as views FROM artist INNER JOIN track ON artist.name = track.composer")
+        con.commit()
+        artista = input("Ingrese el artista del que desea ver las canciones: ")
+        N = input("Ingrese la cantidad de canciones que desea ver: ")
+
+        cur.execute("SELECT artist, track, count(*) FROM songsReproduced WHERE artist = %s GROUP BY artist, track ORDER BY COUNT(*) DESC, track LIMIT %s", (artista, N,))
+        opcion1 = cur.fetchall()
+        artist = []
+        track = []
+        views = []
+
+        for r in opcion1:
+            artist.append(r[0])
+            track.append(r[1])
+            views.append(r[2])
+
+        data = {"Artista":artist, "Cancion":track, "Reproducciones":views}
+        print(pd.DataFrame(data))
+
         for i in menu:
             print(i)
         opcion = int(input())
