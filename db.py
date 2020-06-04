@@ -1,8 +1,6 @@
 from __future__ import unicode_literals
 import psycopg2
-import fprint
-import sys
-import pandas as pd
+
 from youtube_search import YoutubeSearch
 import ast
 import youtube_dl
@@ -11,9 +9,9 @@ import os
 # connect to de database
 con = psycopg2.connect(
     host="localhost",
-    database="Proyecto2",
+    database="Musicate",
     user="postgres",
-    password="Soymuyguapo")
+    password="Diego199")
 
 # create a cursor
 cur = con.cursor()
@@ -293,9 +291,30 @@ while (opcion != 29):
             print(i)
         opcion = int(input())
 
-    # Las N canciones con mas reproducciones para un artista
+        # Las N canciones con mas reproducciones para un artista
     elif (opcion == 12):
-        print("Todavia no esta listo")
+        cur.execute(
+            "CREATE OR REPLACE VIEW songsReproduced AS SELECT artist.name as artist, track.name as track, track.views as views FROM artist INNER JOIN track ON artist.name = track.composer")
+        con.commit()
+        artista = input("Ingrese el artista del que desea ver las canciones: ")
+        N = input("Ingrese la cantidad de canciones que desea ver: ")
+
+        cur.execute(
+            "SELECT artist, track, count(*) FROM songsReproduced WHERE artist = %s GROUP BY artist, track ORDER BY COUNT(*) DESC, track LIMIT %s",
+            (artista, N,))
+        opcion1 = cur.fetchall()
+        artist = []
+        track = []
+        views = []
+
+        for r in opcion1:
+            artist.append(r[0])
+            track.append(r[1])
+            views.append(r[2])
+
+        data = {"Artista": artist, "Cancion": track, "Reproducciones": views}
+        print(pd.DataFrame(data))
+
         for i in menu:
             print(i)
         opcion = int(input())
@@ -622,32 +641,35 @@ while (opcion != 29):
         result = YoutubeSearch(cancion, max_results=1).to_json()
         resultado = ast.literal_eval(result)
         valor = list(resultado.values())
-        values = list(valor[0][0].values())
-
-        url = 'https://www.youtube.com' + str(values[1])
-        file1 = values[1].split('=')
-        file_name = file1[1]
-
-
-        def my_hook(d):
-            if d['status'] == 'finished':
-                print('Done downloading, now converting ...')
-
-
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'outtmpl': '%(id)s',
-            'noplaylist': True,
-            'progress_hooks': [my_hook],
-        }
-
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
         try:
-            os.rename(file_name, file_name + '.mp3')
+            values = list(valor[0][0].values())
+            url = 'https://www.youtube.com' + str(values[1])
+            file1 = values[1].split('=')
+            file_name = file1[1]
+
+
+            def my_hook(d):
+                if d['status'] == 'finished':
+                    print('Done downloading, now converting ...')
+
+
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'outtmpl': '%(id)s',
+                'noplaylist': True,
+                'progress_hooks': [my_hook],
+            }
+
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            try:
+                os.rename(file_name, file_name + '.mp3')
+            except:
+                print("")
+            os.system("start " + file_name + '.mp3')
         except:
-            print("")
-        os.system("start " + file_name + '.mp3')
+            print("Esta cancion no se encuentra disponible en este momento")
+            print("Intente de nuevo en un momento")
 
         for i in menu:
             print(i)
