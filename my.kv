@@ -18,6 +18,7 @@ WindowManager:
     SeventeenWindow:
     EightteenWindow:
     NineteenWindow:
+    TwentyWindow:
 
 
 
@@ -1976,7 +1977,7 @@ WindowManager:
 
                         cols: 3
                         size_hint_y: None
-                        height: 2800
+                        height: 3400
                         size_hint_x: None
                         width: 800
 
@@ -2512,6 +2513,21 @@ WindowManager:
                                 text: "     Artists with most sales"
                                 font_size: 17
 
+                            TextInput:
+                                id: arti3
+                                multiline: False
+                                focus: True
+                                hint_text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: ntrack3
+                                multiline: False
+                                hint_text: "No. of tracks"
+                                size_hint_y: None
+                                height: 33
+
 
                             Button:
                                 height: 40
@@ -2854,6 +2870,8 @@ WindowManager:
     datei3: datei3
     nart: nart
     titl: titl
+    arti3: arti3
+    ntrack3: ntrack3
     GridLayout:
         cols:1
         size: root.width, root.height
@@ -3483,6 +3501,21 @@ WindowManager:
                                 text: "     Artists with most sales"
                                 font_size: 17
 
+                            TextInput:
+                                id: arti3
+                                multiline: False
+                                focus: True
+                                hint_text: "Artist"
+                                size_hint_y: None
+                                height: 33
+
+                            TextInput:
+                                id: ntrack3
+                                multiline: False
+                                hint_text: "No. of tracks"
+                                size_hint_y: None
+                                height: 33
+
 
                             Button:
                                 height: 40
@@ -3580,7 +3613,7 @@ WindowManager:
 
                 Label:
                     size_hint_x: None
-                    width: 400
+                    width: 200
                     text: ""
                 Button:
                     background_normal: 'Images/button1.jpg'
@@ -3602,6 +3635,17 @@ WindowManager:
                     text: "Suggestions"
                     on_release:
                         app.root.current = 'suggest'
+                        root.manager.transition.direction = "left"
+
+                Button:
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    size_hint_x: None
+                    width: 200
+
+                    text: "Simulation"
+                    on_release:
+                        app.root.current = 'simulation'
                         root.manager.transition.direction = "left"
 
 
@@ -4593,7 +4637,7 @@ WindowManager:
 
                         cols: 3
                         size_hint_y: None
-                        height: 400
+                        height: 1500
                         size_hint_x: None
                         width: 800
 
@@ -4605,7 +4649,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
 
@@ -4618,7 +4662,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
                                 text: "Time"
@@ -4630,7 +4674,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
                                 text: "User"
@@ -4642,7 +4686,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
                                 id: pl1
@@ -4655,7 +4699,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
                                 id: pl2
@@ -4668,7 +4712,7 @@ WindowManager:
 
                             Label:
                                 size_hint_y: None
-                                height: 100
+                                height: 200
                                 size_hint_x: None
                                 width: 200
                                 id: pl3
@@ -5261,3 +5305,180 @@ WindowManager:
 
 
             BoxLayout:
+
+<TwentyWindow>
+    name: "simulation"
+    date: date
+    ntracks: ntracks
+    resu: resu
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        row_default_height: 10
+
+        GridLayout:
+            cols: 1
+            BoxLayout:
+
+                Label:
+                    font_size: 33
+                    text: "Empire Music"
+
+
+            Image:
+                source: 'Images/emp.png'
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None
+                height: 10
+
+
+
+        GridLayout:
+            cols: 2
+
+
+            GridLayout:
+                cols: 1
+                size_hint_x: None
+                width: 200
+
+                Button:
+                    text: "Home"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'homeA'
+                        root.manager.transition.direction = "right"
+                Button:
+                    text: "Administrate"
+                    background_normal: 'Images/button2.jpg'
+                    background_down: 'Images/button1.jpg'
+
+                Button:
+                    text: "Statistics"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'statsA'
+                        root.manager.transition.direction = "left"
+                Button:
+                    text: "Log Out"
+                    background_normal: 'Images/button1.jpg'
+                    background_down: 'Images/button2.jpg'
+                    on_release:
+                        app.root.current = 'admin'
+                        root.manager.transition.direction = "right"
+
+            GridLayout:
+
+                cols:2
+
+                GridLayout:
+
+                    cols: 1
+                    size_hint_y: None
+                    height: 280
+
+
+                    Label:
+
+                        font_size: 20
+                        text: "Simulation"
+
+                    ScrollView:
+                        size_hint_y: None
+                        height: 250
+                        size_hint_x: None
+                        width: 900
+                        bar_width: 30
+                        bar_color: 5, 10, 15, .8
+                        bar_inactive_color: 5, 20, 10, .5
+                        scroll_type: ['bars']
+
+
+                        GridLayout:
+
+                            cols: 1
+                            size_hint_y: None
+                            height: 700
+
+
+                            GridLayout:
+                                cols: 3
+                                size_hint_x: None
+                                width: 670
+                                size_hint_y: None
+                                height: 400
+
+                                Label:
+                                    size_hint_x: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+                                    text: "Date"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: date
+                                    multiline: False
+                                    focus: True
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+                                Label:
+
+                                    text: "No. of tracks"
+                                    size_hint_y: None
+                                    height: 33
+
+                                TextInput:
+                                    id: ntracks
+                                    multiline: False
+                                    size_hint_y: None
+                                    height: 33
+
+                                Label:
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+
+                                Label:
+                                    id: resu
+                                    size_hint_y: None
+                                    size_hint_y: None
+                                    height: 40
+                                    text: ""
+
+        GridLayout:
+            cols:2
+            size_hint_x: None
+            width: 660
+            size_hint_y: None
+            height: 60
+
+            Label:
+
+                text: ""
+            Button:
+                background_normal: 'Images/button1.jpg'
+                background_down: 'Images/button2.jpg'
+                size_hint_x: None
+                width: 200
+
+                text: "Simulate"
+                on_release:
+                    root.simulate()
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
