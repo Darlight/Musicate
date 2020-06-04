@@ -1,23 +1,19 @@
 
 import kivy
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.widget import Widget
+
 from kivy.core.window import Window
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.properties import ObjectProperty
-from kivy.properties import StringProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
-from functools import partial
 from queries import *
 import datetime
 from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-
+from youtube_search import YoutubeSearch
+import ast
+import youtube_dl
+import os
 
 Window.size = (1100, 700)
 
@@ -53,6 +49,7 @@ class MainWindow(Screen):
         EleventhWindow.userActual = usern
         TwelveWindow.userActual = usern
         ThirteenWindow.userActual = usern
+        FourthWindow.userActual = usern
         FifteenWindow.userActual = usern
         FourteenWindow.userActual = usern
         NineteenWindow.userActual = usern
@@ -78,6 +75,7 @@ class SecondWindow(Screen):
         EleventhWindow.userActual = usern
         TwelveWindow.userActual = usern
         ThirteenWindow.userActual = usern
+        FourthWindow.userActual = usern
         FifteenWindow.userActual = usern
         FourteenWindow.userActual = usern
         NineteenWindow.userActual = usern
@@ -139,6 +137,7 @@ class FourthWindow(Screen):
     songe = ObjectProperty(None)
     name1 = ObjectProperty(None)
     resu = ObjectProperty(None)
+    userActual = ""
 
     pl1 = ObjectProperty(None)
     pl2 = ObjectProperty(None)
@@ -326,9 +325,6 @@ class FourthWindow(Screen):
             self.currtime.value = 0
 
     def playbtn(self, indexe):
-        print('DESDE')
-        print(self.segund)
-        print(indexe)
         if indexe == 1:
             names = self.pl1.text
             seco = self.segund[0]
@@ -360,40 +356,81 @@ class FourthWindow(Screen):
             names = self.pl10.text
             seco = self.segund[9]
         if str(names) != "":
+            conserv = names
             titl = names.split(" by", 1)
             print(titl)
             second = seco.split(" by", 1)
             print(seco)
             names = titl[0]
             Clock.unschedule(self.playtime)
+
+            print(conserv)
+            result = YoutubeSearch(conserv, max_results=1).to_json()
+            resultado = ast.literal_eval(result)
+            valor = list(resultado.values())
+            try:
+                values = list(valor[0][0].values())
+                url = 'https://www.youtube.com' + str(values[1])
+                file1 = values[1].split('=')
+                file_name = file1[1]
+
+                def my_hook(d):
+                    if d['status'] == 'finished':
+                        print('Done downloading, now converting ...')
+
+                ydl_opts = {
+                    'format': 'bestaudio/best',
+                    'outtmpl': '%(id)s',
+                    'noplaylist': True,
+                    'progress_hooks': [my_hook],
+                }
+
+                with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([url])
+                try:
+                    os.rename(file_name, file_name + '.mp3')
+                except:
+                    print("")
+                os.system("start " + file_name + '.mp3')
+            except:
+                print("Esta cancion no se encuentra disponible en este momento")
+                print("Intente de nuevo en un momento")
+
+
+            print(names[0])
+            cur.execute(
+                "SELECT trackid FROM track WHERE name = '" + str(names) + "' LIMIT 1")
+            opcion6 = cur.fetchall()
+            if len(opcion6) != 0:
+
+                s = str(opcion6[0])
+                s = s.replace(',', '')
+                s = s.replace('(', '')
+                s = s.replace(')', '')
+                tid = s
+                print("aho")
+                print(tid)
+                print(self.userActual)
+                cur.execute(
+                    "update track set views = views + 1 , modify = '" + str(self.userActual) + "' where trackid = " + str(tid) + "")
+                con.commit()
             self.songCur = 0
             cur.execute(
                 "SELECT milliseconds FROM track WHERE name = %s LIMIT 1", (str(names),))
             opcion3 = cur.fetchall()
-            print(second[0])
             if len(opcion3) == 0:
                 cur.execute(
-                "SELECT milliseconds FROM track WHERE name = '" + second[0] + "' LIMIT 1")
+                "SELECT milliseconds FROM track WHERE name = '" + str(second[0]) + "' LIMIT 1")
                 opcion3 = cur.fetchall()
+                if len(opcion3) == 0:
+                    opcion3.append(300000)
             s = str(opcion3[0])
             s = s.replace(',', '')
             s = s.replace('(', '')
             s = s.replace(')', '')
             self.songDur = (float(s)) / 1000
-            cur.execute(
-                "SELECT composer FROM track WHERE name = %s LIMIT 1", (str(names),))
-            opcion3 = cur.fetchall()
-            if len(opcion3) == 0:
-                cur.execute(
-                "SELECT composer FROM track WHERE name = '" + second[0] + "' LIMIT 1")
-                opcion3 = cur.fetchall()
-            s = str(opcion3[0])
-            s = s.replace(',', '')
-            s = s.replace('(', '')
-            s = s.replace(')', '')
-            if s == "None":
-                s = "Anonymous"
-            self.name1.text = "Now Playing: " + str(names) + " by " + s
+
+            self.name1.text = "Now Playing: " + str(conserv)
             Clock.schedule_interval(self.playtime, 1)
 
     def buy(self, indexe):
@@ -708,37 +745,12 @@ class NineteenWindow(Screen):
 
         pdf.drawText(text)
         pdf.line(30, 130, 550, 130)
+        pdf.drawCentredString(290, 100, "Thank you for using our service!")
         pdf.save()
 
 class TwentyWindow(Screen):
 
-    totalp = 0
-    userActual = ""
-    country = ""
-    address = ""
-    titles = []
-
-    def dpdf(self):
-        textLines = []
-        userp = "Username: " + self.userActual
-        billinga = "Billing address: " + self.address + ", " + self.country
-        totalpd = "Total: " + self.totalpd
-        textLines.append(userp)
-        textLines.append(billinga)
-        textLines.append(totalpd)
-        pdf = canvas.Canvas('Receipt.pdf')
-        pdf.drawCentredString(300, 770, "Empire Music")
-        pdf.setFont('Helvetica', 36)
-        pdf.drawInlineImage("Imges/emp.png", 130, 720)
-        pdf.drawCentredString(290, 670, "Purchase Receipt")
-        pdf.line(30, 710, 550, 660)
-        text = pdf.beginText(40, 680)
-        text.setFont("Helvetica", 18)
-        for line in textLines:
-            text.textLine((line))
-
-        pdf.drawText(text)
-        pdf.save()
+    pass
 
 
 class FifthWindow(Screen):
@@ -1915,6 +1927,10 @@ class SixteenWindow(Screen):
     p1 = ""
     p2 = ""
     p3 = ""
+
+    def on_enter(self, *args):
+        self.resBit()
+
     def resBit(self):
         cur.execute("SELECT fechita FROM bitacora")
         opcion5 = cur.fetchall()
@@ -2008,26 +2024,17 @@ class SeventeenWindow(Screen):
 #Recomendaciones a 10 clientes
 class EightteenWindow(Screen):
 
-    cur.execute("SELECT genreid FROM track WHERE trackid > (SELECT MAX(trackid) - 100 FROM track) ORDER by trackid DESC")
-    opcion5 = cur.fetchall()
-    paso1 = []
-    for r in opcion5:
-        r = str(r)
-        r = r.replace('(', "")
-        r = r.replace(')', "")
-        r = r.replace(",", '')
-        r = r.replace("'", '')
-        r = int(r)
-        if r not in paso1:
-            paso1.append(r)
+    p1 = ""
+    p2 = ""
+    p3 = ""
 
-    print(paso1)
-    paso2 = []
-    for i in paso1:
-        cur.execute(
-            "SELECT invoiceid FROM invoiceline INNER JOIN track on invoiceline.trackid = track.trackid WHERE track.genreid = " + str(i) + " GROUP by invoiceid ORDER by invoiceid DESC LIMIT 2")
+    def on_enter(self, *args):
+        self.refSu()
+
+    def refSu(self):
+        cur.execute("SELECT genreid FROM track WHERE trackid > (SELECT MAX(trackid) - 100 FROM track) ORDER by trackid DESC")
         opcion5 = cur.fetchall()
-        report2 = []
+        paso1 = []
         for r in opcion5:
             r = str(r)
             r = r.replace('(', "")
@@ -2035,60 +2042,77 @@ class EightteenWindow(Screen):
             r = r.replace(",", '')
             r = r.replace("'", '')
             r = int(r)
-            if r not in report2 and len(paso2) < 10:
-                paso2.append(r)
+            if r not in paso1:
+                paso1.append(r)
 
-    paso3 = []
-    for i in paso2:
-        cur.execute(
-            "SELECT firstname, lastname FROM customer WHERE customerid = (SELECT customerid FROM invoice WHERE invoiceid = " + str(i) +")")
-        opcion5 = cur.fetchall()
-        report3 = []
-        for r in opcion5:
-            paso3.append(r)
+        print(paso1)
+        paso2 = []
+        for i in paso1:
+            cur.execute(
+                "SELECT invoiceid FROM invoiceline INNER JOIN track on invoiceline.trackid = track.trackid WHERE track.genreid = " + str(i) + " GROUP by invoiceid ORDER by invoiceid DESC LIMIT 2")
+            opcion5 = cur.fetchall()
+            report2 = []
+            for r in opcion5:
+                r = str(r)
+                r = r.replace('(', "")
+                r = r.replace(')', "")
+                r = r.replace(",", '')
+                r = r.replace("'", '')
+                r = int(r)
+                if r not in report2 and len(paso2) < 10:
+                    paso2.append(r)
 
-    r = str(paso3)
-    r = r.replace('), ', "\n")
-    r = r.replace('(', "")
-    r = r.replace(')', "")
-    r = r.replace(",", '')
-    r = r.replace("'", '')
-    r = r.replace('[', "")
-    r = r.replace(']', "")
-    p1 = r
-    print(p1)
+        paso3 = []
+        for i in paso2:
+            cur.execute(
+                "SELECT firstname, lastname FROM customer WHERE customerid = (SELECT customerid FROM invoice WHERE invoiceid = " + str(i) +")")
+            opcion5 = cur.fetchall()
+            report3 = []
+            for r in opcion5:
+                paso3.append(r)
 
-    el = 0
-    canc = []
-    secn = []
-    for i in paso1[0:5]:
-        cur.execute(
-            "SELECT name, composer FROM track WHERE genreid = " + str(i) + " ORDER by trackid DESC LIMIT 5")
-        opcion5 = cur.fetchall()
-        for r in opcion5:
-            if el == 4:
-                secn.append(r)
-                canc.append(secn)
-                canc.append(secn)
-                secn = []
-                el = 0
-            else:
-                secn.append(r)
-                el += 1
-    print(canc)
+        r = str(paso3)
+        r = r.replace('), ', "\n")
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace(",", '')
+        r = r.replace("'", '')
+        r = r.replace('[', "")
+        r = r.replace(']', "")
+        p1 = r
+        print(p1)
 
-    r = str(canc)
-    r = r.replace(')], ', "\n")
-    r = r.replace('), ', ", ")
-    r = r.replace("', '", " by ")
-    r = r.replace(', None', "")
-    r = r.replace('(', "")
-    r = r.replace(')', "")
-    r = r.replace("'", '')
-    r = r.replace('[', "")
-    r = r.replace(']', "")
-    p2 = r
-    print(p2)
+        el = 0
+        canc = []
+        secn = []
+        for i in paso1[0:5]:
+            cur.execute(
+                "SELECT name, composer FROM track WHERE genreid = " + str(i) + " ORDER by trackid DESC LIMIT 5")
+            opcion5 = cur.fetchall()
+            for r in opcion5:
+                if el == 4:
+                    secn.append(r)
+                    canc.append(secn)
+                    canc.append(secn)
+                    secn = []
+                    el = 0
+                else:
+                    secn.append(r)
+                    el += 1
+        print(canc)
+
+        r = str(canc)
+        r = r.replace(')], ', "\n")
+        r = r.replace('), ', ", ")
+        r = r.replace("', '", " by ")
+        r = r.replace(', None', "")
+        r = r.replace('(', "")
+        r = r.replace(')', "")
+        r = r.replace("'", '')
+        r = r.replace('[', "")
+        r = r.replace(']', "")
+        p2 = r
+        print(p2)
 
 
 class WindowManager(ScreenManager):
