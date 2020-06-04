@@ -1,0 +1,1649 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20202.20.0525.1210                               -->
+<workbook source-build='2020.2.1 (20202.20.0525.1210)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelRelationshipPerfOptions.true...ObjectModelRelationshipPerfOptions />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='BDProyecto2' inline='true' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.1wnur0m1xdi5bm1acdhdk169cs12'>
+            <connection authentication='username-password' class='postgres' dbname='Proyecto2Entrega' odbc-native-protocol='' one-time-sql='' port='5432' server='localhost' username='postgres' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='album' table='[public].[album]' type='table' />
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='track' table='[public].[track]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='album' table='[public].[album]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='artist' table='[public].[artist]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='genre' table='[public].[genre]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='invoiceline' table='[public].[invoiceline]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='invoice' table='[public].[invoice]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='customer' table='[public].[customer]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='mediatype' table='[public].[mediatype]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='playlisttrack' table='[public].[playlisttrack]' type='table' />
+          <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='playlist' table='[public].[playlist]' type='table' />
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[address]' value='[customer].[address]' />
+          <map key='[albumid (album)]' value='[album].[albumid]' />
+          <map key='[albumid]' value='[track].[albumid]' />
+          <map key='[artistid (artist)]' value='[artist].[artistid]' />
+          <map key='[artistid]' value='[album].[artistid]' />
+          <map key='[billingaddress]' value='[invoice].[billingaddress]' />
+          <map key='[billingcity]' value='[invoice].[billingcity]' />
+          <map key='[billingcountry]' value='[invoice].[billingcountry]' />
+          <map key='[billingpostalcode]' value='[invoice].[billingpostalcode]' />
+          <map key='[billingstate]' value='[invoice].[billingstate]' />
+          <map key='[bytes]' value='[track].[bytes]' />
+          <map key='[city]' value='[customer].[city]' />
+          <map key='[company]' value='[customer].[company]' />
+          <map key='[composer]' value='[track].[composer]' />
+          <map key='[country]' value='[customer].[country]' />
+          <map key='[customerid (customer)]' value='[customer].[customerid]' />
+          <map key='[customerid]' value='[invoice].[customerid]' />
+          <map key='[email]' value='[customer].[email]' />
+          <map key='[fax]' value='[customer].[fax]' />
+          <map key='[firstname]' value='[customer].[firstname]' />
+          <map key='[genreid (genre)]' value='[genre].[genreid]' />
+          <map key='[genreid]' value='[track].[genreid]' />
+          <map key='[invoicedate]' value='[invoice].[invoicedate]' />
+          <map key='[invoiceid (invoice)]' value='[invoice].[invoiceid]' />
+          <map key='[invoiceid]' value='[invoiceline].[invoiceid]' />
+          <map key='[invoicelineid]' value='[invoiceline].[invoicelineid]' />
+          <map key='[lastname]' value='[customer].[lastname]' />
+          <map key='[mediatypeid (mediatype)]' value='[mediatype].[mediatypeid]' />
+          <map key='[mediatypeid]' value='[track].[mediatypeid]' />
+          <map key='[milliseconds]' value='[track].[milliseconds]' />
+          <map key='[modify (album)]' value='[album].[modify]' />
+          <map key='[modify (artist)]' value='[artist].[modify]' />
+          <map key='[modify (playlist)]' value='[playlist].[modify]' />
+          <map key='[modify]' value='[track].[modify]' />
+          <map key='[name (artist)]' value='[artist].[name]' />
+          <map key='[name (genre)]' value='[genre].[name]' />
+          <map key='[name (mediatype)]' value='[mediatype].[name]' />
+          <map key='[name (playlist)]' value='[playlist].[name]' />
+          <map key='[name]' value='[track].[name]' />
+          <map key='[phone]' value='[customer].[phone]' />
+          <map key='[playlistid (playlist)]' value='[playlist].[playlistid]' />
+          <map key='[playlistid]' value='[playlisttrack].[playlistid]' />
+          <map key='[postalcode]' value='[customer].[postalcode]' />
+          <map key='[quantity]' value='[invoiceline].[quantity]' />
+          <map key='[state]' value='[customer].[state]' />
+          <map key='[supportrepid]' value='[customer].[supportrepid]' />
+          <map key='[title]' value='[album].[title]' />
+          <map key='[total]' value='[invoice].[total]' />
+          <map key='[trackid (invoiceline)]' value='[invoiceline].[trackid]' />
+          <map key='[trackid (playlisttrack)]' value='[playlisttrack].[trackid]' />
+          <map key='[trackid]' value='[track].[trackid]' />
+          <map key='[unitprice (invoiceline)]' value='[invoiceline].[unitprice]' />
+          <map key='[unitprice]' value='[track].[unitprice]' />
+          <map key='[views]' value='[track].[views]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>trackid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[trackid]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>trackid</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[name]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>200</width>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>albumid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[albumid]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>albumid</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mediatypeid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[mediatypeid]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>mediatypeid</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>genreid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[genreid]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>genreid</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>composer</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[composer]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>composer</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>220</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>milliseconds</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[milliseconds]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>milliseconds</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bytes</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[bytes]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>bytes</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>unitprice</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[unitprice]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>unitprice</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <scale>2</scale>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>modify</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[modify]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>modify</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>200</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>views</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[views]</local-name>
+            <parent-name>[track]</parent-name>
+            <remote-alias>views</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[track_136CEDBCCC7143849F905E01BC1EC468]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>albumid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[albumid (album)]</local-name>
+            <parent-name>[album]</parent-name>
+            <remote-alias>albumid</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[album_A4034184AE8E4405AC42C96234F92222]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>title</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[title]</local-name>
+            <parent-name>[album]</parent-name>
+            <remote-alias>title</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>160</width>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[album_A4034184AE8E4405AC42C96234F92222]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>artistid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[artistid]</local-name>
+            <parent-name>[album]</parent-name>
+            <remote-alias>artistid</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[album_A4034184AE8E4405AC42C96234F92222]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>modify</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[modify (album)]</local-name>
+            <parent-name>[album]</parent-name>
+            <remote-alias>modify</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>200</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[album_A4034184AE8E4405AC42C96234F92222]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>artistid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[artistid (artist)]</local-name>
+            <parent-name>[artist]</parent-name>
+            <remote-alias>artistid</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist_5F00D889F433437BB0C5DFD7C2D57C02]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[name (artist)]</local-name>
+            <parent-name>[artist]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>120</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist_5F00D889F433437BB0C5DFD7C2D57C02]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>modify</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[modify (artist)]</local-name>
+            <parent-name>[artist]</parent-name>
+            <remote-alias>modify</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>200</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist_5F00D889F433437BB0C5DFD7C2D57C02]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>genreid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[genreid (genre)]</local-name>
+            <parent-name>[genre]</parent-name>
+            <remote-alias>genreid</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[genre_5FDF48F3782E4E31970CA4BB18745586]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[name (genre)]</local-name>
+            <parent-name>[genre]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>120</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[genre_5FDF48F3782E4E31970CA4BB18745586]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>invoicelineid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[invoicelineid]</local-name>
+            <parent-name>[invoiceline]</parent-name>
+            <remote-alias>invoicelineid</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoiceline_7136E84AB4534863B471953EEFF4AE72]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>invoiceid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[invoiceid]</local-name>
+            <parent-name>[invoiceline]</parent-name>
+            <remote-alias>invoiceid</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoiceline_7136E84AB4534863B471953EEFF4AE72]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>trackid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[trackid (invoiceline)]</local-name>
+            <parent-name>[invoiceline]</parent-name>
+            <remote-alias>trackid</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoiceline_7136E84AB4534863B471953EEFF4AE72]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>unitprice</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[unitprice (invoiceline)]</local-name>
+            <parent-name>[invoiceline]</parent-name>
+            <remote-alias>unitprice</remote-alias>
+            <ordinal>28</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <scale>2</scale>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoiceline_7136E84AB4534863B471953EEFF4AE72]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>quantity</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[quantity]</local-name>
+            <parent-name>[invoiceline]</parent-name>
+            <remote-alias>quantity</remote-alias>
+            <ordinal>29</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoiceline_7136E84AB4534863B471953EEFF4AE72]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>invoiceid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[invoiceid (invoice)]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>invoiceid</remote-alias>
+            <ordinal>31</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customerid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[customerid]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>customerid</remote-alias>
+            <ordinal>32</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>invoicedate</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[invoicedate]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>invoicedate</remote-alias>
+            <ordinal>33</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_TYPE_TIMESTAMP&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_TYPE_TIMESTAMP&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>billingaddress</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[billingaddress]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>billingaddress</remote-alias>
+            <ordinal>34</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>70</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>billingcity</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[billingcity]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>billingcity</remote-alias>
+            <ordinal>35</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>billingstate</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[billingstate]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>billingstate</remote-alias>
+            <ordinal>36</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>billingcountry</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[billingcountry]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>billingcountry</remote-alias>
+            <ordinal>37</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>billingpostalcode</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[billingpostalcode]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>billingpostalcode</remote-alias>
+            <ordinal>38</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>10</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[total]</local-name>
+            <parent-name>[invoice]</parent-name>
+            <remote-alias>total</remote-alias>
+            <ordinal>39</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <scale>2</scale>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_NUMERIC&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_NUMERIC&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>customerid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[customerid (customer)]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>customerid</remote-alias>
+            <ordinal>41</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>firstname</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[firstname]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>firstname</remote-alias>
+            <ordinal>42</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lastname</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[lastname]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>lastname</remote-alias>
+            <ordinal>43</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>20</width>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>company</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[company]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>company</remote-alias>
+            <ordinal>44</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>80</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>address</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[address]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>address</remote-alias>
+            <ordinal>45</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>70</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>city</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[city]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>city</remote-alias>
+            <ordinal>46</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>state</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[state]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>state</remote-alias>
+            <ordinal>47</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>country</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[country]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>country</remote-alias>
+            <ordinal>48</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>40</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>postalcode</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[postalcode]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>postalcode</remote-alias>
+            <ordinal>49</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>10</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>phone</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[phone]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>phone</remote-alias>
+            <ordinal>50</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>24</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fax</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[fax]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>fax</remote-alias>
+            <ordinal>51</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>24</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>email</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[email]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>email</remote-alias>
+            <ordinal>52</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>60</width>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>supportrepid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[supportrepid]</local-name>
+            <parent-name>[customer]</parent-name>
+            <remote-alias>supportrepid</remote-alias>
+            <ordinal>53</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[customer_9DD141CE7EA54A729F60974160064F41]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mediatypeid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[mediatypeid (mediatype)]</local-name>
+            <parent-name>[mediatype]</parent-name>
+            <remote-alias>mediatypeid</remote-alias>
+            <ordinal>55</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[mediatype_4B940E699E7D450185826D106735F539]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[name (mediatype)]</local-name>
+            <parent-name>[mediatype]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>56</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>120</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[mediatype_4B940E699E7D450185826D106735F539]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>playlistid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[playlistid]</local-name>
+            <parent-name>[playlisttrack]</parent-name>
+            <remote-alias>playlistid</remote-alias>
+            <ordinal>58</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>trackid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[trackid (playlisttrack)]</local-name>
+            <parent-name>[playlisttrack]</parent-name>
+            <remote-alias>trackid</remote-alias>
+            <ordinal>59</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>playlistid</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[playlistid (playlist)]</local-name>
+            <parent-name>[playlist]</parent-name>
+            <remote-alias>playlistid</remote-alias>
+            <ordinal>61</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>false</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_INTEGER&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_SLONG&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[playlist_E8F72C4F13A4464398D61DD660134108]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[name (playlist)]</local-name>
+            <parent-name>[playlist]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>62</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>120</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[playlist_E8F72C4F13A4464398D61DD660134108]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>modify</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[modify (playlist)]</local-name>
+            <parent-name>[playlist]</parent-name>
+            <remote-alias>modify</remote-alias>
+            <ordinal>63</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>200</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_WVARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_WCHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[playlist_E8F72C4F13A4464398D61DD660134108]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <_.fcp.ObjectModelTableType.true...column caption='album' datatype='table' name='[__tableau_internal_object_id__].[album_A4034184AE8E4405AC42C96234F92222]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='artist' datatype='table' name='[__tableau_internal_object_id__].[artist_5F00D889F433437BB0C5DFD7C2D57C02]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='customer' datatype='table' name='[__tableau_internal_object_id__].[customer_9DD141CE7EA54A729F60974160064F41]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='genre' datatype='table' name='[__tableau_internal_object_id__].[genre_5FDF48F3782E4E31970CA4BB18745586]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='invoice' datatype='table' name='[__tableau_internal_object_id__].[invoice_8C5D0C5EF36C469F9C01A9B44AD382D0]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='invoiceline' datatype='table' name='[__tableau_internal_object_id__].[invoiceline_7136E84AB4534863B471953EEFF4AE72]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='mediatype' datatype='table' name='[__tableau_internal_object_id__].[mediatype_4B940E699E7D450185826D106735F539]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='playlist' datatype='table' name='[__tableau_internal_object_id__].[playlist_E8F72C4F13A4464398D61DD660134108]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='playlisttrack' datatype='table' name='[__tableau_internal_object_id__].[playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='track' datatype='table' name='[__tableau_internal_object_id__].[track_136CEDBCCC7143849F905E01BC1EC468]' role='measure' type='quantitative' />
+      <column caption='Address' datatype='string' name='[address]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Albumid (Album)' datatype='integer' name='[albumid (album)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Albumid' datatype='integer' name='[albumid]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Artistid (Artist)' datatype='integer' name='[artistid (artist)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Artistid' datatype='integer' name='[artistid]' role='dimension' type='ordinal' />
+      <column caption='Billingaddress' datatype='string' name='[billingaddress]' role='dimension' type='nominal' />
+      <column caption='Billingcity' datatype='string' name='[billingcity]' role='dimension' type='nominal' />
+      <column caption='Billingcountry' datatype='string' name='[billingcountry]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column caption='Billingpostalcode' datatype='string' name='[billingpostalcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+      <column caption='Billingstate' datatype='string' name='[billingstate]' role='dimension' type='nominal' />
+      <column caption='Bytes' datatype='integer' name='[bytes]' role='measure' type='quantitative' />
+      <column caption='City' datatype='string' name='[city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='Company' datatype='string' name='[company]' role='dimension' type='nominal' />
+      <column caption='Composer' datatype='string' name='[composer]' role='dimension' type='nominal' />
+      <column caption='Country' datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column aggregation='Sum' caption='Customerid (Customer)' datatype='integer' name='[customerid (customer)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Customerid' datatype='integer' name='[customerid]' role='dimension' type='ordinal' />
+      <column caption='Email' datatype='string' name='[email]' role='dimension' type='nominal' />
+      <column caption='Fax' datatype='string' name='[fax]' role='dimension' type='nominal' />
+      <column caption='Firstname' datatype='string' name='[firstname]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Genreid (Genre)' datatype='integer' name='[genreid (genre)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Genreid' datatype='integer' name='[genreid]' role='dimension' type='ordinal' />
+      <column caption='Invoicedate' datatype='datetime' name='[invoicedate]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Invoiceid (Invoice)' datatype='integer' name='[invoiceid (invoice)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Invoiceid' datatype='integer' name='[invoiceid]' role='dimension' type='ordinal' />
+      <column caption='Invoicelineid' datatype='integer' name='[invoicelineid]' role='measure' type='quantitative' />
+      <column caption='Lastname' datatype='string' name='[lastname]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Mediatypeid (Mediatype)' datatype='integer' name='[mediatypeid (mediatype)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Mediatypeid' datatype='integer' name='[mediatypeid]' role='dimension' type='ordinal' />
+      <column caption='Milliseconds' datatype='integer' name='[milliseconds]' role='measure' type='quantitative' />
+      <column caption='Modify (Playlist)' datatype='string' name='[modify (playlist)]' role='dimension' type='nominal' />
+      <column caption='Name (Artist)' datatype='string' name='[name (artist)]' role='dimension' type='nominal' />
+      <column caption='Name (Genre)' datatype='string' name='[name (genre)]' role='dimension' type='nominal' />
+      <column caption='Name (Mediatype)' datatype='string' name='[name (mediatype)]' role='dimension' type='nominal' />
+      <column caption='Name (Playlist)' datatype='string' name='[name (playlist)]' role='dimension' type='nominal' />
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+      <column caption='Phone' datatype='string' name='[phone]' role='dimension' type='nominal' />
+      <column aggregation='Sum' caption='Playlistid (Playlist)' datatype='integer' name='[playlistid (playlist)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Playlistid' datatype='integer' name='[playlistid]' role='dimension' type='ordinal' />
+      <column caption='Postalcode' datatype='string' name='[postalcode]' role='dimension' semantic-role='[ZipCode].[Name]' type='nominal' />
+      <column caption='Quantity' datatype='integer' name='[quantity]' role='measure' type='quantitative' />
+      <column caption='State' datatype='string' name='[state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column aggregation='Sum' caption='Supportrepid' datatype='integer' name='[supportrepid]' role='dimension' type='ordinal' />
+      <column caption='Title' datatype='string' name='[title]' role='dimension' type='nominal' />
+      <column caption='Total' datatype='real' name='[total]' role='measure' type='quantitative' />
+      <column aggregation='Sum' caption='Trackid (Invoiceline)' datatype='integer' name='[trackid (invoiceline)]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' caption='Trackid (Playlisttrack)' datatype='integer' name='[trackid (playlisttrack)]' role='dimension' type='ordinal' />
+      <column caption='Trackid' datatype='integer' name='[trackid]' role='measure' type='quantitative' />
+      <column caption='Unitprice (Invoiceline)' datatype='real' name='[unitprice (invoiceline)]' role='measure' type='quantitative' />
+      <column caption='Unitprice' datatype='real' name='[unitprice]' role='measure' type='quantitative' />
+      <drill-paths>
+        <drill-path name='billingcountry, billingpostalcode' />
+      </drill-paths>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' rowDisplayCount='5000' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Mexico&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='album' id='album_A4034184AE8E4405AC42C96234F92222'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='album' table='[public].[album]' type='table' />
+            </properties>
+          </object>
+          <object caption='artist' id='artist_5F00D889F433437BB0C5DFD7C2D57C02'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='artist' table='[public].[artist]' type='table' />
+            </properties>
+          </object>
+          <object caption='customer' id='customer_9DD141CE7EA54A729F60974160064F41'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='customer' table='[public].[customer]' type='table' />
+            </properties>
+          </object>
+          <object caption='genre' id='genre_5FDF48F3782E4E31970CA4BB18745586'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='genre' table='[public].[genre]' type='table' />
+            </properties>
+          </object>
+          <object caption='invoice' id='invoice_8C5D0C5EF36C469F9C01A9B44AD382D0'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='invoice' table='[public].[invoice]' type='table' />
+            </properties>
+          </object>
+          <object caption='invoiceline' id='invoiceline_7136E84AB4534863B471953EEFF4AE72'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='invoiceline' table='[public].[invoiceline]' type='table' />
+            </properties>
+          </object>
+          <object caption='mediatype' id='mediatype_4B940E699E7D450185826D106735F539'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='mediatype' table='[public].[mediatype]' type='table' />
+            </properties>
+          </object>
+          <object caption='playlist' id='playlist_E8F72C4F13A4464398D61DD660134108'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='playlist' table='[public].[playlist]' type='table' />
+            </properties>
+          </object>
+          <object caption='playlisttrack' id='playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='playlisttrack' table='[public].[playlisttrack]' type='table' />
+            </properties>
+          </object>
+          <object caption='track' id='track_136CEDBCCC7143849F905E01BC1EC468'>
+            <properties context=''>
+              <relation connection='postgres.1wnur0m1xdi5bm1acdhdk169cs12' name='track' table='[public].[track]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[albumid]' />
+              <expression op='[albumid (album)]' />
+            </expression>
+            <first-end-point object-id='track_136CEDBCCC7143849F905E01BC1EC468' />
+            <second-end-point object-id='album_A4034184AE8E4405AC42C96234F92222' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[artistid]' />
+              <expression op='[artistid (artist)]' />
+            </expression>
+            <first-end-point object-id='album_A4034184AE8E4405AC42C96234F92222' />
+            <second-end-point object-id='artist_5F00D889F433437BB0C5DFD7C2D57C02' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[customerid]' />
+              <expression op='[customerid (customer)]' />
+            </expression>
+            <first-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-guaranteed-value='true' guaranteed-value='true' object-id='invoice_8C5D0C5EF36C469F9C01A9B44AD382D0' />
+            <second-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-unique-key='true' object-id='customer_9DD141CE7EA54A729F60974160064F41' unique-key='true' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[genreid]' />
+              <expression op='[genreid (genre)]' />
+            </expression>
+            <first-end-point object-id='track_136CEDBCCC7143849F905E01BC1EC468' />
+            <second-end-point object-id='genre_5FDF48F3782E4E31970CA4BB18745586' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[invoiceid]' />
+              <expression op='[invoiceid (invoice)]' />
+            </expression>
+            <first-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-guaranteed-value='true' guaranteed-value='true' object-id='invoiceline_7136E84AB4534863B471953EEFF4AE72' />
+            <second-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-unique-key='true' object-id='invoice_8C5D0C5EF36C469F9C01A9B44AD382D0' unique-key='true' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[trackid]' />
+              <expression op='[trackid (invoiceline)]' />
+            </expression>
+            <first-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-unique-key='true' object-id='track_136CEDBCCC7143849F905E01BC1EC468' unique-key='true' />
+            <second-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-guaranteed-value='true' guaranteed-value='true' object-id='invoiceline_7136E84AB4534863B471953EEFF4AE72' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[mediatypeid]' />
+              <expression op='[mediatypeid (mediatype)]' />
+            </expression>
+            <first-end-point object-id='track_136CEDBCCC7143849F905E01BC1EC468' />
+            <second-end-point object-id='mediatype_4B940E699E7D450185826D106735F539' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[playlistid]' />
+              <expression op='[playlistid (playlist)]' />
+            </expression>
+            <first-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-guaranteed-value='true' guaranteed-value='true' object-id='playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA' />
+            <second-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-unique-key='true' object-id='playlist_E8F72C4F13A4464398D61DD660134108' unique-key='true' />
+          </relationship>
+          <relationship>
+            <expression op='='>
+              <expression op='[trackid]' />
+              <expression op='[trackid (playlisttrack)]' />
+            </expression>
+            <first-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-unique-key='true' object-id='track_136CEDBCCC7143849F905E01BC1EC468' unique-key='true' />
+            <second-end-point _.fcp.ObjectModelRelationshipPerfOptions.true...is-db-set-guaranteed-value='true' guaranteed-value='true' object-id='playlisttrack_DA2D2835CC5B4A21BA2E0F2D987143DA' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='Artistas mas Comprados'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <column caption='Name (Artist)' datatype='string' name='[name (artist)]' role='dimension' type='nominal' />
+            <column-instance column='[name (artist)]' derivation='None' name='[none:name (artist):nk]' pivot='key' type='nominal' />
+            <column caption='Quantity' datatype='integer' name='[quantity]' role='measure' type='quantitative' />
+            <column-instance column='[quantity]' derivation='Sum' name='[sum:quantity:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]' included-values='non-null' />
+          <slices>
+            <column>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]</rows>
+        <cols>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:name (artist):nk]</cols>
+      </table>
+      <simple-id uuid='{5139BC86-F7D8-4F02-87FE-FD477CEAA853}' />
+    </worksheet>
+    <worksheet name='Artistas por cantidad de albums'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <_.fcp.ObjectModelTableType.true...column caption='album' datatype='table' name='[__tableau_internal_object_id__].[album_A4034184AE8E4405AC42C96234F92222]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[album_A4034184AE8E4405AC42C96234F92222]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:album_A4034184AE8E4405AC42C96234F92222:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Sum' caption='Artistid (Artist)' datatype='integer' name='[artistid (artist)]' role='dimension' type='ordinal' />
+            <column caption='Name (Artist)' datatype='string' name='[name (artist)]' role='dimension' type='nominal' />
+            <column-instance column='[artistid (artist)]' derivation='None' name='[none:artistid (artist):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name (artist)]' derivation='None' name='[none:name (artist):nk]' pivot='key' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='album' datatype='integer' name='[__tableau_internal_object_id__].[album_A4034184AE8E4405AC42C96234F92222]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:album_A4034184AE8E4405AC42C96234F92222:qk]' included-values='in-range'>
+            <min>1</min>
+            <max>21</max>
+          </filter>
+          <slices>
+            <column>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:album_A4034184AE8E4405AC42C96234F92222:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:album_A4034184AE8E4405AC42C96234F92222:qk]</rows>
+        <cols>([federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:artistid (artist):ok] / [federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:name (artist):nk])</cols>
+      </table>
+      <simple-id uuid='{4BD3266D-663A-4DFA-98AB-E5525DBF1632}' />
+    </worksheet>
+    <worksheet name='Clientes por pais'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <_.fcp.ObjectModelTableType.false...column caption='customer' datatype='integer' name='[__tableau_internal_object_id__].[customer_9DD141CE7EA54A729F60974160064F41]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[customer_9DD141CE7EA54A729F60974160064F41]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:customer_9DD141CE7EA54A729F60974160064F41:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='customer' datatype='table' name='[__tableau_internal_object_id__].[customer_9DD141CE7EA54A729F60974160064F41]' role='measure' type='quantitative' />
+            <column caption='Country' datatype='string' name='[country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column-instance column='[country]' derivation='None' name='[none:country:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[Longitude (generated)]' field-type='quantitative' max='53107874.110703409' min='2457817.725045423' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[Latitude (generated)]' field-type='quantitative' max='20793988.277721778' min='-9195678.8737855889' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:country:nk]' />
+              <color column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:customer_9DD141CE7EA54A729F60974160064F41:qk]' />
+              <geometry column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[Geometry (generated)]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[Latitude (generated)]</rows>
+        <cols>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[Longitude (generated)]</cols>
+      </table>
+      <simple-id uuid='{A8F077BE-B26F-4140-ADC6-B66EFED8B342}' />
+    </worksheet>
+    <worksheet name='Compras por Genero'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <column aggregation='Sum' caption='Genreid (Genre)' datatype='integer' name='[genreid (genre)]' role='dimension' type='ordinal' />
+            <column caption='Name (Genre)' datatype='string' name='[name (genre)]' role='dimension' type='nominal' />
+            <column-instance column='[genreid (genre)]' derivation='None' name='[none:genreid (genre):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name (genre)]' derivation='None' name='[none:name (genre):nk]' pivot='key' type='nominal' />
+            <column caption='Quantity' datatype='integer' name='[quantity]' role='measure' type='quantitative' />
+            <column-instance column='[quantity]' derivation='Sum' name='[sum:quantity:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]' included-values='non-null' />
+          <slices>
+            <column>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:quantity:qk]</rows>
+        <cols>([federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:genreid (genre):ok] / [federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:name (genre):nk])</cols>
+      </table>
+      <simple-id uuid='{7D1D1DE1-C74D-4E37-8B2C-C430D01968B9}' />
+    </worksheet>
+    <worksheet name='Generos'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <_.fcp.ObjectModelTableType.false...column caption='track' datatype='integer' name='[__tableau_internal_object_id__].[track_136CEDBCCC7143849F905E01BC1EC468]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[track_136CEDBCCC7143849F905E01BC1EC468]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:track_136CEDBCCC7143849F905E01BC1EC468:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='track' datatype='table' name='[__tableau_internal_object_id__].[track_136CEDBCCC7143849F905E01BC1EC468]' role='measure' type='quantitative' />
+            <column aggregation='Sum' caption='Genreid (Genre)' datatype='integer' name='[genreid (genre)]' role='dimension' type='ordinal' />
+            <column caption='Name (Genre)' datatype='string' name='[name (genre)]' role='dimension' type='nominal' />
+            <column-instance column='[genreid (genre)]' derivation='None' name='[none:genreid (genre):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[name (genre)]' derivation='None' name='[none:name (genre):nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:track_136CEDBCCC7143849F905E01BC1EC468:qk]</rows>
+        <cols>([federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:genreid (genre):ok] / [federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:name (genre):nk])</cols>
+      </table>
+      <simple-id uuid='{1000FB95-C102-43AA-8719-6F6969F59BDC}' />
+    </worksheet>
+    <worksheet name='Reproducciones'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='BDProyecto2' name='federated.09r4yqt1g2vwqh1abdfwl1b59wdf' />
+          </datasources>
+          <datasource-dependencies datasource='federated.09r4yqt1g2vwqh1abdfwl1b59wdf'>
+            <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+            <column-instance column='[name]' derivation='None' name='[none:name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[views]' derivation='Sum' name='[sum:views:qk]' pivot='key' type='quantitative' />
+            <column datatype='integer' name='[views]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:views:qk]' included-values='in-range'>
+            <min>1</min>
+            <max>3</max>
+          </filter>
+          <slices>
+            <column>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:views:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:views:qk]</rows>
+        <cols>[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[none:name:nk]</cols>
+      </table>
+      <simple-id uuid='{AB057EEF-5933-4ED2-B991-83F027C8DB9E}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='37'>
+    <window class='worksheet' name='Generos'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{781A4EFC-4C52-4C40-B0FB-927132E1266E}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Artistas por cantidad de albums'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='173'>
+            <card param='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:album_A4034184AE8E4405AC42C96234F92222:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{CF22F0DC-EBAD-4C53-B921-0C507EF3779C}' />
+    </window>
+    <window class='worksheet' name='Clientes por pais'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='173'>
+            <card pane-specification-id='0' param='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[__tableau_internal_object_id__].[cnt:customer_9DD141CE7EA54A729F60974160064F41:qk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{11B57C52-B9A4-4E0A-9ED7-B841159B5D09}' />
+    </window>
+    <window class='worksheet' name='Compras por Genero'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{BB650335-AABB-4A6D-B7F0-8C21FCDD9FC7}' />
+    </window>
+    <window class='worksheet' name='Artistas mas Comprados'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='entire-view' />
+      </viewpoint>
+      <simple-id uuid='{2A1E4EA7-C24C-4864-A2FD-E3BB98CBA153}' />
+    </window>
+    <window class='worksheet' name='Reproducciones'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='174'>
+            <card param='[federated.09r4yqt1g2vwqh1abdfwl1b59wdf].[sum:views:qk]' show-domain='false' show-null-ctrls='false' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{AED3A339-B2B0-4D03-A3EC-EAB29B576C7F}' />
+    </window>
+  </windows>
+</workbook>
